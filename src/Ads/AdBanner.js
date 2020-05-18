@@ -4,14 +4,15 @@ import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
 import macro from "../assets/macro.png"
 import naranja from "../assets/naranja.jpg"
+import BannerIcon from "../assets/tools-and-utensils.svg"
 
 const Banner = styled.div`
   background-image: linear-gradient(to right, #14474d, #1c4a7d);
   border-radius: 10px;
   padding: 35px 128px;
-  background-color: blue;
   display: flex;
   align-items: center;
+  position: relative;
 
   .notice {
     margin-left: 48px;
@@ -36,13 +37,23 @@ const Banner = styled.div`
     margin-left: auto;
   }
 
-  img {
+  .banner-logo {
     height: 180px;
     width: auto;
+  }
+
+  .banner-icon {
+    position: absolute;
+    pointer-events: none;
+    right: -30px;
+    top: -30px;
+    width: 280px;
+    height: 320px;
   }
 `
 
 const Button = styled.button`
+  z-index: 1;
   background: transparent;
   cursor: pointer;
   border-radius: 10px;
@@ -52,7 +63,7 @@ const Button = styled.button`
   letter-spacing: 1.68px;
   color: white;
   line-height: 32px;
-  padding: 10px 40px;
+  padding: 14px 40px;
   transition: 0.2s background-color, 0.3s border;
 
   &:hover {
@@ -107,20 +118,22 @@ export default function AdBanner(props) {
     >
       {[
         <Banner>
-          <img src={macro}></img>
+          <img className="banner-logo" src={macro}></img>
           <div className="notice">
             <div>Espacio disponible</div>
             <div>para publicitar</div>
           </div>
           <Button>CONTACTANOS</Button>
+          <img className="banner-icon" src={BannerIcon}></img>
         </Banner>,
         <Banner>
-          <img src={naranja}></img>
+          <img className="banner-logo" src={naranja}></img>
           <div className="notice">
             <div>Espacio disponible</div>
             <div>para publicitar</div>
           </div>
           <Button>CONTACTANOS</Button>
+          <img className="banner-icon" src={BannerIcon}></img>
         </Banner>,
       ]}
     </Carousel>
