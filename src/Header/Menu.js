@@ -49,7 +49,7 @@ const StyledLink = styled.div`
   user-select: none;
   a {
     color: white;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 40px;
     letter-spacing: 5px;
     position: relative;

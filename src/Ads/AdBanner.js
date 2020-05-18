@@ -66,7 +66,7 @@ export default function AdBanner(props) {
     <Carousel
       additionalTransfrom={0}
       arrows={false}
-      // autoPlay
+      autoPlay
       autoPlaySpeed={3000}
       centerMode={false}
       className=""
