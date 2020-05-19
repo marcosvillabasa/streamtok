@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import AdBanner from "../Ads/AdBanner"
 import Composition from "./Composition"
+import CanalesGrid from "./CanalesGrid"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -144,6 +145,7 @@ export default function LandingPage(props) {
         </div>
       </ScrollHelper>
       <Composition />
+      <CanalesGrid />
     </StyledLandingPage>
   )
 }

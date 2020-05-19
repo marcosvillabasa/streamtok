@@ -30,6 +30,7 @@ const Box = styled.div`
 const Box2 = styled.div`
   width: 100%;
   padding-top: 100px;
+  padding-bottom: 200px;
   display: flex;
   justify-content: center;
 `
