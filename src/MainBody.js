@@ -11,7 +11,7 @@ const TabTV = React.lazy(() => import("./TabTV/TabTV.js"))
 const Main = styled.main`
   min-height: 1080px;
   position: relative;
-  margin: 0px 7vw;
+  margin: 0px var(--body-margin);
 `
 
 const Loading = styled.div`

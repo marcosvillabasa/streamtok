@@ -6,7 +6,7 @@ import logo from "../assets/logo"
 
 const HeaderContainer = styled.header`
   height: 80px;
-  padding: 30px 7vw;
+  padding: 30px var(--body-margin);
   display: flex;
   align-items: flex-end;
   backdrop-filter: blur(20px);

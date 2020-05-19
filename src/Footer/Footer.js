@@ -6,7 +6,7 @@ import AboutInformation from "./AboutInformation"
 
 const StyledFooter = styled.footer`
   color: white;
-  padding: 100px 7vw;
+  padding: 100px var(--body-margin);
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

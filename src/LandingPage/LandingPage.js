@@ -88,11 +88,60 @@ function Hero(props) {
   )
 }
 
+const ScrollHelper = styled.div`
+  * {
+    user-select: none;
+  }
+
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--body-margin));
+  height: 100vh;
+  width: calc(var(--body-margin) + 60px);
+  backdrop-filter: blur(25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .scroll-notice {
+    writing-mode: vertical-rl;
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  .coso {
+    border-radius: 100px;
+    border: 1px solid white;
+    width: 50px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .arrow {
+      transform: rotate(-90deg) scale(1.5);
+    }
+  }
+`
+
+const StyledLandingPage = styled.div`
+  .react-multi-carousel-list {
+    margin: 0 60px;
+  }
+`
+
 export default function LandingPage(props) {
   return (
-    <div>
+    <StyledLandingPage>
       <Hero />
       <AdBanner />
-    </div>
+      <ScrollHelper>
+        <span className="scroll-notice">Scroll para ver más</span>
+        <div className="coso">
+          <span className="material-icons arrow">keyboard_backspace</span>
+        </div>
+      </ScrollHelper>
+    </StyledLandingPage>
   )
 }
