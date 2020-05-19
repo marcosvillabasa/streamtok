@@ -6,7 +6,7 @@ export default function AboutInformation() {
   return (
     <section>
       <div>{logo}</div>
-      <p>
+      <p style={{marginTop:'1.5rem'}}>
         Streamtok es una empresa de entretenimiento que opera a nivel nacional,
         cuyo servicio principal es la transmisión de Live Streaming de
         contenidos audiovisuales.
