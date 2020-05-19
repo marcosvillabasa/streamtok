@@ -17,7 +17,7 @@ const MaterialIcon = styled.span`
   font-size: 40px;
 `
 
-const Navbar = styled.nav`
+export const Navbar = styled.nav`
   ul {
     text-decoration: none;
     list-style: none;
@@ -32,7 +32,8 @@ const Navbar = styled.nav`
   }
 `
 
-const SelectedTabBorder = styled.div`
+export const SelectedTabBorder = styled.div`
+  pointer-events: none;
   transition: 0.2s all ease-in-out;
   will-change: opacity;
   opacity: ${(props) => (props.active ? 1 : 0)};
@@ -45,9 +46,10 @@ const SelectedTabBorder = styled.div`
   box-shadow: 0px 0px 16px 0px var(--color-primary);
 `
 
-const StyledLink = styled.div`
+export const StyledLink = styled.div`
   user-select: none;
   a {
+    cursor: pointer;
     color: white;
     font-size: 22px;
     line-height: 40px;
@@ -59,7 +61,7 @@ const StyledLink = styled.div`
   }
 `
 
-const Button = styled.button`
+export const Button = styled.button`
   background: transparent;
   cursor: pointer;
   border-radius: 10px;

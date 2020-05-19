@@ -86,7 +86,7 @@ export default function AdBanner(props) {
       focusOnSelect={false}
       infinite
       itemClass=""
-      keyBoardControl
+      keyBoardControl={false}
       minimumTouchDrag={80}
       renderButtonGroupOutside={false}
       responsive={{

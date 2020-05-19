@@ -47,3 +47,12 @@ body {
     background-size: auto 100vh;
   }
 }
+
+.image-item {
+  border: 1px solid black;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}

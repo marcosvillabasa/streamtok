@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import AdBanner from "../Ads/AdBanner"
+import Composition from "./Composition"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -26,7 +27,7 @@ const HeroText = styled.p`
   min-width: 400px;
 `
 
-const Button = styled.button`
+export const RoundedPrimaryButton = styled.button`
   margin-top: 64px;
   background: var(--color-primary);
   cursor: pointer;
@@ -80,10 +81,10 @@ function Hero(props) {
         cuyo servicio principal es la transmisión de Live Streaming de
         contenidos audiovisuales.
       </HeroText>
-      <Button>
+      <RoundedPrimaryButton>
         VER CONTENIDO
         <span className="material-icons">arrow_forward</span>
-      </Button>
+      </RoundedPrimaryButton>
     </HeroSection>
   )
 }
@@ -142,6 +143,7 @@ export default function LandingPage(props) {
           <span className="material-icons arrow">keyboard_backspace</span>
         </div>
       </ScrollHelper>
+      <Composition />
     </StyledLandingPage>
   )
 }
