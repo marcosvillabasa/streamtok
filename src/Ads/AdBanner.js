@@ -118,22 +118,22 @@ export default function AdBanner(props) {
     >
       {[
         <Banner>
-          <img className="banner-logo" src={macro}></img>
+          <img alt="coso" className="banner-logo" src={macro}></img>
           <div className="notice">
             <div>Espacio disponible</div>
             <div>para publicitar</div>
           </div>
           <Button>CONTACTANOS</Button>
-          <img className="banner-icon" src={BannerIcon}></img>
+          <img alt="coso" className="banner-icon" src={BannerIcon}></img>
         </Banner>,
         <Banner>
-          <img className="banner-logo" src={naranja}></img>
+          <img alt="coso" className="banner-logo" src={naranja}></img>
           <div className="notice">
             <div>Espacio disponible</div>
             <div>para publicitar</div>
           </div>
           <Button>CONTACTANOS</Button>
-          <img className="banner-icon" src={BannerIcon}></img>
+          <img alt="coso" className="banner-icon" src={BannerIcon}></img>
         </Banner>,
       ]}
     </Carousel>

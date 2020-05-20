@@ -70,6 +70,7 @@ const Title = styled.div`
     font-size: 9vw;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     opacity: 0.08;
+    pointer-events: none;
     user-select: none;
     transform: translateY(-72px);
     will-change: font-size;
@@ -99,7 +100,7 @@ export default function CanalesGrid(props) {
       <StyledCanalesGrid>
         {imagesSrc.map((src) => (
           <ImgGridContainer>
-            <img className="imgigm" src={src}></img>
+            <img alt="coso" className="imgigm" src={src}></img>
           </ImgGridContainer>
         ))}
       </StyledCanalesGrid>

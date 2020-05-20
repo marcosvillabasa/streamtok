@@ -4,11 +4,16 @@
   font-family: "Hind", sans-serif;
 }
 
+label,
+button {
+  user-select: none;
+}
+
 body {
   background-image: linear-gradient(
       to bottom,
       rgba(16, 17, 20, 1) 0%,
-      rgba(16, 17, 20, 0.666) 225px
+      rgba(16, 17, 20, 0.5) 225px
     ),
     url(assets/hero.png);
   /* background-size: cover; */

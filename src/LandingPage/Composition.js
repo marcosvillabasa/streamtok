@@ -1,8 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { StyledLink, SelectedTabBorder } from "../Header/Menu"
-import Link from "react-router-dom/Link"
-import { useLocation } from "react-router"
 import { RoundedPrimaryButton } from "./LandingPage"
 import composition1 from "../assets/composition1.png"
 import composition2 from "../assets/composition2.png"
@@ -139,16 +137,16 @@ export default function Composition(props) {
         <Carrousel>
           {selected === "EVENTOS"
             ? [
-                <img src={composition1}></img>,
-                <img src={composition2}></img>,
-                <img src={composition3}></img>,
-                <img src={composition4}></img>,
+                <img alt="coso" src={composition1}></img>,
+                <img alt="coso" src={composition2}></img>,
+                <img alt="coso" src={composition3}></img>,
+                <img alt="coso" src={composition4}></img>,
               ]
             : [
-                <img src={composition5}></img>,
-                <img src={composition6}></img>,
-                <img src={composition7}></img>,
-                <img src={composition8}></img>,
+                <img alt="coso" src={composition5}></img>,
+                <img alt="coso" src={composition6}></img>,
+                <img alt="coso" src={composition7}></img>,
+                <img alt="coso" src={composition8}></img>,
               ]}
         </Carrousel>
       </Box>

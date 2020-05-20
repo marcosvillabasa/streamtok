@@ -128,6 +128,7 @@ const ScrollHelper = styled.div`
 `
 
 const StyledLandingPage = styled.div`
+  margin: 0px var(--body-margin);
   .react-multi-carousel-list {
     margin: 0 60px;
   }

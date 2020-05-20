@@ -1,5 +1,4 @@
 import React from "react"
-import { TransitionGroup, CSSTransition } from "react-transition-group"
 import { Switch, Route, useLocation } from "react-router-dom"
 import styled from "styled-components"
 import LandingPage from "./LandingPage/LandingPage.js"
@@ -11,7 +10,6 @@ const TabTV = React.lazy(() => import("./TabTV/TabTV.js"))
 const Main = styled.main`
   min-height: 1080px;
   position: relative;
-  margin: 0px var(--body-margin);
 `
 
 const Loading = styled.div`

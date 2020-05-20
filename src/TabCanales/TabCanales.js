@@ -2,6 +2,7 @@ import React from "react"
 import ReactJWPlayer from "react-jw-player"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
+import styled from "styled-components"
 
 const Playlist = ({ playlist }) => (
   <>
@@ -53,6 +54,7 @@ const Playlist = ({ playlist }) => (
       {playlist.map((track) => (
         <>
           <img
+            alt={track.title}
             src={track.images[0].src}
             style={{
               display: "block",
@@ -68,17 +70,79 @@ const Playlist = ({ playlist }) => (
   </>
 )
 
-export default function TabCanales(props) {
-  console.log(json)
+const StyledTabCanales = styled.div`
+  margin: 0px 50px;
+  display: grid;
+
+  .track-title {
+    font-size: 48px;
+  }
+
+  header {
+    margin: 0px -50px;
+    background-color: #191b1e;
+    height: 200px;
+    grid-column: 1 / span 2;
+  }
+  grid-template-rows: auto auto;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px 25px;
+`
+
+const StyledVideosRelacionados = styled.div`
+  overflow-y: scroll;
+`
+
+function VideosRelacionados({ playlist, setCurrentTrack }) {
   return (
-    <div>
+    <StyledVideosRelacionados>
+      <p>Lista de videos relacionados</p>
+      <div className="container">
+        {playlist.map((track) => (
+          <div onClick={() => setCurrentTrack(track)}>
+            <p>{track.title}</p>
+            <img
+              src={track.images.find(({ width }) => width === 320)?.src}
+            ></img>
+          </div>
+        ))}
+      </div>
+    </StyledVideosRelacionados>
+  )
+}
+
+export default function TabCanales(props) {
+  const [currentTrack, setCurrentTrack] = React.useState(null)
+  return (
+    <StyledTabCanales>
+      <header>
+        <p className="track-title">{currentTrack?.title}</p>
+      </header>
       <ReactJWPlayer
         playerId="LUykEJtT"
         playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-        playlist="https://cdn.jwplayer.com/v2/playlists/SEw1rfH9"
+        playlist={
+          currentTrack
+            ? undefined
+            : "https://cdn.jwplayer.com/v2/playlists/SEw1rfH9"
+        }
+        image={
+          currentTrack
+            ? currentTrack.images.find(({ width }) => width === 480).src
+            : undefined
+        }
+        onOneHundredPercent={() => setCurrentTrack(null)}
+        file={
+          currentTrack
+            ? currentTrack.sources.find(({ width }) => width === 1280).file
+            : undefined
+        }
       />
-      <Playlist playlist={json.playlist} />
-    </div>
+      <VideosRelacionados
+        setCurrentTrack={setCurrentTrack}
+        playlist={json.playlist}
+      />
+    </StyledTabCanales>
   )
 }
 
