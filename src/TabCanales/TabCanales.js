@@ -90,588 +90,749 @@ const StyledTabCanales = styled.div`
 `
 
 const StyledVideosRelacionados = styled.div`
-  overflow-y: scroll;
+  background-color: #22252a;
+  border-radius: 10px;
+  border: 1px solid #707070;
+
+  .videos-relacionados-title {
+    font-size: 21px;
+    font-weight: 600;
+    padding: 30px 0px;
+    padding-left: 35px;
+    border-bottom: 1px solid #707070;
+  }
+
+  .container {
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b30000;
+    }
+
+    padding-left: 35px;
+    height: 650px;
+    overflow-y: scroll;
+  }
 `
 
-function VideosRelacionados({ playlist, setCurrentTrack }) {
+const StyledPlaylistListItem = styled.div`
+  display: flex;
+  padding: 20px 0px;
+  border-bottom: 1px solid #2f333a;
+  cursor: pointer;
+
+  img {
+    width: 290px;
+  }
+
+  .playlist-item-info {
+    padding: 8px 16px;
+    .playlist-item-artist {
+      color: #707070;
+    }
+  }
+`
+
+function PlaylistItem(track, index, fullPlaylist) {
+  let artist = ""
+  let title = ""
+  if (track && track.title) {
+    const splited = track.title.split("-")
+    artist = splited[0]
+    title = splited[1]
+  }
+  const changeCurrentTrack = () => {
+    window.jwplayer().playlistItem(index)
+  }
+
+  return (
+    <StyledPlaylistListItem onClick={changeCurrentTrack}>
+      <img src={track.images.find(({ width }) => width === 320)?.src}></img>
+      <div className="playlist-item-info">
+        <p className="playlist-item-title">
+          {title} - {track.description}
+        </p>
+        <p className="playlist-item-artist">{artist}</p>
+      </div>
+    </StyledPlaylistListItem>
+  )
+}
+
+function VideosRelacionados({ playlist }) {
   return (
     <StyledVideosRelacionados>
-      <p>Lista de videos relacionados</p>
-      <div className="container">
-        {playlist.map((track) => (
-          <div onClick={() => setCurrentTrack(track)}>
-            <p>{track.title}</p>
-            <img
-              src={track.images.find(({ width }) => width === 320)?.src}
-            ></img>
-          </div>
-        ))}
+      <div className="videos-relacionados-title">
+        <p>Lista de videos relacionados</p>
       </div>
+      <div className="container">{playlist.map(PlaylistItem)}</div>
     </StyledVideosRelacionados>
+  )
+}
+
+const StyledHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .track-info-container {
+    margin-bottom: -50px;
+    margin-left: 100px;
+
+    .track-artist {
+      font-size: 28px;
+      color: #eee;
+    }
+    .track-title {
+      font-size: 24px;
+      color: #747474;
+    }
+  }
+`
+
+const LogosContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: var(--body-margin);
+
+  .logo1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f001;
+    height: 85px;
+    width: 180px;
+  }
+
+  .logo2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 70px;
+    background-color: #ff01;
+    height: 85px;
+    width: 280px;
+  }
+`
+
+function TabCanalesHeader({ currentTrack }) {
+  let artist = ""
+  let title = ""
+  if (currentTrack && currentTrack.title) {
+    const splited = currentTrack.title.split("-")
+    artist = splited[0]
+    title = splited[1]
+  }
+  return (
+    <StyledHeader>
+      <div className="track-info-container">
+        <p className="track-artist">{artist}</p>
+        <p className="track-title">{title}</p>
+      </div>
+      <LogosContainer>
+        <div className="logo1">logo acá</div>
+        <div className="logo2">logo acá</div>
+      </LogosContainer>
+    </StyledHeader>
   )
 }
 
 export default function TabCanales(props) {
   const [currentTrack, setCurrentTrack] = React.useState(null)
+  const [currentPlaylist, setCurrentPlaylist] = React.useState([])
+
   return (
     <StyledTabCanales>
-      <header>
-        <p className="track-title">{currentTrack?.title}</p>
-      </header>
+      <TabCanalesHeader currentTrack={currentTrack} />
       <ReactJWPlayer
+        onVideoLoad={(track) => {
+          if (track && track.item) {
+            setCurrentTrack(track.item)
+          }
+        }}
+        onReady={(_) => {
+          setCurrentPlaylist(window.jwplayer().getPlaylist().slice(0, 6))
+        }}
         playerId="LUykEJtT"
         playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-        playlist={
-          currentTrack
-            ? undefined
-            : "https://cdn.jwplayer.com/v2/playlists/SEw1rfH9"
-        }
-        image={
-          currentTrack
-            ? currentTrack.images.find(({ width }) => width === 480).src
-            : undefined
-        }
-        onOneHundredPercent={() => setCurrentTrack(null)}
-        file={
-          currentTrack
-            ? currentTrack.sources.find(({ width }) => width === 1280).file
-            : undefined
-        }
+        playlist="https://cdn.jwplayer.com/v2/playlists/SEw1rfH9"
       />
-      <VideosRelacionados
-        setCurrentTrack={setCurrentTrack}
-        playlist={json.playlist}
-      />
+      <VideosRelacionados playlist={currentPlaylist} />
     </StyledTabCanales>
   )
 }
 
-const json = 
-{
-  "title": "Todos nuestros eventos",
-  "description": "",
-  "kind": "MANUAL",
-  "feedid": "SEw1rfH9",
-  "links": {
-  "first": "https://cdn.jwplayer.com/v2/playlists/SEw1rfH9?internal=false&page_offset=1&page_limit=500",
-  "last": "https://cdn.jwplayer.com/v2/playlists/SEw1rfH9?internal=false&page_offset=1&page_limit=500"
-  },
-  "playlist": [
-  {
-  "title": "Sebastián Garay - Celador De Sueños.",
-  "mediaid": "8ebtjFBi",
-  "link": "https://cdn.jwplayer.com/previews/8ebtjFBi",
-  "image": "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=720",
-  "images": [
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=320",
-  "width": 320,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=480",
-  "width": 480,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=640",
-  "width": 640,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=720",
-  "width": 720,
-  "type": "image/jpeg"
-  }
-  ],
-  "feedid": "SEw1rfH9",
-  "duration": 183,
-  "pubdate": 1589921791,
-  "description": "",
-  "sources": [
-  {
-  "file": "https://cdn.jwplayer.com/manifests/8ebtjFBi.m3u8",
-  "type": "application/vnd.apple.mpegurl"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/8ebtjFBi-aFlDqEAF.mp4",
-  "type": "video/mp4",
-  "height": 180,
-  "width": 320,
-  "label": "180p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/8ebtjFBi-kWIypOlb.mp4",
-  "type": "video/mp4",
-  "height": 270,
-  "width": 480,
-  "label": "270p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/8ebtjFBi-jm5uiBhH.mp4",
-  "type": "video/mp4",
-  "height": 720,
-  "width": 1280,
-  "label": "720p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/8ebtjFBi-q8zF0XUy.m4a",
-  "type": "audio/mp4",
-  "label": "AAC Audio"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/8ebtjFBi-jzDYkt9m.mp4",
-  "type": "video/mp4",
-  "height": 360,
-  "width": 640,
-  "label": "360p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/8ebtjFBi-moMlVCPQ.mp4",
-  "type": "video/mp4",
-  "height": 540,
-  "width": 960,
-  "label": "540p"
-  }
-  ],
-  "tracks": [
-  {
-  "file": "https://cdn.jwplayer.com/strips/8ebtjFBi-120.vtt",
-  "kind": "thumbnails"
-  }
-  ],
-  "variations": {}
-  },
-  {
-  "title": "Dario Lazarte - Derroche",
-  "mediaid": "6qufpcFB",
-  "link": "https://cdn.jwplayer.com/previews/6qufpcFB",
-  "image": "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=720",
-  "images": [
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=320",
-  "width": 320,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=480",
-  "width": 480,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=640",
-  "width": 640,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=720",
-  "width": 720,
-  "type": "image/jpeg"
-  }
-  ],
-  "feedid": "SEw1rfH9",
-  "duration": 206,
-  "pubdate": 1589920879,
-  "description": "Avicultura 2020",
-  "tags": "#avicultura,#folklore,#romanticos,#avicultura2020,#dariolazarte,#derroche",
-  "sources": [
-  {
-  "file": "https://cdn.jwplayer.com/manifests/6qufpcFB.m3u8",
-  "type": "application/vnd.apple.mpegurl"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/6qufpcFB-aFlDqEAF.mp4",
-  "type": "video/mp4",
-  "height": 180,
-  "width": 320,
-  "label": "180p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/6qufpcFB-kWIypOlb.mp4",
-  "type": "video/mp4",
-  "height": 270,
-  "width": 480,
-  "label": "270p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/6qufpcFB-jm5uiBhH.mp4",
-  "type": "video/mp4",
-  "height": 720,
-  "width": 1280,
-  "label": "720p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/6qufpcFB-q8zF0XUy.m4a",
-  "type": "audio/mp4",
-  "label": "AAC Audio"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/6qufpcFB-jzDYkt9m.mp4",
-  "type": "video/mp4",
-  "height": 360,
-  "width": 640,
-  "label": "360p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/6qufpcFB-moMlVCPQ.mp4",
-  "type": "video/mp4",
-  "height": 540,
-  "width": 960,
-  "label": "540p"
-  }
-  ],
-  "tracks": [
-  {
-  "file": "https://cdn.jwplayer.com/strips/6qufpcFB-120.vtt",
-  "kind": "thumbnails"
-  }
-  ],
-  "variations": {}
-  },
-  {
-  "title": "Dario Lazarte - Y Cómo Es Él",
-  "mediaid": "fPZWEKxD",
-  "link": "https://cdn.jwplayer.com/previews/fPZWEKxD",
-  "image": "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=720",
-  "images": [
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=320",
-  "width": 320,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=480",
-  "width": 480,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=640",
-  "width": 640,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=720",
-  "width": 720,
-  "type": "image/jpeg"
-  }
-  ],
-  "feedid": "SEw1rfH9",
-  "duration": 198,
-  "pubdate": 1589920869,
-  "description": "Avicultura 2020",
-  "tags": "#avicultura,#folklore,#romanticos,#avicultura2020,#ycomoesel,#dariolazarte",
-  "sources": [
-  {
-  "file": "https://cdn.jwplayer.com/manifests/fPZWEKxD.m3u8",
-  "type": "application/vnd.apple.mpegurl"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/fPZWEKxD-aFlDqEAF.mp4",
-  "type": "video/mp4",
-  "height": 180,
-  "width": 320,
-  "label": "180p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/fPZWEKxD-kWIypOlb.mp4",
-  "type": "video/mp4",
-  "height": 270,
-  "width": 480,
-  "label": "270p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/fPZWEKxD-jm5uiBhH.mp4",
-  "type": "video/mp4",
-  "height": 720,
-  "width": 1280,
-  "label": "720p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/fPZWEKxD-q8zF0XUy.m4a",
-  "type": "audio/mp4",
-  "label": "AAC Audio"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/fPZWEKxD-jzDYkt9m.mp4",
-  "type": "video/mp4",
-  "height": 360,
-  "width": 640,
-  "label": "360p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/fPZWEKxD-moMlVCPQ.mp4",
-  "type": "video/mp4",
-  "height": 540,
-  "width": 960,
-  "label": "540p"
-  }
-  ],
-  "tracks": [
-  {
-  "file": "https://cdn.jwplayer.com/strips/fPZWEKxD-120.vtt",
-  "kind": "thumbnails"
-  }
-  ],
-  "variations": {}
-  },
-  {
-  "title": "Abel Pintos - Tiempo",
-  "mediaid": "pwDvbd0Q",
-  "link": "https://cdn.jwplayer.com/previews/pwDvbd0Q",
-  "image": "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=720",
-  "images": [
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=320",
-  "width": 320,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=480",
-  "width": 480,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=640",
-  "width": 640,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=720",
-  "width": 720,
-  "type": "image/jpeg"
-  }
-  ],
-  "feedid": "SEw1rfH9",
-  "duration": 233,
-  "pubdate": 1589920003,
-  "description": "Avicultura 2020",
-  "tags": "#avicultura,#abel,#abelpintos,#folklore,#romanticos,#avicultura2020,#Tiempo",
-  "sources": [
-  {
-  "file": "https://cdn.jwplayer.com/manifests/pwDvbd0Q.m3u8",
-  "type": "application/vnd.apple.mpegurl"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/pwDvbd0Q-aFlDqEAF.mp4",
-  "type": "video/mp4",
-  "height": 180,
-  "width": 320,
-  "label": "180p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/pwDvbd0Q-kWIypOlb.mp4",
-  "type": "video/mp4",
-  "height": 270,
-  "width": 480,
-  "label": "270p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/pwDvbd0Q-jm5uiBhH.mp4",
-  "type": "video/mp4",
-  "height": 720,
-  "width": 1280,
-  "label": "720p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/pwDvbd0Q-q8zF0XUy.m4a",
-  "type": "audio/mp4",
-  "label": "AAC Audio"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/pwDvbd0Q-jzDYkt9m.mp4",
-  "type": "video/mp4",
-  "height": 360,
-  "width": 640,
-  "label": "360p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/pwDvbd0Q-moMlVCPQ.mp4",
-  "type": "video/mp4",
-  "height": 540,
-  "width": 960,
-  "label": "540p"
-  }
-  ],
-  "tracks": [
-  {
-  "file": "https://cdn.jwplayer.com/strips/pwDvbd0Q-120.vtt",
-  "kind": "thumbnails"
-  }
-  ],
-  "variations": {}
-  },
-  {
-  "title": "Abel Pintos - Tanto Amor",
-  "mediaid": "o4jtochm",
-  "link": "https://cdn.jwplayer.com/previews/o4jtochm",
-  "image": "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=720",
-  "images": [
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=320",
-  "width": 320,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=480",
-  "width": 480,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=640",
-  "width": 640,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=720",
-  "width": 720,
-  "type": "image/jpeg"
-  }
-  ],
-  "feedid": "SEw1rfH9",
-  "duration": 254,
-  "pubdate": 1589919989,
-  "description": "Avicultura 2020",
-  "tags": "#avicultura,#abel,#abelpintos,#folklore,#romanticos,#tantoamor,#añoranza,·romanticos",
-  "sources": [
-  {
-  "file": "https://cdn.jwplayer.com/manifests/o4jtochm.m3u8",
-  "type": "application/vnd.apple.mpegurl"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/o4jtochm-aFlDqEAF.mp4",
-  "type": "video/mp4",
-  "height": 180,
-  "width": 320,
-  "label": "180p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/o4jtochm-kWIypOlb.mp4",
-  "type": "video/mp4",
-  "height": 270,
-  "width": 480,
-  "label": "270p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/o4jtochm-jm5uiBhH.mp4",
-  "type": "video/mp4",
-  "height": 720,
-  "width": 1280,
-  "label": "720p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/o4jtochm-q8zF0XUy.m4a",
-  "type": "audio/mp4",
-  "label": "AAC Audio"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/o4jtochm-jzDYkt9m.mp4",
-  "type": "video/mp4",
-  "height": 360,
-  "width": 640,
-  "label": "360p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/o4jtochm-moMlVCPQ.mp4",
-  "type": "video/mp4",
-  "height": 540,
-  "width": 960,
-  "label": "540p"
-  }
-  ],
-  "tracks": [
-  {
-  "file": "https://cdn.jwplayer.com/strips/o4jtochm-120.vtt",
-  "kind": "thumbnails"
-  }
-  ],
-  "variations": {}
-  },
-  {
-  "title": "Abel Pintos - 3",
-  "mediaid": "vEq8m725",
-  "link": "https://cdn.jwplayer.com/previews/vEq8m725",
-  "image": "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=720",
-  "images": [
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=320",
-  "width": 320,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=480",
-  "width": 480,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=640",
-  "width": 640,
-  "type": "image/jpeg"
-  },
-  {
-  "src": "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=720",
-  "width": 720,
-  "type": "image/jpeg"
-  }
-  ],
-  "feedid": "SEw1rfH9",
-  "duration": 244,
-  "pubdate": 1589919996,
-  "description": "Avicultura 2020",
-  "tags": "#avicultura,#abel,#abelpintos,#folklore,#romanticos,#avicultura2020,#3",
-  "sources": [
-  {
-  "file": "https://cdn.jwplayer.com/manifests/vEq8m725.m3u8",
-  "type": "application/vnd.apple.mpegurl"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/vEq8m725-aFlDqEAF.mp4",
-  "type": "video/mp4",
-  "height": 180,
-  "width": 320,
-  "label": "180p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/vEq8m725-kWIypOlb.mp4",
-  "type": "video/mp4",
-  "height": 270,
-  "width": 480,
-  "label": "270p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/vEq8m725-jm5uiBhH.mp4",
-  "type": "video/mp4",
-  "height": 720,
-  "width": 1280,
-  "label": "720p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/vEq8m725-q8zF0XUy.m4a",
-  "type": "audio/mp4",
-  "label": "AAC Audio"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/vEq8m725-jzDYkt9m.mp4",
-  "type": "video/mp4",
-  "height": 360,
-  "width": 640,
-  "label": "360p"
-  },
-  {
-  "file": "https://cdn.jwplayer.com/videos/vEq8m725-moMlVCPQ.mp4",
-  "type": "video/mp4",
-  "height": 540,
-  "width": 960,
-  "label": "540p"
-  }
-  ],
-  "tracks": [
-  {
-  "file": "https://cdn.jwplayer.com/strips/vEq8m725-120.vtt",
-  "kind": "thumbnails"
-  }
-  ],
-  "variations": {}
-  }
-  ],
-  "feed_instance_id": "cb55da60-f8a1-4c88-b27d-25a912caa20d"
-  }
+// const json = {
+//   title: "Todos nuestros eventos",
+//   description: "",
+//   kind: "MANUAL",
+//   feedid: "SEw1rfH9",
+//   links: {
+//     first:
+//       "https://cdn.jwplayer.com/v2/playlists/SEw1rfH9?internal=false&page_offset=1&page_limit=500",
+//     last:
+//       "https://cdn.jwplayer.com/v2/playlists/SEw1rfH9?internal=false&page_offset=1&page_limit=500",
+//   },
+//   playlist: [
+//     {
+//       title: "Sebastián Garay - Celador De Sueños.",
+//       mediaid: "8ebtjFBi",
+//       link: "https://cdn.jwplayer.com/previews/8ebtjFBi",
+//       image: "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=720",
+//       images: [
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=320",
+//           width: 320,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=480",
+//           width: 480,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=640",
+//           width: 640,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/8ebtjFBi/poster.jpg?width=720",
+//           width: 720,
+//           type: "image/jpeg",
+//         },
+//       ],
+//       feedid: "SEw1rfH9",
+//       duration: 183,
+//       pubdate: 1589921791,
+//       description: "",
+//       sources: [
+//         {
+//           file: "https://cdn.jwplayer.com/manifests/8ebtjFBi.m3u8",
+//           type: "application/vnd.apple.mpegurl",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/8ebtjFBi-aFlDqEAF.mp4",
+//           type: "video/mp4",
+//           height: 180,
+//           width: 320,
+//           label: "180p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/8ebtjFBi-kWIypOlb.mp4",
+//           type: "video/mp4",
+//           height: 270,
+//           width: 480,
+//           label: "270p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/8ebtjFBi-jm5uiBhH.mp4",
+//           type: "video/mp4",
+//           height: 720,
+//           width: 1280,
+//           label: "720p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/8ebtjFBi-q8zF0XUy.m4a",
+//           type: "audio/mp4",
+//           label: "AAC Audio",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/8ebtjFBi-jzDYkt9m.mp4",
+//           type: "video/mp4",
+//           height: 360,
+//           width: 640,
+//           label: "360p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/8ebtjFBi-moMlVCPQ.mp4",
+//           type: "video/mp4",
+//           height: 540,
+//           width: 960,
+//           label: "540p",
+//         },
+//       ],
+//       tracks: [
+//         {
+//           file: "https://cdn.jwplayer.com/strips/8ebtjFBi-120.vtt",
+//           kind: "thumbnails",
+//         },
+//       ],
+//       variations: {},
+//     },
+//     {
+//       title: "Dario Lazarte - Derroche",
+//       mediaid: "6qufpcFB",
+//       link: "https://cdn.jwplayer.com/previews/6qufpcFB",
+//       image: "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=720",
+//       images: [
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=320",
+//           width: 320,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=480",
+//           width: 480,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=640",
+//           width: 640,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/6qufpcFB/poster.jpg?width=720",
+//           width: 720,
+//           type: "image/jpeg",
+//         },
+//       ],
+//       feedid: "SEw1rfH9",
+//       duration: 206,
+//       pubdate: 1589920879,
+//       description: "Avicultura 2020",
+//       tags:
+//         "#avicultura,#folklore,#romanticos,#avicultura2020,#dariolazarte,#derroche",
+//       sources: [
+//         {
+//           file: "https://cdn.jwplayer.com/manifests/6qufpcFB.m3u8",
+//           type: "application/vnd.apple.mpegurl",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/6qufpcFB-aFlDqEAF.mp4",
+//           type: "video/mp4",
+//           height: 180,
+//           width: 320,
+//           label: "180p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/6qufpcFB-kWIypOlb.mp4",
+//           type: "video/mp4",
+//           height: 270,
+//           width: 480,
+//           label: "270p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/6qufpcFB-jm5uiBhH.mp4",
+//           type: "video/mp4",
+//           height: 720,
+//           width: 1280,
+//           label: "720p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/6qufpcFB-q8zF0XUy.m4a",
+//           type: "audio/mp4",
+//           label: "AAC Audio",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/6qufpcFB-jzDYkt9m.mp4",
+//           type: "video/mp4",
+//           height: 360,
+//           width: 640,
+//           label: "360p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/6qufpcFB-moMlVCPQ.mp4",
+//           type: "video/mp4",
+//           height: 540,
+//           width: 960,
+//           label: "540p",
+//         },
+//       ],
+//       tracks: [
+//         {
+//           file: "https://cdn.jwplayer.com/strips/6qufpcFB-120.vtt",
+//           kind: "thumbnails",
+//         },
+//       ],
+//       variations: {},
+//     },
+//     {
+//       title: "Dario Lazarte - Y Cómo Es Él",
+//       mediaid: "fPZWEKxD",
+//       link: "https://cdn.jwplayer.com/previews/fPZWEKxD",
+//       image: "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=720",
+//       images: [
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=320",
+//           width: 320,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=480",
+//           width: 480,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=640",
+//           width: 640,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/fPZWEKxD/poster.jpg?width=720",
+//           width: 720,
+//           type: "image/jpeg",
+//         },
+//       ],
+//       feedid: "SEw1rfH9",
+//       duration: 198,
+//       pubdate: 1589920869,
+//       description: "Avicultura 2020",
+//       tags:
+//         "#avicultura,#folklore,#romanticos,#avicultura2020,#ycomoesel,#dariolazarte",
+//       sources: [
+//         {
+//           file: "https://cdn.jwplayer.com/manifests/fPZWEKxD.m3u8",
+//           type: "application/vnd.apple.mpegurl",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/fPZWEKxD-aFlDqEAF.mp4",
+//           type: "video/mp4",
+//           height: 180,
+//           width: 320,
+//           label: "180p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/fPZWEKxD-kWIypOlb.mp4",
+//           type: "video/mp4",
+//           height: 270,
+//           width: 480,
+//           label: "270p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/fPZWEKxD-jm5uiBhH.mp4",
+//           type: "video/mp4",
+//           height: 720,
+//           width: 1280,
+//           label: "720p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/fPZWEKxD-q8zF0XUy.m4a",
+//           type: "audio/mp4",
+//           label: "AAC Audio",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/fPZWEKxD-jzDYkt9m.mp4",
+//           type: "video/mp4",
+//           height: 360,
+//           width: 640,
+//           label: "360p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/fPZWEKxD-moMlVCPQ.mp4",
+//           type: "video/mp4",
+//           height: 540,
+//           width: 960,
+//           label: "540p",
+//         },
+//       ],
+//       tracks: [
+//         {
+//           file: "https://cdn.jwplayer.com/strips/fPZWEKxD-120.vtt",
+//           kind: "thumbnails",
+//         },
+//       ],
+//       variations: {},
+//     },
+//     {
+//       title: "Abel Pintos - Tiempo",
+//       mediaid: "pwDvbd0Q",
+//       link: "https://cdn.jwplayer.com/previews/pwDvbd0Q",
+//       image: "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=720",
+//       images: [
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=320",
+//           width: 320,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=480",
+//           width: 480,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=640",
+//           width: 640,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/pwDvbd0Q/poster.jpg?width=720",
+//           width: 720,
+//           type: "image/jpeg",
+//         },
+//       ],
+//       feedid: "SEw1rfH9",
+//       duration: 233,
+//       pubdate: 1589920003,
+//       description: "Avicultura 2020",
+//       tags:
+//         "#avicultura,#abel,#abelpintos,#folklore,#romanticos,#avicultura2020,#Tiempo",
+//       sources: [
+//         {
+//           file: "https://cdn.jwplayer.com/manifests/pwDvbd0Q.m3u8",
+//           type: "application/vnd.apple.mpegurl",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/pwDvbd0Q-aFlDqEAF.mp4",
+//           type: "video/mp4",
+//           height: 180,
+//           width: 320,
+//           label: "180p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/pwDvbd0Q-kWIypOlb.mp4",
+//           type: "video/mp4",
+//           height: 270,
+//           width: 480,
+//           label: "270p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/pwDvbd0Q-jm5uiBhH.mp4",
+//           type: "video/mp4",
+//           height: 720,
+//           width: 1280,
+//           label: "720p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/pwDvbd0Q-q8zF0XUy.m4a",
+//           type: "audio/mp4",
+//           label: "AAC Audio",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/pwDvbd0Q-jzDYkt9m.mp4",
+//           type: "video/mp4",
+//           height: 360,
+//           width: 640,
+//           label: "360p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/pwDvbd0Q-moMlVCPQ.mp4",
+//           type: "video/mp4",
+//           height: 540,
+//           width: 960,
+//           label: "540p",
+//         },
+//       ],
+//       tracks: [
+//         {
+//           file: "https://cdn.jwplayer.com/strips/pwDvbd0Q-120.vtt",
+//           kind: "thumbnails",
+//         },
+//       ],
+//       variations: {},
+//     },
+//     {
+//       title: "Abel Pintos - Tanto Amor",
+//       mediaid: "o4jtochm",
+//       link: "https://cdn.jwplayer.com/previews/o4jtochm",
+//       image: "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=720",
+//       images: [
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=320",
+//           width: 320,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=480",
+//           width: 480,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=640",
+//           width: 640,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/o4jtochm/poster.jpg?width=720",
+//           width: 720,
+//           type: "image/jpeg",
+//         },
+//       ],
+//       feedid: "SEw1rfH9",
+//       duration: 254,
+//       pubdate: 1589919989,
+//       description: "Avicultura 2020",
+//       tags:
+//         "#avicultura,#abel,#abelpintos,#folklore,#romanticos,#tantoamor,#añoranza,·romanticos",
+//       sources: [
+//         {
+//           file: "https://cdn.jwplayer.com/manifests/o4jtochm.m3u8",
+//           type: "application/vnd.apple.mpegurl",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/o4jtochm-aFlDqEAF.mp4",
+//           type: "video/mp4",
+//           height: 180,
+//           width: 320,
+//           label: "180p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/o4jtochm-kWIypOlb.mp4",
+//           type: "video/mp4",
+//           height: 270,
+//           width: 480,
+//           label: "270p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/o4jtochm-jm5uiBhH.mp4",
+//           type: "video/mp4",
+//           height: 720,
+//           width: 1280,
+//           label: "720p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/o4jtochm-q8zF0XUy.m4a",
+//           type: "audio/mp4",
+//           label: "AAC Audio",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/o4jtochm-jzDYkt9m.mp4",
+//           type: "video/mp4",
+//           height: 360,
+//           width: 640,
+//           label: "360p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/o4jtochm-moMlVCPQ.mp4",
+//           type: "video/mp4",
+//           height: 540,
+//           width: 960,
+//           label: "540p",
+//         },
+//       ],
+//       tracks: [
+//         {
+//           file: "https://cdn.jwplayer.com/strips/o4jtochm-120.vtt",
+//           kind: "thumbnails",
+//         },
+//       ],
+//       variations: {},
+//     },
+//     {
+//       title: "Abel Pintos - 3",
+//       mediaid: "vEq8m725",
+//       link: "https://cdn.jwplayer.com/previews/vEq8m725",
+//       image: "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=720",
+//       images: [
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=320",
+//           width: 320,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=480",
+//           width: 480,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=640",
+//           width: 640,
+//           type: "image/jpeg",
+//         },
+//         {
+//           src:
+//             "https://cdn.jwplayer.com/v2/media/vEq8m725/poster.jpg?width=720",
+//           width: 720,
+//           type: "image/jpeg",
+//         },
+//       ],
+//       feedid: "SEw1rfH9",
+//       duration: 244,
+//       pubdate: 1589919996,
+//       description: "Avicultura 2020",
+//       tags:
+//         "#avicultura,#abel,#abelpintos,#folklore,#romanticos,#avicultura2020,#3",
+//       sources: [
+//         {
+//           file: "https://cdn.jwplayer.com/manifests/vEq8m725.m3u8",
+//           type: "application/vnd.apple.mpegurl",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/vEq8m725-aFlDqEAF.mp4",
+//           type: "video/mp4",
+//           height: 180,
+//           width: 320,
+//           label: "180p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/vEq8m725-kWIypOlb.mp4",
+//           type: "video/mp4",
+//           height: 270,
+//           width: 480,
+//           label: "270p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/vEq8m725-jm5uiBhH.mp4",
+//           type: "video/mp4",
+//           height: 720,
+//           width: 1280,
+//           label: "720p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/vEq8m725-q8zF0XUy.m4a",
+//           type: "audio/mp4",
+//           label: "AAC Audio",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/vEq8m725-jzDYkt9m.mp4",
+//           type: "video/mp4",
+//           height: 360,
+//           width: 640,
+//           label: "360p",
+//         },
+//         {
+//           file: "https://cdn.jwplayer.com/videos/vEq8m725-moMlVCPQ.mp4",
+//           type: "video/mp4",
+//           height: 540,
+//           width: 960,
+//           label: "540p",
+//         },
+//       ],
+//       tracks: [
+//         {
+//           file: "https://cdn.jwplayer.com/strips/vEq8m725-120.vtt",
+//           kind: "thumbnails",
+//         },
+//       ],
+//       variations: {},
+//     },
+//   ],
+//   feed_instance_id: "cb55da60-f8a1-4c88-b27d-25a912caa20d",
+// }
