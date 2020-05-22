@@ -10,6 +10,11 @@ button {
 }
 
 body {
+  background-color: rgb(16, 17, 20);
+  color: white;
+}
+
+body.landing {
   background-image: linear-gradient(
       to bottom,
       rgba(16, 17, 20, 1) 0%,
@@ -20,8 +25,6 @@ body {
   background-size: max(1920px, 100vw);
   /* background-size: contain; */
   background-repeat: no-repeat;
-  background-color: rgb(16, 17, 20);
-  color: white;
 }
 
 :root {

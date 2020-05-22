@@ -128,13 +128,31 @@ const ScrollHelper = styled.div`
 `
 
 const StyledLandingPage = styled.div`
+  body {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(16, 17, 20, 1) 0%,
+        rgba(16, 17, 20, 0.5) 225px
+      ),
+      url(assets/hero.png);
+  }
   margin: 0px var(--body-margin);
   .react-multi-carousel-list {
     margin: 0 60px;
   }
 `
 
+function useBodyClass(classname) {
+  React.useEffect(() => {
+    document.body.classList.add(classname)
+    return () => {
+      document.body.classList.remove(classname)
+    }
+  })
+}
+
 export default function LandingPage(props) {
+  useBodyClass("landing")
   return (
     <StyledLandingPage>
       <Hero />
