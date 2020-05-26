@@ -1,36 +1,22 @@
 import React from "react"
 import { Switch, Route, useLocation } from "react-router-dom"
-import styled from "styled-components"
 import LandingPage from "./LandingPage/LandingPage.js"
-const TabCanales = React.lazy(() => import("./TabCanales/TabCanales.js"))
-const TabVivo = React.lazy(() => import("./TabVivo/TabVivo.js"))
-const TabEventos = React.lazy(() => import("./TabEventos/TabEventos.js"))
-const TabTV = React.lazy(() => import("./TabTV/TabTV.js"))
-
-const Main = styled.main`
-  min-height: 1080px;
-  position: relative;
-`
-
-const Loading = styled.div`
-  font-size: 24px;
-  color: white;
-
-  &::after {
-    content: "Cargando...";
-  }
-`
+import { Loading } from "./Components/LazyComponentLoading.js"
+import TabCanales from "./Views/Canales/Canales.js"
+import TabVivo from "./Views/Vivo/Vivo.js"
+import TabEventos from "./Views/Eventos/Eventos.js"
+import TabTV from "./Views/TV/TV.js"
 
 export default function MainBody(props) {
   const location = useLocation()
   return (
-    <Main id="main-content">
+    <main id="main-content">
       <Switch>
-        <div className="appear" key={location.key}>
+        <div className="fadein" key={location.key}>
           <Route exact path="/">
             <LandingPage />
           </Route>
-          <React.Suspense fallback={<Loading />}>
+          <React.Suspense fallback={<Loading className="fadein" />}>
             <Route path="/vivo">
               <TabVivo />
             </Route>
@@ -46,6 +32,6 @@ export default function MainBody(props) {
           </React.Suspense>
         </div>
       </Switch>
-    </Main>
+    </main>
   )
 }

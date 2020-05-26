@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { StyledLink, SelectedTabBorder } from "../Header/Menu"
-import { RoundedPrimaryButton } from "./LandingPage"
+import { StyledNavLink } from "../Components/NavLink"
 import composition1 from "../assets/composition1.png"
 import composition2 from "../assets/composition2.png"
 import composition3 from "../assets/composition3.png"
@@ -12,8 +11,11 @@ import composition7 from "../assets/composition7.png"
 import composition8 from "../assets/composition8.png"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
+import { NavLinkBottomBorder } from "../Components/NavLinkBottomBorder"
+import { RoundedPrimaryButton } from "../Components/Buttons"
 
 const Box = styled.div`
+  border-radius: 10px;
   width: 100%;
   height: 380px;
   background-color: #202124;
@@ -27,18 +29,16 @@ const Box = styled.div`
 
 const Box2 = styled.div`
   width: 100%;
-  padding-top: 100px;
-  padding-bottom: 200px;
+  padding: 150px 0;
   display: flex;
   justify-content: center;
 `
 
 const Navbar = styled.nav`
   padding-bottom: 15px;
+  margin-bottom: 60px;
   border-bottom: 1px solid grey;
   ul {
-    text-decoration: none;
-    list-style: none;
     display: flex;
     justify-content: center;
 
@@ -48,8 +48,29 @@ const Navbar = styled.nav`
 
     li {
       padding: 16px 32px;
-      list-style: none;
     }
+  }
+`
+
+const BackgroundText = styled.p`
+  color: #202124;
+  white-space: nowrap;
+  position: absolute;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  font-size: 120px;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+  transform: translateY(-72px);
+  will-change: font-size;
+
+  &.bg-text-first {
+    transform: translate(-1200px, -120px);
+  }
+  &.bg-text-second {
+    transform: translate(200px, -120px);
   }
 `
 
@@ -60,7 +81,7 @@ function Carrousel(props) {
       ref={ref}
       arrows
       centerMode={false}
-      className="sdsd"
+      className=""
       containerClass="image-composition-eventos"
       draggable={false}
       focusOnSelect={false}
@@ -113,40 +134,46 @@ export default function Composition(props) {
         <Navbar>
           <ul>
             <li>
-              <StyledLink>
-                <a>
+              <BackgroundText className="bg-text-first">
+                CANALES VOD
+              </BackgroundText>
+              <StyledNavLink fontSize="30px">
+                <a href="#canales-vod">
                   <span data-tab="CANALES VOD" onClick={onClickLink}>
                     CANALES VOD
                   </span>
-                  <SelectedTabBorder active={selected === "CANALES VOD"} />
+                  <NavLinkBottomBorder active={selected === "CANALES VOD"} />
                 </a>
-              </StyledLink>
+              </StyledNavLink>
             </li>
             <li>
-              <StyledLink>
-                <a>
+              <BackgroundText className="bg-text-second">
+                EVENTOS
+              </BackgroundText>
+              <StyledNavLink fontSize="30px">
+                <a href="#eventos">
                   <span data-tab="EVENTOS" onClick={onClickLink}>
                     EVENTOS
                   </span>
-                  <SelectedTabBorder active={selected === "EVENTOS"} />
+                  <NavLinkBottomBorder active={selected === "EVENTOS"} />
                 </a>
-              </StyledLink>
+              </StyledNavLink>
             </li>
           </ul>
         </Navbar>
         <Carrousel>
           {selected === "EVENTOS"
             ? [
-                <img alt="coso" src={composition1}></img>,
-                <img alt="coso" src={composition2}></img>,
-                <img alt="coso" src={composition3}></img>,
-                <img alt="coso" src={composition4}></img>,
+                <img alt="imagen de recital" src={composition1} />,
+                <img alt="imagen de recital" src={composition2} />,
+                <img alt="imagen de recital" src={composition3} />,
+                <img alt="imagen de recital" src={composition4} />,
               ]
             : [
-                <img alt="coso" src={composition5}></img>,
-                <img alt="coso" src={composition6}></img>,
-                <img alt="coso" src={composition7}></img>,
-                <img alt="coso" src={composition8}></img>,
+                <img alt="imagen de recital" src={composition5} />,
+                <img alt="imagen de recital" src={composition6} />,
+                <img alt="imagen de recital" src={composition7} />,
+                <img alt="imagen de recital" src={composition8} />,
               ]}
         </Carrousel>
       </Box>

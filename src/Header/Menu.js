@@ -3,93 +3,38 @@ import styled from "styled-components"
 import Link from "react-router-dom/Link"
 import { useLocation } from "react-router"
 import logo from "../assets/logo"
+import { SlideToLeftOnHover } from "../Utils/StyleUtils"
+import { OutlinedButton } from "../Components/Buttons"
+import { StyledNavLink } from "../Components/NavLink"
+import { NavLinkBottomBorder } from "../Components/NavLinkBottomBorder"
+import { SearchBox2 } from "../Components/SearchBox2"
 
 const HeaderContainer = styled.header`
   height: 80px;
   padding: 30px var(--body-margin);
   display: flex;
   align-items: flex-end;
+  position: relative;
+  background-color: #0004;
   backdrop-filter: blur(20px);
   justify-content: space-between;
   border-bottom: 1px solid white;
-`
-const MaterialIcon = styled.span`
-  font-size: 40px;
-`
 
-export const Navbar = styled.nav`
-  ul {
-    text-decoration: none;
-    list-style: none;
-    display: grid;
-    grid-auto-flow: column;
-
-    column-gap: 90px;
-
-    li {
-      list-style: none;
+  .header-logo {
+    height: 68px;
+    width: 180px;
+    overflow: hidden;
+    svg {
+      transform: translate(25px, 25px) scale(1.3);
     }
   }
 `
 
-export const SelectedTabBorder = styled.div`
-  pointer-events: none;
-  transition: 0.2s all ease-in-out;
-  will-change: opacity;
-  opacity: ${(props) => (props.active ? 1 : 0)};
-  height: 5px;
-  width: 140px;
-  background-color: red;
-  position: absolute;
-  place-self: flex-end;
-  bottom: -32px;
-  box-shadow: 0px 0px 16px 0px var(--color-primary);
-`
-
-export const StyledLink = styled.div`
-  user-select: none;
-  a {
-    cursor: pointer;
-    color: white;
-    font-size: 22px;
-    line-height: 40px;
-    letter-spacing: 5px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-  }
-`
-
-export const Button = styled.button`
-  background: transparent;
-  cursor: pointer;
-  border-radius: 10px;
-  border: 2px solid var(--color-primary);
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: 1.68px;
-  color: white;
-  line-height: 32px;
-  padding: 10px 40px;
-  transition: 0.2s all;
-  overflow: hidden;
-  position: relative;
-
-  &::before {
-    content: "";
-    z-index: -1;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transition: all 0.2s ease;
-    background-color: #ff0d57;
-  }
-
-  &:hover::before {
-    left: 0;
+export const Navbar = styled.nav`
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 90px;
   }
 `
 
@@ -98,48 +43,48 @@ export default function Menu(props) {
   return (
     <HeaderContainer>
       <Link to="/" exact>
-        <div style={{ color: "white" }}>{logo}</div>
+        <div className="header-logo">{logo}</div>
       </Link>
       <Navbar>
         <ul>
           <li>
-            <StyledLink>
-              <Link to="/vivo" active={pathname === "/vivo"}>
+            <StyledNavLink>
+              <Link to="/vivo" active={pathname.startsWith("/vivo")}>
                 <span>Vivo</span>
-                <SelectedTabBorder active={pathname === "/vivo"} />
+                <NavLinkBottomBorder active={pathname.startsWith("/vivo")} />
               </Link>
-            </StyledLink>
+            </StyledNavLink>
           </li>
           <li>
-            <StyledLink>
-              <Link to="/canales" active={pathname === "/canales"}>
+            <StyledNavLink>
+              <Link to="/canales" active={pathname.startsWith("/canales")}>
                 <span>Canales</span>
-                <SelectedTabBorder active={pathname === "/canales"} />
+                <NavLinkBottomBorder active={pathname.startsWith("/canales")} />
               </Link>
-            </StyledLink>
+            </StyledNavLink>
           </li>
           <li>
-            <StyledLink>
-              <Link to="/eventos" active={pathname === "/eventos"}>
+            <StyledNavLink>
+              <Link to="/eventos" active={pathname.startsWith("/eventos")}>
                 <span>Eventos</span>
-                <SelectedTabBorder active={pathname === "/eventos"} />
+                <NavLinkBottomBorder active={pathname.startsWith("/eventos")} />
               </Link>
-            </StyledLink>
+            </StyledNavLink>
           </li>
           <li>
-            <StyledLink>
-              <Link to="/tv" active={pathname === "/tv"}>
+            <StyledNavLink>
+              <Link to="/tv" active={pathname.startsWith("/tv")}>
                 <span>TV</span>
-                <SelectedTabBorder active={pathname === "/tv"} />
+                <NavLinkBottomBorder active={pathname.startsWith("/tv")} />
               </Link>
-            </StyledLink>
+            </StyledNavLink>
           </li>
-          <MaterialIcon className="material-icons color-primary">
-            search
-          </MaterialIcon>
+          <SearchBox2 />
         </ul>
       </Navbar>
-      <Button>INGRESAR</Button>
+      <SlideToLeftOnHover>
+        <OutlinedButton>INGRESAR</OutlinedButton>
+      </SlideToLeftOnHover>
     </HeaderContainer>
   )
 }

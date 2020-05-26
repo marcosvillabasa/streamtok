@@ -7,20 +7,17 @@ import AboutInformation from "./AboutInformation"
 const StyledFooter = styled.footer`
   color: white;
   padding: 100px var(--body-margin);
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  background-color: #101114;
-`
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto;
 
-export const FooterTitle = styled.p`
-  width: max-content;
-  font-size: 28px;
-  font-family: "Open Sans", sans-serif;
-  line-height: 38px;
-  letter-spacing: 2.8px;
-  span {
-    color: red;
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+
+    section {
+      margin-bottom: 80px;
+    }
   }
 `
 

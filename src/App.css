@@ -4,44 +4,85 @@
   font-family: "Hind", sans-serif;
 }
 
+span.material-icons,
 label,
 button {
   user-select: none;
 }
 
+button:focus {
+  outline: none;
+}
+
+ul,
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
 body {
   background-color: rgb(16, 17, 20);
   color: white;
+  overflow-x: hidden;
+  overflow-y: overlay;
 }
 
-body.landing {
+body::-webkit-scrollbar {
+  width: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+}
+
+#main-content {
+  min-height: 1080px;
+  position: relative;
+}
+
+body.landing::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: -60px;
+  left: 0;
+  right: 0;
   background-image: linear-gradient(
       to bottom,
-      rgba(16, 17, 20, 1) 0%,
-      rgba(16, 17, 20, 0.5) 225px
+      rgba(24, 24, 24, 1) 0%,
+      rgba(0, 0, 0, 0.6) 225px
     ),
-    url(assets/hero.png);
-  /* background-size: cover; */
-  background-size: max(1920px, 100vw);
-  /* background-size: contain; */
+    url(assets/hero.jpg);
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position-x: center;
 }
 
 :root {
   --body-margin: 7vw;
   --color-primary: #ff0d57;
+  --color-primary-semi: #ff0d5780;
   --header-height: 140px;
+  --banner-gradient-color-1: #14474d;
+  --banner-gradient-color-2: #1c4a7d;
+  --banner-text-color: white;
+}
+
+@media screen and (max-width: 1200px) {
+  :root {
+    --body-margin: 2.5vw;
+  }
 }
 
 .color-primary {
   color: var(--color-primary);
 }
 
-.appear {
-  animation: appear 0.2s ease-in;
+.fadein {
+  animation: fadein 0.2s ease-in;
 }
 
-@keyframes appear {
+@keyframes fadein {
   0% {
     opacity: 0;
   }
