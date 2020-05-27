@@ -7,12 +7,12 @@ export const OutlinedButtonVariant2 = styled.button`
   cursor: pointer;
   border-radius: 10px;
   border: 2px solid ${getColorByProp("color", "white")};
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: ${getColorByProp("color", "white")};
-  line-height: 32px;
-  padding: 14px 60px;
+  line-height: 3.2rem;
+  padding: 1.4rem 6rem;
   transition: all 0.2s, 0.3s border;
 
   &:hover {
@@ -21,7 +21,7 @@ export const OutlinedButtonVariant2 = styled.button`
   }
 
   &:active {
-    box-shadow: 0px 0px 8px 2px #0006, inset 0px 0px 40px 2px #0004;
+    box-shadow: 0px 0px 0.8rem 2px #0006, inset 0px 0px 4rem 2px #0004;
     border: 2px solid #0004;
   }
 `
@@ -31,12 +31,12 @@ export const OutlinedButton = styled.button`
   cursor: pointer;
   border-radius: 10px;
   border: 2px solid var(--color-primary);
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: white;
-  line-height: 32px;
-  padding: 10px 40px;
+  line-height: 3.2rem;
+  padding: 1rem 4rem;
   transition: 0.2s all;
 
   &:hover {
@@ -45,27 +45,27 @@ export const OutlinedButton = styled.button`
   }
 
   &:active {
-    box-shadow: 0px 0px 8px 2px #0006, inset 0px 0px 40px 2px #0004;
+    box-shadow: 0px 0px 0.8rem 2px #0006, inset 0px 0px 4rem 2px #0004;
     border: 2px solid #0004;
   }
 `
 
 export const RoundedPrimaryButton = styled.button`
-  margin-top: 64px;
+  margin-top: 6.4rem;
   background: var(--color-primary);
   cursor: pointer;
   border-radius: 200px;
   border: none;
-  font-size: 20px;
-  line-height: 32px;
+  font-size: 2rem;
+  line-height: 3.2rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: white;
-  padding: 16px 48px;
+  padding: 1.6rem 4.8rem;
   transition: 0.2s all;
   overflow: hidden;
   position: relative;
-  box-shadow: 0px 8px 32px -8px var(--color-primary-semi);
+  box-shadow: 0px 0.8rem 3.2rem -0.8rem var(--color-primary-semi);
 
   &:hover {
     span {
@@ -97,10 +97,10 @@ export const RoundedPrimaryButton = styled.button`
 
   &:hover {
     background-color: red;
-    box-shadow: 0px 8px 16px 0px var(--color-primary-semi);
+    box-shadow: 0px 0.8rem 1.6rem 0px var(--color-primary-semi);
   }
 
   &:active {
-    box-shadow: 0px 0px 8px 2px #0008, inset 0px 0px 16px 6px #0008;
+    box-shadow: 0px 0px 0.8rem 2px #0008, inset 0px 0px 1.6rem 0.6rem #0008;
   }
 `

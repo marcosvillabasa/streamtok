@@ -6,7 +6,7 @@ export const NavLinkBottomBorder = styled.div`
   will-change: opacity;
   opacity: ${(props) => (props.active ? 1 : 0)};
   height: 5px;
-  width: 140px;
+  width: 14rem;
   background-color: red;
   position: absolute;
   place-self: flex-end;

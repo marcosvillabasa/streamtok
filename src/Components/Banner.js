@@ -5,7 +5,7 @@ import BannerIcon from "../assets/tools-and-utensils.svg"
 
 // TODO: this banner isn't responsive
 const StyledBanner = styled.div`
-  padding: 36px 120px;
+  padding: 3.6rem 6%;
   background-image: linear-gradient(
     to right,
     var(--banner-gradient-color-1),
@@ -17,19 +17,19 @@ const StyledBanner = styled.div`
   color: var(--banner-text-color);
 
   .notice {
-    margin-left: 48px;
+    margin-left: 4.8rem;
     text-align: left;
 
     div:first-child {
-      font-size: 24px;
-      line-height: 48px;
+      font-size: 2.4rem;
+      line-height: 4.8rem;
       font-family: "Open Sans", sans-serif;
-      height: 48px;
+      height: 4.8rem;
     }
     div:last-child {
-      font-size: 36px;
-      line-height: 48px;
-      height: 48px;
+      font-size: 3.6rem;
+      line-height: 4.8rem;
+      height: 4.8rem;
       font-family: "Open Sans", sans-serif;
     }
   }

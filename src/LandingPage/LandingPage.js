@@ -10,7 +10,8 @@ const StyledLandingPage = styled.div`
   margin: 0px var(--body-margin);
   .landing-bbcontainer {
     .react-multi-carousel-list {
-      margin: 0 100px;
+      z-index: 1;
+      margin: 0 4%;
     }
   }
 `

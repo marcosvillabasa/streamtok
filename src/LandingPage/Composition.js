@@ -43,7 +43,7 @@ const Navbar = styled.nav`
     justify-content: center;
 
     li:first-child {
-      margin-right: 4rem;
+      margin-right: 64px;
     }
 
     li {

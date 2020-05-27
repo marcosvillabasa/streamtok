@@ -18,7 +18,7 @@ const StyledContactInformation = styled.section`
       color: inherit;
       text-decoration: none;
       font-style: normal;
-      font-size: 24px;
+      font-size: 2.4rem;
       line-height: 2em;
       font-family: "Open Sans", sans-serif;
     }

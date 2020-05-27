@@ -11,18 +11,18 @@ import { SearchBox2 } from "../Components/SearchBox2"
 
 const HeaderContainer = styled.header`
   height: 80px;
-  padding: 30px var(--body-margin);
+  padding: 30px 0px 30px var(--body-margin);
   display: flex;
   align-items: flex-end;
   position: relative;
   background-color: #0004;
   backdrop-filter: blur(20px);
-  justify-content: space-between;
   border-bottom: 1px solid white;
 
   .header-logo {
     height: 68px;
     width: 180px;
+    margin-right: 4rem;
     overflow: hidden;
     svg {
       transform: translate(25px, 25px) scale(1.3);
@@ -34,7 +34,7 @@ export const Navbar = styled.nav`
   ul {
     display: grid;
     grid-auto-flow: column;
-    column-gap: 90px;
+    column-gap: 4rem;
   }
 `
 

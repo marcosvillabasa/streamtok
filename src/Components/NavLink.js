@@ -5,8 +5,8 @@ export const StyledNavLink = styled.div`
   a {
     cursor: pointer;
     color: white;
-    font-size: ${(props) => (props.fontSize ? props.fontSize : "22px")};
-    line-height: 40px;
+    font-size: ${(props) => (props.fontSize ? props.fontSize : "2.2rem")};
+    line-height: 4rem;
     letter-spacing: 0.25em;
     position: relative;
     display: flex;

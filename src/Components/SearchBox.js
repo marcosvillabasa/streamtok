@@ -7,13 +7,13 @@ const StyledSearchBox = styled.div`
   align-items: center;
 
   input {
-    padding: 12px 60px 12px 30px;
+    padding: 1rem 6rem 1rem 3rem;
     border: 1px solid #707070;
     border-radius: 5px;
     background-color: #2e3033;
-    font-size: 21px;
+    font-size: 2.1rem;
     font-family: "Open Sans", sans-serif;
-    width: 536px;
+    min-width: max-content;
     color: white;
   }
   span {
