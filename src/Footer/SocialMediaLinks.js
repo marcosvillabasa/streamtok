@@ -13,7 +13,7 @@ const StyledSocialMediaLinks = styled.section`
     justify-content: space-between;
     margin-top: 40px;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1280px) {
       margin-top: 20px;
       justify-content: flex-start;
 

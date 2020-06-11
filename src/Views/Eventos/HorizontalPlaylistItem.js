@@ -22,8 +22,8 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-img-container {
-    width: 536px;
-    height: 300px;
+    width: 480px;
+    height: 270px;
     overflow: hidden;
     margin: 0px 16px;
     background-color: #0004;
@@ -44,6 +44,7 @@ const StyledPlaylistItem = styled.div`
     transition: 0.25s all;
     padding: 8px 16px;
     will-change: opacity;
+    font-size: 2rem;
 
     .playlist-item-artist {
       color: #707070;
@@ -51,14 +52,13 @@ const StyledPlaylistItem = styled.div`
   }
 `
 
-export function PlaylistItem({ track, search }) {
+export function PlaylistItem({ track }) {
   const history = useHistory()
   const onClick = (_) => {
     history.push({
-      pathname: "canales",
+      pathname: "canales/" + track.feedid,
       search: stringifyQueryString({
-        search: search,
-        currentTrack: track.index,
+        v: track.mediaid,
       }),
     })
   }
@@ -68,8 +68,8 @@ export function PlaylistItem({ track, search }) {
         <img
           alt={track.title}
           loading="lazy"
-          width="536"
-          height="300"
+          width="480"
+          height="270"
           src={track.images.find(({ width }) => width === 320)?.src}
         />
       </div>

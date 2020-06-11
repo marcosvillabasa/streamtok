@@ -7,7 +7,6 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px -50px;
   background-color: #191b1e;
   height: 200px;
 
@@ -73,10 +72,10 @@ export function Header({ currentTrack }) {
       </div>
       <LogosContainer>
         <div className="logo1">
-          <img alt="logo-municipalidad-cosquin" src={logo1}></img>
+          {/* <img alt="logo-municipalidad-cosquin" src={logo1}></img> */}
         </div>
         <div className="logo2">
-          <img alt="logo-festival-cosquin" src={logo2}></img>
+          {/* <img alt="logo-festival-cosquin" src={logo2}></img> */}
         </div>
       </LogosContainer>
     </StyledHeader>

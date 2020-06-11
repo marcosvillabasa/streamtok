@@ -3,10 +3,15 @@ import { useDebouncedCallback } from "use-debounce"
 import { Header } from "./Header"
 import { HorizontalPlaylist } from "./HorizontalPlaylist"
 
-export default function EventosView(props) {
+export default function EventosView({ history }) {
   const [playlist, setPlaylist] = React.useState({ playlist: [] })
   const [search, setSearch] = React.useState("")
-  const [debouncedHandleSearch] = useDebouncedCallback(setSearch, 500)
+  const [debouncedHandleSearch] = useDebouncedCallback((value) => {
+    history.push({
+      search: "?search=" + value,
+    })
+    setSearch(value)
+  }, 500)
   const handleSearch = (event) => debouncedHandleSearch(event.target.value)
 
   const filterFn = React.useCallback(
@@ -21,14 +26,8 @@ export default function EventosView(props) {
   )
 
   React.useEffect(() => {
-    fetch("https://cdn.jwplayer.com/v2/playlists/SEw1rfH9")
+    fetch("https://cdn.jwplayer.com/v2/playlists/Lu7EC8Bf")
       .then((res) => res.json())
-      .then((res) => {
-        for (let i = 0; i < res.playlist.length; i++) {
-          res.playlist[i].index = i
-        }
-        return res
-      })
       .then(setPlaylist)
   }, [])
 

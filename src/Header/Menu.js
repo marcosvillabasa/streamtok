@@ -57,7 +57,10 @@ export default function Menu(props) {
           </li>
           <li>
             <StyledNavLink>
-              <Link to="/canales" active={pathname.startsWith("/canales")}>
+              <Link
+                to="/canales/lista"
+                active={pathname.startsWith("/canales")}
+              >
                 <span>Canales</span>
                 <NavLinkBottomBorder active={pathname.startsWith("/canales")} />
               </Link>

@@ -6,7 +6,7 @@ const StyledContactInformation = styled.section`
   margin-right: 7vw;
   text-align: left;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1280px) {
     margin-right: 0;
   }
 

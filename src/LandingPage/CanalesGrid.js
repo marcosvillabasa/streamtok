@@ -43,7 +43,7 @@ const StyledCanalesGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-auto-rows: minmax(120px, auto);
 
-  @media only screen and (min-width: 1200px) and (max-width: 2000px) {
+  @media only screen and (min-width: 1280px) and (max-width: 2000px) {
     grid-template-columns: repeat(5, minmax(150px, 1fr));
   }
 `
@@ -113,7 +113,7 @@ export default function CanalesGrid(props) {
   return (
     <Container>
       <Title>
-        <label>CANALES EN VIVO</label>
+        {/* <label>CANALES EN VIVO</label> */}
         <h2>CANALES EN VIVO</h2>
         <h3>Programación en vivo de canales via Live streaming</h3>
       </Title>

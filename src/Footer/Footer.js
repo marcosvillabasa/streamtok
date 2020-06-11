@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1280px) {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
 

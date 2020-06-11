@@ -67,7 +67,7 @@ const BackgroundText = styled.p`
   will-change: font-size;
 
   &.bg-text-first {
-    transform: translate(-1200px, -120px);
+    transform: translate(-1280px, -120px);
   }
   &.bg-text-second {
     transform: translate(200px, -120px);
@@ -134,9 +134,9 @@ export default function Composition(props) {
         <Navbar>
           <ul>
             <li>
-              <BackgroundText className="bg-text-first">
+              {/* <BackgroundText className="bg-text-first">
                 CANALES VOD
-              </BackgroundText>
+              </BackgroundText> */}
               <StyledNavLink fontSize="30px">
                 <a href="#canales-vod">
                   <span data-tab="CANALES VOD" onClick={onClickLink}>
@@ -147,9 +147,9 @@ export default function Composition(props) {
               </StyledNavLink>
             </li>
             <li>
-              <BackgroundText className="bg-text-second">
+              {/* <BackgroundText className="bg-text-second">
                 EVENTOS
-              </BackgroundText>
+              </BackgroundText> */}
               <StyledNavLink fontSize="30px">
                 <a href="#eventos">
                   <span data-tab="EVENTOS" onClick={onClickLink}>

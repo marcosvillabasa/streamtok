@@ -12,7 +12,7 @@ const StyledHorizontalPlaylist = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
+    background-color: #fff1;
     border-radius: 10px;
   }
 
@@ -55,7 +55,7 @@ const ResultCount = styled.div`
   }
 `
 
-export function HorizontalPlaylist({ playlist, filterFn, search }) {
+export function HorizontalPlaylist({ playlist, filterFn }) {
   return (
     <>
       <TitleContainer>
@@ -68,7 +68,7 @@ export function HorizontalPlaylist({ playlist, filterFn, search }) {
       </TitleContainer>
       <StyledHorizontalPlaylist>
         {playlist.playlist.filter(filterFn).map((track) => (
-          <PlaylistItem key={track.index} track={track} search={search} />
+          <PlaylistItem key={track.mediaid} track={track} />
         ))}
       </StyledHorizontalPlaylist>
     </>

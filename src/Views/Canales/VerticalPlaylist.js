@@ -6,26 +6,31 @@ const StyledVerticalPlaylist = styled.div`
   background-color: #22252a;
   border-radius: 10px;
   border: 1px solid #707070;
+  width: 480px;
+
+  @media screen and (max-width: 1280px) {
+    max-width: 800px;
+    width: 90%;
+  }
 
   .playlist-title {
-    font-size: 21px;
+    font-size: 2rem;
     font-weight: 600;
-    padding: 30px 0px;
-    padding-left: 35px;
+    padding: 3rem 0rem;
+    padding-left: 3rem;
     border-bottom: 1px solid #707070;
   }
 
   .container {
-    margin-right: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 1rem;
 
     ::-webkit-scrollbar {
       width: 8px;
+      height: 0px;
     }
 
     ::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px grey;
+      background-color: #fff1;
       border-radius: 10px;
     }
 
@@ -38,19 +43,26 @@ const StyledVerticalPlaylist = styled.div`
       background: #b30000;
     }
 
-    padding-left: 35px;
     height: 650px;
     overflow-y: scroll;
   }
 `
 
-export function VerticalPlaylist({ playlist, label }) {
+export function VerticalPlaylist({ playlist, currentTrack, setCurrentTrack }) {
   return (
     <StyledVerticalPlaylist>
       <div className="playlist-title">
         <label>Lista de videos relacionados</label>
       </div>
-      <div className="container">{playlist.map(PlaylistItem)}</div>
+      <div className="container">
+        {playlist.map((track) => (
+          <PlaylistItem
+            track={track}
+            setCurrentTrack={setCurrentTrack}
+            active={currentTrack?.mediaid === track.mediaid}
+          />
+        ))}
+      </div>
     </StyledVerticalPlaylist>
   )
 }

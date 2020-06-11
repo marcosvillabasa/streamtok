@@ -15,6 +15,7 @@ const HeroSection = styled.section`
 const HeroTitle = styled.h1`
   font-size: 48px;
   font-weight: 400;
+  width: 80vw;
   letter-spacing: 0.1em;
 `
 

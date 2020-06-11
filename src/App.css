@@ -42,6 +42,11 @@ li {
   list-style: none;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 body {
   background-color: rgb(16, 17, 20);
   color: white;
@@ -50,11 +55,11 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: #fff4;
 }
 
 #main-content {
@@ -75,6 +80,7 @@ body.landing::before {
       rgba(0, 0, 0, 0.6) 225px
     ),
     url(assets/hero.jpg);
+  /* TODO: CAMBIAR HERO IMAGEN. NO SOLEDAD. PONER IMAGEN SIN COPYRIGHT */
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -88,9 +94,14 @@ body.landing::before {
   --banner-gradient-color-1: #14474d;
   --banner-gradient-color-2: #1c4a7d;
   --banner-text-color: white;
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 960px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-xl: 1920px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1280px) {
   :root {
     --body-margin: 2.5vw;
   }
@@ -113,7 +124,7 @@ body.landing::before {
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1280px) {
   body {
     background-size: auto 100vh;
   }

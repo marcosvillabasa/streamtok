@@ -19,7 +19,7 @@ const StyledAboutInformation = styled.section`
     margin-top: 40px;
     font-family: "Open Sans", sans-serif;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1280px) {
       width: 100%;
     }
   }
@@ -27,7 +27,7 @@ const StyledAboutInformation = styled.section`
     transform: translate(60px, 75px) scale(1.6);
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1280px) {
     grid-column: span 2;
 
     p {

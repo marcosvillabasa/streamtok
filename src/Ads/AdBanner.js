@@ -6,6 +6,7 @@ import macro from "../assets/macro.png"
 import naranja from "../assets/naranja.jpg"
 import { Banner } from "../Components/Banner"
 
+// TODO: SACAR NARANJA PONER PLACEHOLDER !!
 const BannerItems = [
   { src: macro },
   { src: naranja },
