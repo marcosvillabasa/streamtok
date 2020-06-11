@@ -47,14 +47,16 @@ export default function CanalesView({ history, match, location }) {
   const onReady = () => setPlayerInitialized(true)
 
   React.useEffect(() => {
-    const queryMediaId = queryParamParse(location.search, ["v"]).v
     if (response && playerInitialized) {
       setCurrentTrack((curr) => {
+        const queryMediaId = queryParamParse(location.search, ["v"]).v
+        // if there is a querystring, sync with the local state and jwplayer
         if (queryMediaId) {
-          let trackIndex = response.playlist.findIndex(
+          // check the index of that mediaid in the current playlist
+          const trackIndex = response.playlist.findIndex(
             (track) => track.mediaid === queryMediaId
           )
-          trackIndex = trackIndex < 0 ? 0 : trackIndex
+          // if the index isn't -1, then it's a valid mediaid and can be seted
           if (trackIndex >= 0) {
             window.jwplayer().playlistItem(trackIndex)
 
@@ -64,6 +66,8 @@ export default function CanalesView({ history, match, location }) {
             return response.playlist[trackIndex]
           }
         } else {
+          // if there isn't a querystring, set the current track at 0 and
+          // cancel the autoplay
           window.jwplayer().playlistItem(0)
           window.jwplayer().stop()
           return response.playlist[0]
