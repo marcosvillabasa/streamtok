@@ -24,7 +24,7 @@ export default function ListaCanales(props) {
         <title>Lista de canales</title>
       </Helmet>
       <h2>LISTA DE CANALES</h2>
-      <div>
+      <div className="lista-canales">
         {Object.entries(Playlists).map(([key, value]) => (
           <Link to={value}>{key}</Link>
         ))}
