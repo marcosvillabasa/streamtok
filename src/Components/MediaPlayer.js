@@ -26,6 +26,23 @@ const StyledTabCanales = styled.div`
       }
     }
   }
+  .player-container {
+    display: flex;
+    width: 100%;
+
+    .jwplayer-container {
+      margin-right: 2rem;
+      width: inherit;
+    }
+
+    @media screen and (max-width: 1400px) {
+      flex-direction: column;
+      align-items: center;
+      .jwplayer-container {
+        margin-bottom: 2rem;
+      }
+    }
+  }
 `
 
 export default function MediaPlayer({ history, match, location }) {
@@ -89,15 +106,15 @@ export default function MediaPlayer({ history, match, location }) {
         <Grid item xs={12}>
           <MediaPlayerHeader currentTrack={currentTrack} />
         </Grid>
-        <Grid item xs={12} lg>
-          <ReactJWPlayer
-            onReady={onReady}
-            playerId="LUykEJtT"
-            playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-            playlist={dedupedResponse?.playlist}
-          />
-        </Grid>
-        <Grid item xs={12} lg="auto">
+        <Grid item xs={12} className="player-container">
+          <div className="jwplayer-container">
+            <ReactJWPlayer
+              onReady={onReady}
+              playerId="LUykEJtT"
+              playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
+              playlist={dedupedResponse?.playlist}
+            />
+          </div>
           <VerticalPlaylist
             playlist={dedupedResponse?.playlist}
             currentTrack={currentTrack}
