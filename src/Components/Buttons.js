@@ -39,11 +39,6 @@ export const OutlinedButton = styled.button`
   padding: 1rem 4rem;
   transition: 0.2s all;
 
-  &:hover {
-    background-color: ${getColorByProp("bgcolor", "var(--color-primary)")};
-    border: 2px solid transparent;
-  }
-
   &:active {
     box-shadow: 0px 0px 0.8rem 2px #0006, inset 0px 0px 4rem 2px #0004;
     border: 2px solid #0004;

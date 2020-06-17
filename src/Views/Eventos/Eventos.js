@@ -1,11 +1,17 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import { useDebouncedCallback } from "use-debounce"
-import { Header } from "./Header"
-import { HorizontalPlaylist } from "./HorizontalPlaylist"
+import { useDedupedQueryCanal } from "../../API/Queries/QueryCanal"
+import { HorizontalPlaylist } from "../../Components/HorizontalPlaylist"
+import { TabHeader } from "../../Components/TabHeader"
 
-export default function EventosView({ history }) {
-  const [playlist, setPlaylist] = React.useState({ playlist: [] })
-  const [search, setSearch] = React.useState("")
+export default function EventosView({ history, location }) {
+  const { loading, error, dedupedResponse } = useDedupedQueryCanal("Lu7EC8Bf")
+
+  const [search, setSearch] = React.useState(() => {
+    const search = new URLSearchParams(location.search).get("search")
+    return search || ""
+  })
   const [debouncedHandleSearch] = useDebouncedCallback((value) => {
     history.push({
       search: "?search=" + value,
@@ -25,17 +31,18 @@ export default function EventosView({ history }) {
     [search]
   )
 
-  React.useEffect(() => {
-    fetch("https://cdn.jwplayer.com/v2/playlists/Lu7EC8Bf")
-      .then((res) => res.json())
-      .then(setPlaylist)
-  }, [])
-
   return (
-    <div>
-      <Header handleSearch={handleSearch} />
+    <div className="eventos-main">
+      <Helmet>
+        <title>Lista de eventos</title>
+      </Helmet>
+      <TabHeader
+        handleSearch={handleSearch}
+        title="Lista de eventos"
+        subtitle="Los mejores shows por artistas y géneros."
+      />
       <HorizontalPlaylist
-        playlist={playlist}
+        playlist={dedupedResponse}
         filterFn={filterFn}
         search={search}
       />

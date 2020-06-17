@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { useHistory } from "react-router"
-import { stringifyQueryString } from "../../Utils/querystring"
+import { useRouteMatch } from "react-router"
+import { Link } from "react-router-dom"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
@@ -53,30 +53,24 @@ const StyledPlaylistItem = styled.div`
 `
 
 export function PlaylistItem({ track }) {
-  const history = useHistory()
-  const onClick = (_) => {
-    history.push({
-      pathname: "canales/" + track.feedid,
-      search: stringifyQueryString({
-        v: track.mediaid,
-      }),
-    })
-  }
+  const match = useRouteMatch()
   return (
-    <StyledPlaylistItem onClick={onClick}>
-      <div className="playlist-item-img-container">
-        <img
-          alt={track.title}
-          loading="lazy"
-          width="480"
-          height="270"
-          src={track.images.find(({ width }) => width === 320)?.src}
-        />
-      </div>
-      <div className="playlist-item-info">
-        <p className="playlist-item-title">{track.title}</p>
-        <p className="playlist-item-artist">{track.description}</p>
-      </div>
-    </StyledPlaylistItem>
+    <Link to={match.path + "/" + track.feedid + "?v=" + track.mediaid}>
+      <StyledPlaylistItem>
+        <div className="playlist-item-img-container">
+          <img
+            alt={track.title}
+            loading="lazy"
+            width="480"
+            height="270"
+            src={track.images.find(({ width }) => width === 320)?.src}
+          />
+        </div>
+        <div className="playlist-item-info">
+          <p className="playlist-item-title">{track.title}</p>
+          <p className="playlist-item-artist">{track.description}</p>
+        </div>
+      </StyledPlaylistItem>
+    </Link>
   )
 }

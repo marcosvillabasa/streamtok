@@ -24,7 +24,7 @@ export const SlideToLeftOnHover = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: all 0.2s ease;
+    transition: left 0.33s ease;
     background-color: #ff0d57;
   }
 

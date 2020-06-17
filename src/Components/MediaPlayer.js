@@ -1,14 +1,12 @@
+import Grid from "@material-ui/core/Grid"
 import React from "react"
+import { Helmet } from "react-helmet"
 import ReactJWPlayer from "react-jw-player"
 import styled from "styled-components"
+import { useDedupedQueryCanal } from "../API/Queries/QueryCanal"
+import { queryParamParse } from "../Utils/querystring"
+import { MediaPlayerHeader } from "./MediaPlayerHeader"
 import { VerticalPlaylist } from "./VerticalPlaylist"
-import { Header } from "./Header"
-import Grid from "@material-ui/core/Grid"
-
-import { useQuery } from "react-apollo"
-import { QueryCanal } from "../../API/Queries/QueryCanal"
-import { queryParamParse } from "../../Utils/querystring"
-import { Helmet } from "react-helmet"
 
 const StyledTabCanales = styled.div`
   .MuiGrid-item {
@@ -30,30 +28,26 @@ const StyledTabCanales = styled.div`
   }
 `
 
-export default function CanalesView({ history, match, location }) {
-  const {
-    loading,
-    error,
-    // ESTO ES HORRIBLE MALDITA ANIDACION
-    data: { response = { playlist: [] } } = {},
-  } = useQuery(QueryCanal, {
-    variables: {
-      playlistId: match.params.id,
-    },
-  })
+export default function MediaPlayer({ history, match, location }) {
+  const { loading, error, dedupedResponse } = useDedupedQueryCanal(
+    match.params.id
+  )
 
   const [currentTrack, setCurrentTrack] = React.useState(null)
   const [playerInitialized, setPlayerInitialized] = React.useState(false)
-  const onReady = () => setPlayerInitialized(true)
+  const onReady = () => {
+    setPlayerInitialized(true)
+    window.scroll(0, 144)
+  }
 
   React.useEffect(() => {
-    if (response && playerInitialized) {
+    if (dedupedResponse && playerInitialized) {
       setCurrentTrack((curr) => {
         const queryMediaId = queryParamParse(location.search, ["v"]).v
         // if there is a querystring, sync with the local state and jwplayer
         if (queryMediaId) {
           // check the index of that mediaid in the current playlist
-          const trackIndex = response.playlist.findIndex(
+          const trackIndex = dedupedResponse.playlist.findIndex(
             (track) => track.mediaid === queryMediaId
           )
           // if the index isn't -1, then it's a valid mediaid and can be seted
@@ -63,18 +57,18 @@ export default function CanalesView({ history, match, location }) {
             // FIXME: ?? for some reason if this is not in the next tick it
             // doesn't trigger the autoplay
             window.setTimeout(window.jwplayer().play, 0)
-            return response.playlist[trackIndex]
+            return dedupedResponse.playlist[trackIndex]
           }
         } else {
           // if there isn't a querystring, set the current track at 0 and
           // cancel the autoplay
           window.jwplayer().playlistItem(0)
           window.jwplayer().stop()
-          return response.playlist[0]
+          return dedupedResponse.playlist[0]
         }
       })
     }
-  }, [location, response, playerInitialized])
+  }, [location, dedupedResponse, playerInitialized])
 
   if (error) {
     return <div>ERROR</div>
@@ -88,24 +82,24 @@ export default function CanalesView({ history, match, location }) {
             ? "cargando..."
             : currentTrack
             ? currentTrack.title + " | StreamTOK"
-            : response.title + " | StreamTOK"}
+            : dedupedResponse.title + " | StreamTOK"}
         </title>
       </Helmet>
       <Grid container>
         <Grid item xs={12}>
-          <Header currentTrack={currentTrack} />
+          <MediaPlayerHeader currentTrack={currentTrack} />
         </Grid>
         <Grid item xs={12} lg>
           <ReactJWPlayer
             onReady={onReady}
             playerId="LUykEJtT"
             playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-            playlist={response?.playlist}
+            playlist={dedupedResponse?.playlist}
           />
         </Grid>
         <Grid item xs={12} lg="auto">
           <VerticalPlaylist
-            playlist={response?.playlist}
+            playlist={dedupedResponse?.playlist}
             currentTrack={currentTrack}
             setCurrentTrack={setCurrentTrack}
           />

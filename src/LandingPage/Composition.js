@@ -13,6 +13,7 @@ import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
 import { NavLinkBottomBorder } from "../Components/NavLinkBottomBorder"
 import { RoundedPrimaryButton } from "../Components/Buttons"
+import { Link } from "react-router-dom"
 
 const Box = styled.div`
   border-radius: 10px;
@@ -164,16 +165,28 @@ export default function Composition(props) {
         <Carrousel>
           {selected === "EVENTOS"
             ? [
-                <img alt="imagen de recital" src={composition1} />,
-                <img alt="imagen de recital" src={composition2} />,
+                <Link to={"eventos/Lu7EC8Bf?v=MeVBP6Sg"}>
+                  <img alt="imagen de recital" src={composition1} />
+                </Link>,
+                <Link to={"eventos/Lu7EC8Bf?v=1NC66zYE"}>
+                  <img alt="imagen de recital" src={composition2} />
+                </Link>,
                 <img alt="imagen de recital" src={composition3} />,
                 <img alt="imagen de recital" src={composition4} />,
               ]
             : [
-                <img alt="imagen de recital" src={composition5} />,
-                <img alt="imagen de recital" src={composition6} />,
-                <img alt="imagen de recital" src={composition7} />,
-                <img alt="imagen de recital" src={composition8} />,
+                <Link to={"canales/lYq3t5Ce?v=Fy4NlMQt"}>
+                  <img alt="imagen de recital" src={composition5} />
+                </Link>,
+                <Link to={"canales/Lu7EC8Bf?v=MeVBP6Sg"}>
+                  <img alt="imagen de recital" src={composition6} />
+                </Link>,
+                <Link to={"canales/Lu7EC8Bf?v=MeVBP6Sg"}>
+                  <img alt="imagen de recital" src={composition7} />
+                </Link>,
+                <Link to={"canales/Lu7EC8Bf?v=MeVBP6Sg"}>
+                  <img alt="imagen de recital" src={composition8} />
+                </Link>,
               ]}
         </Carrousel>
       </Box>

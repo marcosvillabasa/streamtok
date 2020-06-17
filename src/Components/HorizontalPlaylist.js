@@ -67,8 +67,8 @@ export function HorizontalPlaylist({ playlist, filterFn }) {
         </ResultCount>
       </TitleContainer>
       <StyledHorizontalPlaylist>
-        {playlist.playlist.filter(filterFn).map((track) => (
-          <PlaylistItem key={track.mediaid} track={track} />
+        {playlist.playlist.filter(filterFn).map((track, index) => (
+          <PlaylistItem key={index + track.mediaid} track={track} />
         ))}
       </StyledHorizontalPlaylist>
     </>

@@ -53,9 +53,6 @@ export const PlaylistItem = React.memo(function PlaylistItem({
     artist = splited[0]
     title = splited[1]
   }
-  const changeCurrentTrack = () => {
-    setCurrentTrack(track)
-  }
 
   return (
     <Link to={"?v=" + track.mediaid}>

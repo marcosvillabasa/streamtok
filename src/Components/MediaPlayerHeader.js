@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import logo1 from "../../assets/municipalidad de cosquin.svg"
-import logo2 from "../../assets/logo cosquin.svg"
+import logo1 from "../assets/municipalidad de cosquin.svg"
+import logo2 from "../assets/logo cosquin.svg"
 
 const StyledHeader = styled.header`
   display: flex;
@@ -56,7 +56,7 @@ const LogosContainer = styled.div`
   }
 `
 
-export function Header({ currentTrack }) {
+export function MediaPlayerHeader({ currentTrack }) {
   let artist = ""
   let title = ""
   if (currentTrack && currentTrack.title) {
@@ -72,10 +72,10 @@ export function Header({ currentTrack }) {
       </div>
       <LogosContainer>
         <div className="logo1">
-          {/* <img alt="logo-municipalidad-cosquin" src={logo1}></img> */}
+          <img alt="logo-municipalidad-cosquin" src={logo1}></img>
         </div>
         <div className="logo2">
-          {/* <img alt="logo-festival-cosquin" src={logo2}></img> */}
+          <img alt="logo-festival-cosquin" src={logo2}></img>
         </div>
       </LogosContainer>
     </StyledHeader>

@@ -1,34 +1,67 @@
 import React from "react"
 import styled from "styled-components"
 import { Playlists } from "../../API/StaticAssets"
-import { Link } from "react-router-dom"
 import { Helmet } from "react-helmet"
+import ListaCanalContainer from "./ListaCanalContainer"
+import { TabHeader } from "../../Components/TabHeader"
+import { useDebouncedCallback } from "use-debounce/lib"
 
 const StyledListaCanales = styled.div`
-  a {
-    font-size: 3rem;
-    text-decoration: none;
-    color: var(--color-primary);
+  .lista-canales-titulo {
+    font-size: 4rem;
   }
 
-  & > div {
+  .lista-canales {
     display: flex;
     flex-direction: column;
+    .lista-canal-container {
+      margin-bottom: 4rem;
+    }
   }
 `
 
-export default function ListaCanales(props) {
+export default function ListaCanales({ history, match, location }) {
+  const [search, setSearch] = React.useState(() => {
+    const search = new URLSearchParams(location.search).get("search")
+    return search || ""
+  })
+  const [debouncedHandleSearch] = useDebouncedCallback((value) => {
+    history.push({
+      search: "?search=" + value,
+    })
+    setSearch(value)
+  }, 500)
+  const handleSearch = (event) => debouncedHandleSearch(event.target.value)
+
+  const filterFn = React.useCallback(
+    (track) => {
+      if (!search) {
+        return true
+      } else {
+        return track.title.toLowerCase().includes(search.toLowerCase())
+      }
+    },
+    [search]
+  )
   return (
-    <StyledListaCanales>
+    <>
       <Helmet>
         <title>Lista de canales</title>
       </Helmet>
-      <h2>LISTA DE CANALES</h2>
-      <div className="lista-canales">
-        {Object.entries(Playlists).map(([key, value]) => (
-          <Link to={value}>{key}</Link>
-        ))}
-      </div>
-    </StyledListaCanales>
+      <TabHeader
+        handleSearch={handleSearch}
+        title="Lista de canales"
+        subtitle="Los mejores shows por artistas y géneros."
+      />
+      <StyledListaCanales>
+        <div className="lista-canales">
+          {Object.entries(Playlists).map(([key, value]) => (
+            <div className="lista-canal-container" key={value}>
+              <ListaCanalContainer id={value} filterFn={filterFn} />
+            </div>
+          ))}
+        </div>
+      </StyledListaCanales>
+    </>
   )
 }

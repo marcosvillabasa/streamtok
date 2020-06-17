@@ -19,10 +19,10 @@ describe('a user who visits contact page under url "/contact"', () => {
 
 describe('a user who visits contact page under url "/contact"', () => {
   it('should be able to see About headline and the url should equal with "/contact"', () => {
-    cy.visit("/canales/lista")
+    cy.visit("/canales")
 
     cy.contains("h2", "LISTA DE CANALES")
-    cy.url().should("include", "/canales/lista")
+    cy.url().should("include", "/canales")
     cy.get(".lista-canales")
       .children()
       .then(($children) => {

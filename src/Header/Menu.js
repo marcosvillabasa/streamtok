@@ -28,6 +28,11 @@ const HeaderContainer = styled.header`
       transform: translate(25px, 25px) scale(1.3);
     }
   }
+
+  .btn-ingresar-container {
+    margin-left: auto;
+    margin-right: 4rem;
+  }
 `
 
 export const Navbar = styled.nav`
@@ -45,7 +50,7 @@ export default function Menu(props) {
       <Link to="/" exact>
         <div className="header-logo">{logo}</div>
       </Link>
-      <Navbar>
+      <Navbar className="main-navbar">
         <ul>
           <li>
             <StyledNavLink>
@@ -57,10 +62,7 @@ export default function Menu(props) {
           </li>
           <li>
             <StyledNavLink>
-              <Link
-                to="/canales/lista"
-                active={pathname.startsWith("/canales")}
-              >
+              <Link to="/canales" active={pathname.startsWith("/canales")}>
                 <span>Canales</span>
                 <NavLinkBottomBorder active={pathname.startsWith("/canales")} />
               </Link>
@@ -82,11 +84,11 @@ export default function Menu(props) {
               </Link>
             </StyledNavLink>
           </li>
-          <SearchBox2 />
+          {/* <SearchBox2 /> */}
         </ul>
       </Navbar>
-      <SlideToLeftOnHover>
-        <OutlinedButton>INGRESAR</OutlinedButton>
+      <SlideToLeftOnHover className="btn-ingresar-container">
+        <OutlinedButton className="btn-ingresar">INGRESAR</OutlinedButton>
       </SlideToLeftOnHover>
     </HeaderContainer>
   )

@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { SearchBox } from "../../Components/SearchBox"
+import { SearchBox } from "./SearchBox"
 
 const StyledHeader = styled.header`
   display: flex;
@@ -11,14 +11,14 @@ const StyledHeader = styled.header`
   background-color: #191b1e;
   height: 12rem;
 
-  h2 {
+  .tab-header-title {
     flex: 0 0 100%;
     text-transform: uppercase;
     font-size: 4rem;
     font-weight: 400;
     letter-spacing: 0.1em;
   }
-  h3 {
+  .tab-header-subtitle {
     font-size: 28px;
     font-weight: 400;
     font-family: "Open Sans", sans-serif;
@@ -38,11 +38,11 @@ const StyledHeader = styled.header`
   }
 `
 
-export function Header({ handleSearch }) {
+export function TabHeader({ title, subtitle, handleSearch }) {
   return (
     <StyledHeader>
-      <h2>Lista de eventos</h2>
-      <h3>Los mejores shows por artistas y géneros.</h3>
+      <h2 className="tab-header-title">{title}</h2>
+      <h3 className="tab-header-subtitle">{subtitle}</h3>
       <SearchBox handleSearch={handleSearch} />
     </StyledHeader>
   )
