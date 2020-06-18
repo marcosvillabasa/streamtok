@@ -2,18 +2,17 @@ import React from "react"
 import styled from "styled-components"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
-import macro from "../assets/macro.png"
-import naranja from "../assets/naranja.jpg"
+import placeholder from "../assets/180x180.gif"
 import { Banner } from "../Components/Banner"
 
 // TODO: SACAR NARANJA PONER PLACEHOLDER !!
 const BannerItems = [
-  { src: macro },
-  { src: naranja },
-  { src: macro },
-  { src: naranja },
-  { src: macro },
-  { src: naranja },
+  { src: placeholder },
+  { src: placeholder },
+  { src: placeholder },
+  { src: placeholder },
+  { src: placeholder },
+  { src: placeholder },
 ]
 
 const CarrouselContainer = styled.div`
