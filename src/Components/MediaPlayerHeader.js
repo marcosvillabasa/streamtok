@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import logo1 from "../assets/municipalidad de cosquin.svg"
 import logo2 from "../assets/logo cosquin.svg"
+import { splitTrackTitle } from "../Utils/splitTrackTitle"
 
 const StyledHeader = styled.header`
   display: flex;
@@ -57,18 +58,12 @@ const LogosContainer = styled.div`
 `
 
 export function MediaPlayerHeader({ currentTrack }) {
-  let artist = ""
-  let title = ""
-  if (currentTrack && currentTrack.title) {
-    const splited = currentTrack.title.split("-")
-    artist = splited[0]
-    title = splited[1]
-  }
+  const { artist, trackTitle } = splitTrackTitle(currentTrack?.title)
   return (
     <StyledHeader>
       <div className="track-info-container">
         <p className="track-artist">{artist}</p>
-        <p className="track-title">{title}</p>
+        <p className="track-title">{trackTitle}</p>
       </div>
       <LogosContainer>
         <div className="logo1">

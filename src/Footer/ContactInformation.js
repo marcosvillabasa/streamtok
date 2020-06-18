@@ -28,14 +28,11 @@ const StyledContactInformation = styled.section`
   }
 `
 const contactData = {
-  city: "Córdoba",
-  address1: "Urquiza 459",
-  tel1: "351 428 4047",
-  fulltel1: "+543514284047",
-  address2: "Humberto Primo 670",
-  tel2: "351 431 8711",
-  fulltel2: "+543514318711",
-  email: "streamtok@gmail.com",
+  city: "Córdoba. Argentina",
+  address1: "Padre Luís Monti 1914 (5000)",
+  tel1: "351 659 6749",
+  fulltel1: "+543516596749",
+  email: "roman@streamtok.com",
 }
 
 export default function ContactInformation() {
@@ -43,14 +40,10 @@ export default function ContactInformation() {
     <StyledContactInformation id="contact-information">
       <HeadingWithFinalDot>Datos de contacto</HeadingWithFinalDot>
       <address id="contact-data">
-        <p title="Ciudad">{contactData.city}</p>
         <p title="Direccion">{contactData.address1}</p>
+        <p title="Ciudad">{contactData.city}</p>
         <a title="Telefono" href={`tel:${contactData.fulltel1}`}>
           {contactData.tel1}
-        </a>
-        <p title="Direccion">{contactData.address2}</p>
-        <a title="Telefono" href={`tel:${contactData.fulltel2}`}>
-          {contactData.tel2}
         </a>
         <a title="Email" href={`mailto:${contactData.email}`}>
           {contactData.email}

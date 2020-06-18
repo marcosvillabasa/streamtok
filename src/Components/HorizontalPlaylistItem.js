@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useRouteMatch } from "react-router"
 import { Link } from "react-router-dom"
+import { secondsToTime } from "../Utils/time"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
@@ -22,6 +23,7 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-img-container {
+    position: relative;
     width: 480px;
     height: 270px;
     overflow: hidden;
@@ -36,6 +38,18 @@ const StyledPlaylistItem = styled.div`
       transition: transform 0.25s, opacity 0.25s;
       will-change: transform, opacity;
     }
+
+    .playlist-item-time-overlay {
+      position: absolute;
+      background-color: #000;
+      font-size: 16px;
+      padding: 2px 4px;
+      line-height: 16px;
+      height: 13px;
+      letter-spacing: 2px;
+      bottom: 1px;
+      right: 2px;
+    }
   }
 
   .playlist-item-info {
@@ -46,7 +60,7 @@ const StyledPlaylistItem = styled.div`
     will-change: opacity;
     font-size: 2rem;
 
-    .playlist-item-artist {
+    .playlist-item-time {
       color: #707070;
     }
   }
@@ -54,8 +68,12 @@ const StyledPlaylistItem = styled.div`
 
 export function PlaylistItem({ track }) {
   const match = useRouteMatch()
+  const time = secondsToTime(track.duration)
   return (
-    <Link to={match.path + "/" + track.feedid + "?v=" + track.mediaid}>
+    <Link
+      to={match.path + "/" + track.feedid + "?v=" + track.mediaid}
+      title={track.description + "  | " + track.tags}
+    >
       <StyledPlaylistItem>
         <div className="playlist-item-img-container">
           <img
@@ -65,10 +83,11 @@ export function PlaylistItem({ track }) {
             height="270"
             src={track.images.find(({ width }) => width === 320)?.src}
           />
+          <p className="playlist-item-time-overlay">{time}</p>
         </div>
         <div className="playlist-item-info">
           <p className="playlist-item-title">{track.title}</p>
-          <p className="playlist-item-artist">{track.description}</p>
+          <p className="playlist-item-time">{time}</p>
         </div>
       </StyledPlaylistItem>
     </Link>

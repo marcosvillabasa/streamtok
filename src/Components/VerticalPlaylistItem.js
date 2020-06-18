@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { splitTrackTitle } from "../Utils/splitTrackTitle"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
@@ -46,16 +47,13 @@ export const PlaylistItem = React.memo(function PlaylistItem({
   active,
   setCurrentTrack,
 }) {
-  let artist = ""
-  let title = ""
-  if (track && track.title) {
-    const splited = track.title.split("-")
-    artist = splited[0]
-    title = splited[1]
-  }
+  const { artist, trackTitle } = splitTrackTitle(track?.title)
 
   return (
-    <Link to={"?v=" + track.mediaid}>
+    <Link
+      to={"?v=" + track.mediaid}
+      title={track.description + "  | " + track.tags}
+    >
       <StyledPlaylistItem className={active ? "active" : "inactive"}>
         <div className="playlist-item-img-container">
           <img
@@ -67,10 +65,14 @@ export const PlaylistItem = React.memo(function PlaylistItem({
           />
         </div>
         <div className="playlist-item-info">
-          <p className="playlist-item-title">
-            {title} - {track.description}
-          </p>
-          <p className="playlist-item-artist">{artist}</p>
+          {trackTitle ? (
+            <>
+              <p className="playlist-item-title">{trackTitle}</p>
+              <p className="playlist-item-artist">{artist}</p>
+            </>
+          ) : (
+            <p className="playlist-item-title">{artist}</p>
+          )}
         </div>
       </StyledPlaylistItem>
     </Link>

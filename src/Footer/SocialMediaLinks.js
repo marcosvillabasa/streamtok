@@ -74,9 +74,9 @@ const StyledSocialMediaIcons = styled.div`
   }
 `
 
-const FacebookLink = "http://www.facebook.com"
-const TwitterLink = "http://www.twitter.com"
-const InstagramLink = "http://www.instagram.com"
+const FacebookLink = "https://www.facebook.com/StreamtokArg"
+const TwitterLink = "https://twitter.com/streamtok"
+const InstagramLink = "https://www.instagram.com/streamtokarg/"
 
 export default function SocialMediaLinks() {
   return (

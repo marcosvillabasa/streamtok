@@ -6,6 +6,8 @@ const StyledVerticalPlaylist = styled.div`
   background-color: #22252a;
   border-radius: 10px;
   border: 1px solid #707070;
+  min-width: 480px;
+  max-width: 480px;
   width: 480px;
 
   @media screen and (max-width: 1280px) {
