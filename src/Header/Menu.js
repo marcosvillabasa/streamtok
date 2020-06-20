@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import Link from "react-router-dom/Link"
 import { useLocation } from "react-router"
-import logo from "../assets/logo"
 import { SlideToLeftOnHover } from "../Utils/StyleUtils"
 import { OutlinedButton } from "../Components/Buttons"
 import { StyledNavLink } from "../Components/NavLink"
@@ -48,7 +47,7 @@ export default function Menu(props) {
   return (
     <HeaderContainer>
       <Link to="/" exact>
-        <div className="header-logo">{logo}</div>
+        <div className="header-logo">LOGO HERE</div>
       </Link>
       <Navbar className="main-navbar">
         <ul>
