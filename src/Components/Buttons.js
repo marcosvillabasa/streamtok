@@ -31,13 +31,21 @@ export const OutlinedButton = styled.button`
   cursor: pointer;
   border-radius: 10px;
   border: 2px solid var(--color-primary);
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
   color: white;
-  line-height: 3.2rem;
-  padding: 1rem 4rem;
+  padding: 0.6em 2em;
   transition: 0.2s all;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  font-size: var(--size-10);
+  line-height: var(--size-10);
+
+  & span {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    height: var(--size-10);
+    transform: translateY(2px);
+  }
 
   &:active {
     box-shadow: 0px 0px 0.8rem 2px #0006, inset 0px 0px 4rem 2px #0004;

@@ -42,9 +42,10 @@ function App() {
           <title>StreamTOK</title>
         </Helmet>
         <Router>
-          {/* <Menu /> */}
+          <Menu />
           {/* <MainBody /> */}
         </Router>
+        <div style={{ height: 200, backgroundColor: "#222" }}></div>
         <Footer />
       </ApolloProvider>
     </ThemeProvider>
