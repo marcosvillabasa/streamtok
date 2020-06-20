@@ -18,7 +18,7 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid white;
 
   .header-logo-container {
-    height: auto;
+    height: 80px;
     width: 160px;
     margin-top: 16px;
     margin-left: auto;
@@ -34,6 +34,26 @@ const HeaderContainer = styled.header`
     width: max-content;
     margin: 48px auto 32px auto;
   }
+
+  @media screen and (min-width: 960px) {
+    display: flex;
+    align-items: center;
+    .header-logo-container {
+      width: 96px;
+    }
+    .btn-ingresar-container {
+      margin: 0;
+    }
+    nav {
+      flex: 1 1 auto;
+    }
+  }
+  @media screen and (min-width: 960px) {
+    .header-logo-container {
+      margin-left: 32px;
+      width: 180px;
+    }
+  }
 `
 
 export const Navbar = styled.nav`
@@ -41,7 +61,14 @@ export const Navbar = styled.nav`
   ul {
     display: grid;
     grid-auto-flow: row;
-    column-gap: 4rem;
+
+    @media screen and (min-width: 960px) {
+      grid-auto-flow: column;
+      column-gap: 0px;
+    }
+    @media screen and (min-width: 1280px) {
+      grid-auto-columns: minmax(auto, calc(140px + 5vw));
+    }
   }
 `
 
@@ -56,28 +83,28 @@ export default function Menu(props) {
       <Navbar className="main-navbar">
         <ul>
           <li>
-            <StyledNavLink>
+            <StyledNavLink className="main-navbar-link">
               <NavLink to="/vivo">
                 <span>Vivo</span>
               </NavLink>
             </StyledNavLink>
           </li>
           <li>
-            <StyledNavLink>
+            <StyledNavLink className="main-navbar-link">
               <NavLink to="/canales">
                 <span>Canales</span>
               </NavLink>
             </StyledNavLink>
           </li>
           <li>
-            <StyledNavLink>
+            <StyledNavLink className="main-navbar-link">
               <NavLink to="/eventos">
                 <span>Eventos</span>
               </NavLink>
             </StyledNavLink>
           </li>
           <li>
-            <StyledNavLink>
+            <StyledNavLink className="main-navbar-link">
               <NavLink to="/tv">
                 <span>TV</span>
               </NavLink>

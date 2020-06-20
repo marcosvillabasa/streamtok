@@ -29,4 +29,11 @@ export const StyledNavLink = styled.div`
       }
     }
   }
+  &.main-navbar-link {
+    a {
+      @media screen and (min-width: 960px) {
+        font-size: var(--size-7);
+      }
+    }
+  }
 `

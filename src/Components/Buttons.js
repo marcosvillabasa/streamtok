@@ -51,6 +51,21 @@ export const OutlinedButton = styled.button`
     box-shadow: 0px 0px 0.8rem 2px #0006, inset 0px 0px 4rem 2px #0004;
     border: 2px solid #0004;
   }
+
+  &.btn-ingresar {
+    @media screen and (min-width: 960px) {
+      font-size: var(--size-7);
+      line-height: var(--size-7);
+      padding: 0.6em 1em;
+
+      & span {
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        height: var(--size-7);
+        transform: translateY(2px);
+      }
+    }
+  }
 `
 
 export const RoundedPrimaryButton = styled.button`
