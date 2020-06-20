@@ -3,23 +3,25 @@ import styled from "styled-components"
 import { HeadingWithFinalDot } from "../Components/HeadingWithFinalDot"
 
 const StyledContactInformation = styled.section`
-  margin-right: 7vw;
   text-align: left;
+  font-size: var(--size-8);
 
-  @media screen and (max-width: 1280px) {
-    margin-right: 0;
+  @media screen and (min-width: 1280px) {
+    font-size: var(--size-5);
+    address {
+      margin-top: 40px;
+    }
   }
 
   address {
-    margin-top: 40px;
+    margin-top: 20px;
     p,
     a {
       display: block;
-      color: inherit;
+      color: var(--color-text-8);
       text-decoration: none;
       font-style: normal;
-      font-size: 2.4rem;
-      line-height: 2em;
+      line-height: 1.8em;
       font-family: "Open Sans", sans-serif;
     }
     a {

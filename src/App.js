@@ -11,6 +11,8 @@ import { ApolloProvider } from "react-apollo"
 import { RestLink } from "apollo-link-rest"
 import { Helmet } from "react-helmet"
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
+
 const restLink = new RestLink({
   uri: "https://cdn.jwplayer.com/v2/",
 })
@@ -20,18 +22,32 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1600,
+    },
+  },
+})
+
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Helmet>
-        <title>StreamTOK</title>
-      </Helmet>
-      <Router>
-        <Menu />
-        <MainBody />
-      </Router>
-      <Footer />
-    </ApolloProvider>
+    <ThemeProvider theme={theme}>
+      <ApolloProvider client={client}>
+        <Helmet>
+          <title>StreamTOK</title>
+        </Helmet>
+        <Router>
+          {/* <Menu /> */}
+          {/* <MainBody /> */}
+        </Router>
+        <Footer />
+      </ApolloProvider>
+    </ThemeProvider>
   )
 }
 

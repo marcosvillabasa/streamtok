@@ -10,35 +10,33 @@ import {
 const StyledSocialMediaLinks = styled.section`
   nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 40px;
+  }
 
-    @media screen and (max-width: 1280px) {
-      margin-top: 20px;
-      justify-content: flex-start;
-
-      div {
-        margin-right: 48px;
-      }
-    }
+  @media screen and (min-width: 960px) {
+    padding-left: 64px;
+    padding-right: 64px;
   }
 `
 
 const StyledSocialMediaIcons = styled.div`
   cursor: pointer;
   border-radius: 100%;
+  height: 80px;
+  width: 80px;
   svg {
-    height: 48px;
-    width: 48px;
+    height: 100%;
+    width: 100%;
     fill: white;
     transition: 0.2s all;
   }
   transition: 0.2s all;
   will-change: background-color, transform;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   background-color: #373737;
-  justify-content: center;
+  /* justify-content: center; */
 
   &:hover {
     background-color: #141519;
@@ -62,15 +60,15 @@ const StyledSocialMediaIcons = styled.div`
 
   &#facebook-icon-link {
     border: 1px solid #4360d4;
-    box-shadow: 0px 10px 20px #4360d429;
+    box-shadow: 0px 8px 24px #4360d429;
   }
   &#twitter-icon-link {
     border: 1px solid #17a2ff;
-    box-shadow: 0px 10px 20px #17a2ff29;
+    box-shadow: 0px 8px 24px #17a2ff29;
   }
   &#instagram-icon-link {
     border: 1px solid #ff173f;
-    box-shadow: 0px 10px 20px #ff173f29;
+    box-shadow: 0px 8px 24px #ff173f29;
   }
 `
 

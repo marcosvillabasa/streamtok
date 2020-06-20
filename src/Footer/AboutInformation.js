@@ -6,40 +6,36 @@ const _str_about_information =
   "Streamtok es una empresa de entretenimiento que opera a nivel nacional, cuyo servicio principal es la transmisión de Live Streaming de contenidos audiovisuales."
 
 const StyledAboutInformation = styled.section`
+  height: 100%;
   div {
     height: 85px;
     width: 180px;
     overflow: hidden;
   }
   p {
-    min-width: 380px;
-    width: 60%;
-    color: #999;
-    font-size: 24px;
-    margin-top: 40px;
+    color: var(--color-text-6);
+    font-size: var(--size-6);
+    margin-top: 20px;
     font-family: "Open Sans", sans-serif;
 
-    @media screen and (max-width: 1280px) {
-      width: 100%;
+    @media screen and (min-width: 1280px) {
+      padding-left: 32px;
+      padding-right: 32px;
     }
+  }
+  .footer-logo-container {
+    margin-left: auto;
+    margin-right: auto;
   }
   svg {
     transform: translate(60px, 75px) scale(1.6);
-  }
-
-  @media screen and (max-width: 1280px) {
-    grid-column: span 2;
-
-    p {
-      width: 100%;
-    }
   }
 `
 
 export default function AboutInformation() {
   return (
     <StyledAboutInformation id="about-information">
-      <div>{logo}</div>
+      <div className="footer-logo-container">{logo}</div>
       <p>{_str_about_information}</p>
     </StyledAboutInformation>
   )

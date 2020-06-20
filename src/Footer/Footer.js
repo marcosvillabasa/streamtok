@@ -3,20 +3,35 @@ import styled from "styled-components"
 import SocialMediaLinks from "./SocialMediaLinks"
 import ContactInformation from "./ContactInformation"
 import AboutInformation from "./AboutInformation"
+import Grid from "@material-ui/core/Grid"
 
 const StyledFooter = styled.footer`
   color: white;
-  padding: 100px var(--body-margin);
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  grid-template-rows: auto;
+  padding: 96px 16px;
+  section {
+    margin-bottom: 48px;
+  }
 
-  @media screen and (max-width: 1280px) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+  * {
+    text-align: center;
+  }
 
+  @media screen and (min-width: 600px) {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+
+  @media screen and (min-width: 960px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    * {
+      text-align: inherit;
+    }
     section {
-      margin-bottom: 80px;
+      margin-bottom: 0px;
     }
   }
 `
@@ -24,9 +39,17 @@ const StyledFooter = styled.footer`
 export default function Footer(props) {
   return (
     <StyledFooter>
-      <AboutInformation />
-      <ContactInformation />
-      <SocialMediaLinks />
+      <Grid container>
+        <Grid item xs={12} lg={5}>
+          <AboutInformation />
+        </Grid>
+        <Grid item xs={12} md={6} lg>
+          <ContactInformation />
+        </Grid>
+        <Grid item xs={12} md={6} lg="auto">
+          <SocialMediaLinks />
+        </Grid>
+      </Grid>
     </StyledFooter>
   )
 }

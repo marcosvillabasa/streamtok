@@ -4,25 +4,29 @@
   font-family: "Hind", sans-serif;
 }
 
+h3,
+.subtitle {
+  font-size: calc(18px + 0.75vw);
+}
+
 html {
-  font-size: 62.5%;
+  border-bottom: 1px solid white;
+  border-right: 1px solid red;
 }
 
-@media screen and (max-width: 1280px) {
-  html {
-    font-size: 56.25%;
+@media screen and (min-width: 1280px) {
+  :root {
+    --body-margin: 7vw;
   }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 960px) {
   html {
-    font-size: 50%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   html {
-    font-size: 43.75%;
   }
 }
 
@@ -87,24 +91,64 @@ body.landing::before {
 }
 
 :root {
-  --body-margin: 7vw;
+  --body-margin: 14px;
   --color-primary: #ff0d57;
   --color-primary-semi: #ff0d5780;
   --header-height: 140px;
   --banner-gradient-color-1: #14474d;
   --banner-gradient-color-2: #1c4a7d;
   --banner-text-color: white;
-  --breakpoint-xs: 0px;
-  --breakpoint-sm: 600px;
-  --breakpoint-md: 960px;
-  --breakpoint-lg: 1280px;
-  --breakpoint-xl: 1920px;
-}
 
-@media screen and (max-width: 1280px) {
-  :root {
-    --body-margin: 2.5vw;
-  }
+  --color-text-0: #000000;
+  --color-text-1: #1a1a1a;
+  --color-text-2: #333333;
+  --color-text-3: #4d4d4d;
+  --color-text-4: #666666;
+  --color-text-5: #808080;
+  --color-text-6: #999999;
+  --color-text-7: #b3b3b3;
+  --color-text-8: #cccccc;
+  --color-text-9: #e6e6e6;
+  --color-text-10: #ffffff;
+
+  --color-bg-0: #000000;
+  --color-bg-1: #1a1a1a;
+  --color-bg-2: #333333;
+  --color-bg-3: #4d4d4d;
+  --color-bg-4: #666666;
+  --color-bg-5: #808080;
+  --color-bg-6: #999999;
+  --color-bg-7: #b3b3b3;
+  --color-bg-8: #cccccc;
+  --color-bg-9: #e6e6e6;
+  --color-bg-10: #ffffff;
+
+  --size-0: calc(10px + 0.05vw);
+  --size-1: calc(11px + 0.1vw);
+  --size-2: calc(12px + 0.2vw);
+  --size-3: calc(13px + 0.3vw);
+  --size-4: calc(14px + 0.4vw);
+  --size-5: calc(15px + 0.5vw);
+  --size-6: calc(16px + 0.6vw);
+  --size-7: calc(17px + 0.7vw);
+  --size-8: calc(18px + 0.8vw);
+  --size-9: calc(19px + 0.9vw);
+  --size-10: calc(20px + 1vw);
+  --size-11: calc(21px + 1.1vw);
+  --size-12: calc(22px + 1.2vw);
+  --size-13: calc(23px + 1.3vw);
+  --size-14: calc(24px + 1.4vw);
+  --size-15: calc(25px + 1.5vw);
+  --size-16: calc(26px + 1.6vw);
+  --size-17: calc(27px + 1.7vw);
+  --size-18: calc(28px + 1.8vw);
+  --size-19: calc(29px + 1.9vw);
+  --size-20: calc(30px + 2vw);
+  --size-21: calc(31px + 2.1vw);
+  --size-22: calc(32px + 2.2vw);
+  --size-23: calc(33px + 2.3vw);
+  --size-24: calc(34px + 2.4vw);
+  --size-25: calc(35px + 2.5vw);
 }
 
 .color-primary {
@@ -124,7 +168,7 @@ body.landing::before {
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1279px) {
   body {
     background-size: auto 100vh;
   }
