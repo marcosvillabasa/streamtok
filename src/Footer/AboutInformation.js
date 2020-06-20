@@ -23,10 +23,14 @@ const StyledAboutInformation = styled.section`
     font-size: var(--size-6);
     margin-top: 20px;
     font-family: "Open Sans", sans-serif;
-
-    @media screen and (min-width: 1280px) {
-      padding-left: 32px;
-      padding-right: 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 0px 80px;
+    .footer-logo-container {
+      margin: 0;
+    }
+    p {
+      max-width: 480px;
     }
   }
 `
