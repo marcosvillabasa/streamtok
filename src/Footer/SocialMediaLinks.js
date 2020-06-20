@@ -25,6 +25,12 @@ const StyledSocialMediaIcons = styled.div`
   border-radius: 100%;
   height: 80px;
   width: 80px;
+
+  @media screen and (max-width: 400px) {
+    height: 64px;
+    width: 64px;
+  }
+
   svg {
     height: 100%;
     width: 100%;
