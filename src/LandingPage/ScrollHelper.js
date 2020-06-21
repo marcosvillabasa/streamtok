@@ -6,7 +6,7 @@ const StyledScrollHelper = styled.div`
   top: 0;
   right: 0;
   height: calc(100vh - 8px);
-  width: calc(var(--body-margin) + 100px);
+  width: 16%;
   backdrop-filter: blur(25px);
   display: flex;
   align-items: center;

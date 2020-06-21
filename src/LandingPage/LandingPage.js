@@ -7,7 +7,6 @@ import { Hero } from "./HeroSection"
 import { ScrollHelper } from "./ScrollHelper"
 
 const StyledLandingPage = styled.div`
-  margin: 0px var(--body-margin);
   .landing-bbcontainer {
     .react-multi-carousel-list {
       z-index: 1;
@@ -31,11 +30,11 @@ export default function LandingPage(props) {
   return (
     <StyledLandingPage>
       <Hero />
-      <div className="landing-bbcontainer">
+      {/* <div className="landing-bbcontainer">
         <AdBanner />
-      </div>
+      </div> */}
       <ScrollHelper />
-      <Composition />
+      {/* <Composition /> */}
       <CanalesGrid />
     </StyledLandingPage>
   )

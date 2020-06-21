@@ -69,56 +69,39 @@ export const OutlinedButton = styled.button`
 `
 
 export const RoundedPrimaryButton = styled.button`
-  margin-top: 6.4rem;
   background: var(--color-primary);
   cursor: pointer;
   border-radius: 200px;
   border: none;
-  font-size: 2rem;
-  line-height: 3.2rem;
+  font-size: var(--size-2);
   font-weight: 600;
   letter-spacing: 0.1em;
   color: white;
-  padding: 1.6rem 4.8rem;
+  padding: 1em 1em 0.8em 0em;
   transition: 0.2s all;
   overflow: hidden;
   position: relative;
   box-shadow: 0px 0.8rem 3.2rem -0.8rem var(--color-primary-semi);
-
+  @media screen and (min-width: 600px) {
+    padding: 1em 1em 0.9em 0em;
+    font-size: var(--size-4);
+    span {
+      font-size: var(--size-12);
+    }
+  }
   &:hover {
     span {
-      transform: translate(8px, 5px);
+      transform: translate(8px, -50%);
     }
   }
   span {
-    margin-left: 8px;
-    transform: translate(0px, 5px);
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    right: 8%;
+    /* margin-left: 8px; */
+    /* transform: translate(0px, 5px); */
     will-change: transform;
     transition: 0.2s transform;
-  }
-
-  &::before {
-    content: "";
-    z-index: -1;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transition: all 0.2s ease;
-    background-color: #ff0d57;
-  }
-
-  &:hover::before {
-    left: 0;
-  }
-
-  &:hover {
-    background-color: red;
-    box-shadow: 0px 0.8rem 1.6rem 0px var(--color-primary-semi);
-  }
-
-  &:active {
-    box-shadow: 0px 0px 0.8rem 2px #0008, inset 0px 0px 1.6rem 0.6rem #0008;
   }
 `

@@ -26,7 +26,6 @@ const StyledHeader = styled.header`
 const LogosContainer = styled.div`
   display: none;
   align-items: center;
-  margin-right: var(--body-margin);
 
   .logo1 {
     display: flex;
