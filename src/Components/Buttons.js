@@ -1,22 +1,21 @@
 import styled from "styled-components"
-import { getColorByProp } from "../Utils/StyleUtils"
 
 export const OutlinedButtonVariant2 = styled.button`
   z-index: 1;
   background: transparent;
   cursor: pointer;
   border-radius: 10px;
-  border: 2px solid ${getColorByProp("color", "white")};
+  border: 2px solid var(--color-text-10);
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: ${getColorByProp("color", "white")};
+  color: var(--color-text-10);
   line-height: 3.2rem;
   padding: 1.4rem 6rem;
   transition: all 0.2s, 0.3s border;
 
   &:hover {
-    background-color: ${getColorByProp("bgcolor", "var(--color-primary)")};
+    background-color: var(--color-primary);
     border: 2px solid transparent;
   }
 
