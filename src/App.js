@@ -43,9 +43,8 @@ function App() {
         </Helmet>
         <Router>
           <Menu />
-          {/* <MainBody /> */}
+          <MainBody />
         </Router>
-        <div style={{ height: 200, backgroundColor: "#222" }}></div>
         <Footer />
       </ApolloProvider>
     </ThemeProvider>

@@ -5,18 +5,14 @@ import { Helmet } from "react-helmet"
 import ListaCanalContainer from "./ListaCanalContainer"
 import { TabHeader } from "../../Components/TabHeader"
 import { useDebouncedCallback } from "use-debounce/lib"
+import { useResponsiveTrackThumbnail } from "../../Components/HorizontalPlaylistItem"
 
 const StyledListaCanales = styled.div`
-  .lista-canales-titulo {
-    font-size: 4rem;
-  }
-
   .lista-canales {
-    display: flex;
-    flex-direction: column;
-    .lista-canal-container {
-      margin-bottom: 4rem;
-    }
+    display: grid;
+    grid-auto-flow: row;
+    margin-top: 32px;
+    row-gap: 32px;
   }
 `
 
@@ -32,6 +28,8 @@ export default function ListaCanales({ history, match, location }) {
     setSearch(value)
   }, 500)
   const handleSearch = (event) => debouncedHandleSearch(event.target.value)
+
+  const size = useResponsiveTrackThumbnail()
 
   const filterFn = React.useCallback(
     (track) => {
@@ -56,9 +54,12 @@ export default function ListaCanales({ history, match, location }) {
       <StyledListaCanales>
         <div className="lista-canales">
           {Object.entries(Playlists).map(([key, value]) => (
-            <div className="lista-canal-container" key={value}>
-              <ListaCanalContainer id={value} filterFn={filterFn} />
-            </div>
+            <ListaCanalContainer
+              key={key}
+              id={value}
+              filterFn={filterFn}
+              size={size}
+            />
           ))}
         </div>
       </StyledListaCanales>

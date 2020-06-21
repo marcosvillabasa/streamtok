@@ -84,7 +84,6 @@ body.landing::before {
       rgba(0, 0, 0, 0.6) 225px
     ),
     url(assets/hero.jpg);
-  /* TODO: CAMBIAR HERO IMAGEN. NO SOLEDAD. PONER IMAGEN SIN COPYRIGHT */
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: center;

@@ -3,38 +3,33 @@ import styled from "styled-components"
 import { SearchBox } from "./SearchBox"
 
 const StyledHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  flex-flow: row wrap;
-  align-items: center;
-  padding: 8rem 6% 5rem 6%;
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-columns: minmax(auto, max-content);
+  row-gap: 24px;
+  text-align: center;
+
+  @media screen and (min-width: 600px) {
+    text-align: left;
+    padding: 40px calc(5vw + 16px);
+  }
+
+  padding: 40px 8%;
   background-color: #191b1e;
-  height: 12rem;
 
   .tab-header-title {
-    flex: 0 0 100%;
     text-transform: uppercase;
-    font-size: 4rem;
+    font-size: var(--size-12);
+    line-height: 1em;
     font-weight: 400;
     letter-spacing: 0.1em;
   }
   .tab-header-subtitle {
-    font-size: 28px;
+    font-size: var(--size-6);
     font-weight: 400;
     font-family: "Open Sans", sans-serif;
     letter-spacing: 0.1em;
-    color: #747474;
-  }
-
-  & > div {
-    margin-left: 3rem;
-    flex: 1 0 300px;
-    max-width: 600px;
-  }
-
-  /* search box */
-  input {
-    width: 100%;
+    color: var(--color-text-6);
   }
 `
 

@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { PlaylistItem } from "./HorizontalPlaylistItem"
 
 const StyledHorizontalPlaylist = styled.div`
-  margin: 0px 50px;
+  margin: 0;
   display: flex;
   overflow-x: auto;
 
   ::-webkit-scrollbar {
-    height: 8px;
+    height: 4px;
   }
 
   ::-webkit-scrollbar-track {
@@ -31,8 +31,9 @@ const StyledHorizontalPlaylist = styled.div`
 `
 
 const PlaylistTitle = styled.p`
-  font-size: 28px;
-  margin: 60px 0px 20px 70px;
+  font-size: var(--size-14);
+  line-height: 1.2em;
+  margin-left: 16px;
 `
 
 const TitleContainer = styled.div`
@@ -40,37 +41,57 @@ const TitleContainer = styled.div`
 `
 
 const ResultCount = styled.div`
-  position: absolute;
-  top: 0;
-  right: 60px;
-  font-size: 20px;
+  margin-left: 16px;
+  @media screen and (min-width: 600px) {
+    font-size: var(--size-4);
+  }
+  font-size: var(--size-2);
+  line-height: 2.5em;
   font-weight: 400;
   letter-spacing: 0.1em;
-  color: #747474;
+  color: var(--color-text-5);
   display: inline-flex;
 
   span {
-    color: white;
+    color: var(--color-text-9);
     font-weight: 600;
   }
 `
 
-export function HorizontalPlaylist({ playlist, filterFn }) {
-  return (
-    <>
-      <TitleContainer>
-        <PlaylistTitle>{playlist.title}</PlaylistTitle>
-        <ResultCount className="result-count">
-          Se encontraron&nbsp;
-          <span>{playlist.playlist.filter(filterFn).length}</span>
-          <span>&nbsp;resultados.</span>
-        </ResultCount>
-      </TitleContainer>
-      <StyledHorizontalPlaylist>
-        {playlist.playlist.filter(filterFn).map((track, index) => (
-          <PlaylistItem key={index + track.mediaid} track={track} />
-        ))}
-      </StyledHorizontalPlaylist>
-    </>
-  )
+const Container = styled.div`
+  width: 100vw;
+
+  @media screen and (min-width: 600px) {
+    width: 90vw;
+    padding: 0px 5vw;
+  }
+`
+
+export function HorizontalPlaylist({ playlist, filterFn, size }) {
+  const filtered = playlist.playlist.filter(filterFn)
+  if (filtered.length) {
+    return (
+      <Container>
+        <TitleContainer>
+          <PlaylistTitle>{playlist.title}</PlaylistTitle>
+          <ResultCount className="result-count">
+            Se encontraron&nbsp;
+            <span>{filtered.length}</span>
+            <span>&nbsp;resultados.</span>
+          </ResultCount>
+        </TitleContainer>
+        <StyledHorizontalPlaylist>
+          {filtered.map((track, index) => (
+            <PlaylistItem
+              key={index + track.mediaid}
+              track={track}
+              size={size}
+            />
+          ))}
+        </StyledHorizontalPlaylist>
+      </Container>
+    )
+  } else {
+    return null
+  }
 }
