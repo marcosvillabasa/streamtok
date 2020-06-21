@@ -38,26 +38,32 @@ const imagesSrc = [
 
 const StyledCanalesGrid = styled.div`
   display: grid;
-  min-width: 500px;
-  gap: 2vw 4vw;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-auto-rows: minmax(120px, auto);
+  column-gap: 4%;
+  row-gap: 4%;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-auto-rows: auto;
 
-  @media only screen and (min-width: 1280px) and (max-width: 2000px) {
-    grid-template-columns: repeat(5, minmax(150px, 1fr));
+  @media only screen and (min-width: 600px) {
+    padding: 0px 10%;
+  }
+
+  @media only screen and (min-width: 960px) {
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 6%;
   }
 `
 
 const GridImgContainer = styled.div`
-  width: 60%;
+  height: 0px;
+  padding-top: 80%;
   border-radius: 5px;
   background-color: #22252a;
   border: 1px solid #707070;
-  padding: 35px 20%;
   display: flex;
   align-items: center;
   transition: 0.3s border-color, 0.2s box-shadow;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     border-color: var(--color-primary);
@@ -65,7 +71,12 @@ const GridImgContainer = styled.div`
   }
 
   img {
-    width: 100%;
+    /* good ol' absolute center */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    transform: translate(-50%, -50%);
   }
 `
 
@@ -73,6 +84,7 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   flex-direction: column;
   margin-bottom: 72px;
 
@@ -92,13 +104,14 @@ const Title = styled.div`
   }
 
   h2 {
-    font-size: 40px;
+    font-size: var(--size-10);
     font-weight: 400;
     letter-spacing: 0.1em;
   }
 
   h3 {
-    font-size: 28px;
+    font-size: var(--size-6);
+    color: var(--color-text-9);
     font-weight: 400;
     letter-spacing: 0.1em;
   }
