@@ -9,25 +9,22 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: #191b1e;
-  height: 200px;
+  padding: 16px;
 
   .track-info-container {
-    margin-bottom: -50px;
-    margin-left: 100px;
-
     .track-artist {
-      font-size: 28px;
-      color: #eee;
+      font-size: var(--size-10);
+      color: var(--color-text-9);
     }
     .track-title {
-      font-size: 24px;
-      color: #747474;
+      font-size: var(--size-6);
+      color: var(--color-text-5);
     }
   }
 `
 
 const LogosContainer = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   margin-right: var(--body-margin);
 

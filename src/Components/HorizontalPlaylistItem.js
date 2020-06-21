@@ -9,21 +9,21 @@ const sizeSmall = { width: 128, height: 72 }
 const sizeMedium = { width: sizeSmall.width * 2, height: sizeSmall.height * 2 }
 const sizeLarge = { width: sizeSmall.width * 3, height: sizeSmall.height * 3 }
 
-export const useResponsiveTrackThumbnail = () => {
+export const useResponsiveTrackThumbnail = (skipDesktop) => {
   const theme = useTheme()
   const mediaQueryTablet = useMediaQuery(theme.breakpoints.up("sm"))
   const mediaQueryDesktop = useMediaQuery(theme.breakpoints.up("md"))
   const [size, setSize] = React.useState(sizeSmall)
 
   React.useEffect(() => {
-    if (mediaQueryDesktop) {
+    if (mediaQueryDesktop && !skipDesktop) {
       setSize(sizeLarge)
     } else if (mediaQueryTablet) {
       setSize(sizeMedium)
     } else {
       setSize(sizeSmall)
     }
-  }, [mediaQueryDesktop, mediaQueryTablet])
+  }, [mediaQueryDesktop, mediaQueryTablet, skipDesktop])
   return size
 }
 
@@ -95,7 +95,7 @@ const StyledPlaylistItem = styled.div`
   .playlist-item-info {
     user-select: none;
     opacity: 0.75;
-    transition: 0.25s all;
+    transition: 0.25s opacity;
     padding: 0.6em 1.2em;
     will-change: opacity;
     font-size: var(--size-1);

@@ -5,8 +5,8 @@ import { splitTrackTitle } from "../Utils/splitTrackTitle"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
-  padding: 2rem 0rem;
-  border-bottom: 1px solid #444;
+  padding: 8px 0px;
+  border-bottom: 1px solid var(--color-text-3);
   cursor: pointer;
   transition: 0.1s background-color ease-in-out;
   will-change: background-color;
@@ -23,8 +23,12 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-img-container {
-    width: 240px;
-    height: 135px;
+    width: 128px;
+    height: 72px;
+    @media screen and (min-width: 600px) {
+      width: 256px;
+      height: 144px;
+    }
     background-color: #0004;
 
     img {
@@ -33,11 +37,11 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-info {
-    font-size: 1.8rem;
+    font-size: var(--size-2);
     padding: 1rem 1rem 0rem 1.4rem;
 
     .playlist-item-artist {
-      color: #555;
+      color: var(--color-text-5);
     }
   }
 `
@@ -46,6 +50,7 @@ export const PlaylistItem = React.memo(function PlaylistItem({
   track,
   active,
   setCurrentTrack,
+  size,
 }) {
   const { artist, trackTitle } = splitTrackTitle(track?.title)
 
@@ -59,8 +64,8 @@ export const PlaylistItem = React.memo(function PlaylistItem({
           <img
             alt={track.title}
             loading="lazy"
-            width="240"
-            height="135"
+            width={size.width}
+            height={size.height}
             src={track.images.find(({ width }) => width === 320)?.src}
           />
         </div>

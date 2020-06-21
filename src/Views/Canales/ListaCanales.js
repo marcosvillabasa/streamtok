@@ -7,7 +7,7 @@ import { TabHeader } from "../../Components/TabHeader"
 import { useDebouncedCallback } from "use-debounce/lib"
 import { useResponsiveTrackThumbnail } from "../../Components/HorizontalPlaylistItem"
 
-const StyledListaCanales = styled.div`
+export const StyledListaCanales = styled.div`
   .lista-canales {
     display: grid;
     grid-auto-flow: row;

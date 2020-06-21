@@ -4,6 +4,7 @@ import { useDebouncedCallback } from "use-debounce"
 import { useDedupedQueryCanal } from "../../API/Queries/QueryCanal"
 import { HorizontalPlaylist } from "../../Components/HorizontalPlaylist"
 import { TabHeader } from "../../Components/TabHeader"
+import { StyledListaCanales } from "../Canales/ListaCanales"
 
 export default function EventosView({ history, location }) {
   const { loading, error, dedupedResponse } = useDedupedQueryCanal("Lu7EC8Bf")
@@ -41,11 +42,15 @@ export default function EventosView({ history, location }) {
         title="Lista de eventos"
         subtitle="Los mejores shows por artistas y géneros."
       />
-      <HorizontalPlaylist
-        playlist={dedupedResponse}
-        filterFn={filterFn}
-        search={search}
-      />
+      <StyledListaCanales>
+        <div className="lista-canales">
+          <HorizontalPlaylist
+            playlist={dedupedResponse}
+            filterFn={filterFn}
+            search={search}
+          />
+        </div>
+      </StyledListaCanales>
     </div>
   )
 }

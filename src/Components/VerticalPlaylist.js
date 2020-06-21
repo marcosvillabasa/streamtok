@@ -6,29 +6,24 @@ const StyledVerticalPlaylist = styled.div`
   background-color: #22252a;
   border-radius: 10px;
   border: 1px solid #707070;
-  min-width: 480px;
-  max-width: 480px;
-  width: 480px;
-
-  @media screen and (max-width: 1280px) {
-    max-width: 800px;
-    width: 90%;
+  width: 90%;
+  @media screen and (min-width: 1280px) {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .playlist-title {
-    font-size: 2rem;
+    font-size: var(--size-6);
+    text-align: center;
     font-weight: 600;
-    padding: 3rem 0rem;
-    padding-left: 3rem;
+    padding: 1em;
     border-bottom: 1px solid #707070;
   }
 
   .container {
-    margin: 1rem;
-
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 0px;
+      width: 5px;
+      height: 5px;
     }
 
     ::-webkit-scrollbar-track {
@@ -50,7 +45,12 @@ const StyledVerticalPlaylist = styled.div`
   }
 `
 
-export function VerticalPlaylist({ playlist, currentTrack, setCurrentTrack }) {
+export function VerticalPlaylist({
+  playlist,
+  currentTrack,
+  setCurrentTrack,
+  size,
+}) {
   return (
     <StyledVerticalPlaylist>
       <div className="playlist-title">
@@ -59,6 +59,7 @@ export function VerticalPlaylist({ playlist, currentTrack, setCurrentTrack }) {
       <div className="container">
         {playlist.map((track) => (
           <PlaylistItem
+            size={size}
             track={track}
             setCurrentTrack={setCurrentTrack}
             active={currentTrack?.mediaid === track.mediaid}

@@ -7,41 +7,25 @@ import { useDedupedQueryCanal } from "../API/Queries/QueryCanal"
 import { queryParamParse } from "../Utils/querystring"
 import { MediaPlayerHeader } from "./MediaPlayerHeader"
 import { VerticalPlaylist } from "./VerticalPlaylist"
+import { useResponsiveTrackThumbnail } from "./HorizontalPlaylistItem"
 
 const StyledTabCanales = styled.div`
-  .MuiGrid-item {
-    &:nth-child(1) {
-      margin-bottom: 3rem;
-    }
-    &:nth-child(2) {
-      padding: 0rem 2rem;
-    }
-    &:nth-child(3) {
-      padding-right: 2rem;
-      @media screen and (max-width: 1280px) {
-        display: flex;
-        justify-content: center;
-        padding: 0rem;
-        margin-top: 4rem;
-      }
+  .header-container {
+    margin-bottom: 32px;
+  }
+  .playlist-container {
+    margin-top: 48px;
+    @media screen and (min-width: 1280px) {
+      margin-top: 0;
+      width: 10vw;
+      max-width: 512px;
     }
   }
-  .player-container {
-    display: flex;
-    width: 100%;
 
-    .jwplayer-container {
-      margin-right: 2rem;
-      width: inherit;
-    }
-
-    @media screen and (max-width: 1400px) {
-      flex-direction: column;
-      align-items: center;
-      .jwplayer-container {
-        margin-bottom: 2rem;
-      }
-    }
+  /* this is needed for jwplayer to fill the container for some reason  */
+  .dummy-placeholder {
+    height: 0px;
+    overflow: hidden;
   }
 `
 
@@ -56,6 +40,7 @@ export default function MediaPlayer({ history, match, location }) {
     setPlayerInitialized(true)
     window.scroll(0, 144)
   }
+  const size = useResponsiveTrackThumbnail(true)
 
   React.useEffect(() => {
     if (dedupedResponse && playerInitialized) {
@@ -103,19 +88,21 @@ export default function MediaPlayer({ history, match, location }) {
         </title>
       </Helmet>
       <Grid container>
-        <Grid item xs={12}>
+        <Grid item xs={12} className="header-container">
           <MediaPlayerHeader currentTrack={currentTrack} />
         </Grid>
-        <Grid item xs={12} className="player-container">
-          <div className="jwplayer-container">
-            <ReactJWPlayer
-              onReady={onReady}
-              playerId="LUykEJtT"
-              playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-              playlist={dedupedResponse?.playlist}
-            />
-          </div>
+        <Grid item xs={12} lg>
+          <ReactJWPlayer
+            onReady={onReady}
+            playerId="LUykEJtT"
+            playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
+            playlist={dedupedResponse?.playlist}
+          />
+          <div className="dummy-placeholder">&nbsp;</div>
+        </Grid>
+        <Grid item xs={12} lg className="playlist-container">
           <VerticalPlaylist
+            size={size}
             playlist={dedupedResponse?.playlist}
             currentTrack={currentTrack}
             setCurrentTrack={setCurrentTrack}
