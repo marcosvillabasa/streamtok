@@ -18,6 +18,12 @@ const BannerItems = [
 const CarrouselContainer = styled.div`
   overflow: visible;
   position: relative;
+  max-width: 1400px;
+  margin: 0 auto 80px auto;
+
+  @media screen and (min-width: 960px) {
+    padding: 0 10%;
+  }
 
   .container {
     /* border-radius goes here instead of going in the item (banner in this case) */
@@ -27,7 +33,7 @@ const CarrouselContainer = styled.div`
 
   .carrousel-dots {
     /* in the original component class this class has position absolute */
-    bottom: -50px;
+    bottom: -40px;
     .react-multi-carousel-dot {
       button {
         /* overrides to the original dot styles */

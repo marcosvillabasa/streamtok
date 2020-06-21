@@ -6,13 +6,17 @@ export const OutlinedButtonVariant2 = styled.button`
   cursor: pointer;
   border-radius: 10px;
   border: 2px solid var(--color-text-10);
-  font-size: 2rem;
+  font-size: var(--size-7);
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--color-text-10);
-  line-height: 3.2rem;
-  padding: 1.4rem 6rem;
+  padding: 0.5em 1em;
   transition: all 0.2s, 0.3s border;
+
+  span {
+    position: relative;
+    top: 0.1em;
+  }
 
   &:hover {
     background-color: var(--color-primary);

@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid"
 const HeroSection = styled.section`
   text-align: left;
   height: 100vh;
-  border-bottom: 4px double orangered;
   position: relative;
 
   .header-container {

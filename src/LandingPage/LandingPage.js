@@ -10,7 +10,7 @@ const StyledLandingPage = styled.div`
   .landing-bbcontainer {
     .react-multi-carousel-list {
       z-index: 1;
-      margin: 0 4%;
+      margin: 0 2%;
     }
   }
 `
@@ -30,9 +30,9 @@ export default function LandingPage(props) {
   return (
     <StyledLandingPage>
       <Hero />
-      {/* <div className="landing-bbcontainer">
+      <div className="landing-bbcontainer">
         <AdBanner />
-      </div> */}
+      </div>
       <ScrollHelper />
       {/* <Composition /> */}
       <CanalesGrid />

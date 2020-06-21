@@ -3,55 +3,76 @@ import styled from "styled-components"
 import { OutlinedButtonVariant2 } from "../Components/Buttons"
 import BannerIcon from "../assets/tools-and-utensils.svg"
 
-// TODO: this banner isn't responsive
 const StyledBanner = styled.div`
-  padding: 3.6rem 6%;
+  padding: 2% 6%;
+  position: relative;
+  overflow: hidden;
+
   background-image: linear-gradient(
     to right,
     var(--banner-gradient-color-1),
     var(--banner-gradient-color-2)
   );
+
   display: flex;
   align-items: center;
   position: relative;
   color: var(--banner-text-color);
 
   .notice {
-    margin-left: 4.8rem;
+    margin-left: 5%;
     text-align: left;
 
     div:first-child {
-      font-size: 2.4rem;
-      line-height: 4.8rem;
+      @media screen and (min-width: 600px) {
+        font-size: var(--size-6);
+      }
+      font-size: var(--size-2);
+      line-height: 2em;
       font-family: "Open Sans", sans-serif;
-      height: 4.8rem;
+      height: 2em;
     }
     div:last-child {
-      font-size: 3.6rem;
-      line-height: 4.8rem;
-      height: 4.8rem;
+      @media screen and (min-width: 600px) {
+        font-size: var(--size-12);
+      }
+      font-size: var(--size-6);
+      line-height: 1.5em;
+      height: 1.5em;
       font-family: "Open Sans", sans-serif;
     }
   }
 
-  button {
+  .btn-contactanos {
     /* for positioning the button to the right border */
     margin-left: auto;
+    font-size: var(--size-2);
+
+    @media screen and (min-width: 600px) {
+      font-size: var(--size-4);
+    }
+    @media screen and (min-width: 960px) {
+      font-size: var(--size-6);
+    }
   }
 
   .banner-logo {
     border-radius: 16px;
-    height: 180px;
-    width: auto;
+    min-height: 90px;
+    min-width: 90px;
+    max-height: 180px;
+    max-width: 180px;
+    height: 14%;
+    width: 14%;
   }
 
   .banner-icon {
     position: absolute;
     pointer-events: none;
-    right: -30px;
-    top: -30px;
-    width: 280px;
-    height: 320px;
+    top: -10%;
+    left: 35%;
+    width: 120%;
+    height: 120%;
   }
 `
 
@@ -63,7 +84,9 @@ export function Banner({ img }) {
         <div>Espacio disponible</div>
         <div>para publicitar</div>
       </div>
-      <OutlinedButtonVariant2>CONTACTANOS</OutlinedButtonVariant2>
+      <OutlinedButtonVariant2 className="btn-contactanos">
+        <span>CONTACTANOS</span>
+      </OutlinedButtonVariant2>
       <img
         alt="add-banner-decoration-icon"
         className="banner-icon"
