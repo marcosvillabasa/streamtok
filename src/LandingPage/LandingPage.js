@@ -34,7 +34,7 @@ export default function LandingPage(props) {
         <AdBanner />
       </div>
       <ScrollHelper />
-      {/* <Composition /> */}
+      <Composition />
       <CanalesGrid />
     </StyledLandingPage>
   )

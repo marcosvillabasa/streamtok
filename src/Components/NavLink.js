@@ -50,4 +50,12 @@ export const StyledNavLink = styled.div`
       }
     }
   }
+  &.composition-links {
+    a {
+      font-size: var(--size-5);
+      @media screen and (min-width: 600px) {
+        font-size: var(--size-10);
+      }
+    }
+  }
 `

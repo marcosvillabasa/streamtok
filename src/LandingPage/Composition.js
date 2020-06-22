@@ -11,9 +11,9 @@ import composition7 from "../assets/composition7.png"
 import composition8 from "../assets/composition8.png"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
-import { NavLinkBottomBorder } from "../Components/NavLinkBottomBorder"
 import { RoundedPrimaryButton } from "../Components/Buttons"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 const Box = styled.div`
   border-radius: 10px;
@@ -36,19 +36,14 @@ const Box2 = styled.div`
 `
 
 const Navbar = styled.nav`
-  padding-bottom: 15px;
   margin-bottom: 60px;
   border-bottom: 1px solid grey;
   ul {
     display: flex;
     justify-content: center;
 
-    li:first-child {
-      margin-right: 64px;
-    }
-
     li {
-      padding: 16px 32px;
+      padding: 0 1em;
     }
   }
 `
@@ -123,6 +118,7 @@ function Carrousel(props) {
 }
 
 export default function Composition(props) {
+  const location = useLocation()
   const [selected, setSelected] = React.useState("EVENTOS")
   const onClickLink = (event) => {
     if (event.target.dataset.tab) {
@@ -138,26 +134,30 @@ export default function Composition(props) {
               {/* <BackgroundText className="bg-text-first">
                 CANALES VOD
               </BackgroundText> */}
-              <StyledNavLink fontSize="30px">
-                <a href="#canales-vod">
+              <StyledNavLink className="composition-links">
+                <NavLink
+                  to="#canales-vod"
+                  isActive={() => location.hash.includes("canales-vod")}
+                >
                   <span data-tab="CANALES VOD" onClick={onClickLink}>
                     CANALES VOD
                   </span>
-                  <NavLinkBottomBorder active={selected === "CANALES VOD"} />
-                </a>
+                </NavLink>
               </StyledNavLink>
             </li>
             <li>
               {/* <BackgroundText className="bg-text-second">
                 EVENTOS
               </BackgroundText> */}
-              <StyledNavLink fontSize="30px">
-                <a href="#eventos">
+              <StyledNavLink className="composition-links">
+                <NavLink
+                  to="#eventos"
+                  isActive={() => location.hash.includes("eventos")}
+                >
                   <span data-tab="EVENTOS" onClick={onClickLink}>
                     EVENTOS
                   </span>
-                  <NavLinkBottomBorder active={selected === "EVENTOS"} />
-                </a>
+                </NavLink>
               </StyledNavLink>
             </li>
           </ul>
