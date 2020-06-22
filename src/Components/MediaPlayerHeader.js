@@ -5,13 +5,14 @@ import logo2 from "../assets/logo cosquin.svg"
 import { splitTrackTitle } from "../Utils/splitTrackTitle"
 
 const StyledHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: #191b1e;
-  padding: 16px;
+  display: flex;
 
   .track-info-container {
+    padding: 6% 2% 6% 6%;
+    @media screen and (min-width: 600px) {
+      padding: 3% 2% 3% 4%;
+    }
     .track-artist {
       font-size: var(--size-10);
       color: var(--color-text-9);
@@ -24,31 +25,40 @@ const StyledHeader = styled.header`
 `
 
 const LogosContainer = styled.div`
-  display: none;
-  align-items: center;
+  flex: 1 1 auto;
+  align-self: center;
 
-  .logo1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 85px;
-    width: 180px;
+  display: grid;
+  gap: 24px;
+  justify-content: flex-end;
+  margin-right: 2%;
+  justify-items: center;
 
-    img {
-      transform: scale(1.6);
-    }
+  @media screen and (min-width: 600px) {
+    grid-auto-flow: column;
   }
 
-  .logo2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 70px;
-    height: 85px;
-    width: 280px;
+  @media screen and (min-width: 960px) {
+    gap: calc(20% - 64px);
+  }
 
+  .logo,
+  .logo {
+    height: 40px;
+    @media screen and (min-width: 600px) {
+      height: 50px;
+    }
+
+    @media screen and (min-width: 960px) {
+      height: 80px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      height: 100px;
+    }
     img {
-      transform: scale(2);
+      height: inherit;
+      width: auto;
     }
   }
 `
@@ -62,10 +72,10 @@ export function MediaPlayerHeader({ currentTrack }) {
         <p className="track-title">{trackTitle}</p>
       </div>
       <LogosContainer>
-        <div className="logo1">
+        <div className="logo">
           <img alt="logo-municipalidad-cosquin" src={logo1}></img>
         </div>
-        <div className="logo2">
+        <div className="logo">
           <img alt="logo-festival-cosquin" src={logo2}></img>
         </div>
       </LogosContainer>
