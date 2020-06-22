@@ -1,11 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import Link from "react-router-dom/Link"
-import { useLocation } from "react-router"
 import { SlideToLeftOnHover } from "../Utils/StyleUtils"
 import { OutlinedButton } from "../Components/Buttons"
 import { StyledNavLink } from "../Components/NavLink"
-import { NavLinkBottomBorder } from "../Components/NavLinkBottomBorder"
 import { SearchBox2 } from "../Components/SearchBox2"
 import fixedLogo from "../assets/logostreamtokfixed.svg"
 import { NavLink } from "react-router-dom"
@@ -36,9 +34,13 @@ const HeaderContainer = styled.header`
   }
 
   @media screen and (min-width: 960px) {
+    padding-bottom: 0;
     display: flex;
     align-items: center;
     .header-logo-container {
+      margin: 0;
+      padding: 0;
+      margin-top: -10px;
       width: 96px;
     }
     .btn-ingresar-container {

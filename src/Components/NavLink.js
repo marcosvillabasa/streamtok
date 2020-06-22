@@ -13,13 +13,27 @@ export const StyledNavLink = styled.div`
     justify-content: center;
     text-decoration: none;
 
-    &.active span {
+    span {
       position: relative;
+    }
 
+    &:hover span::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: -16px;
+      right: -16px;
+      height: 3px;
+      box-shadow: 0px 0px 16px 0px #1bb382;
+      border-radius: 10px;
+      background-color: #1bb382;
+    }
+
+    &.active span {
       &::after {
         content: "";
         position: absolute;
-        bottom: 0;
+        bottom: -2px;
         left: -16px;
         right: -16px;
         height: 5px;
