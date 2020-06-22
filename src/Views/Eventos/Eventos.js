@@ -45,6 +45,8 @@ export default function EventosView({ history, location }) {
       <StyledListaCanales>
         <div className="lista-canales">
           <HorizontalPlaylist
+            loading={loading}
+            id="Lu7EC8Bf"
             playlist={dedupedResponse}
             filterFn={filterFn}
             search={search}
