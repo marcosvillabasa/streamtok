@@ -53,7 +53,7 @@ const HeaderContainer = styled.header`
   @media screen and (min-width: 960px) {
     .header-logo-container {
       margin-left: 32px;
-      width: 180px;
+      width: 128px;
     }
   }
 `
