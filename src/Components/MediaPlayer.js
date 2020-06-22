@@ -8,6 +8,7 @@ import { queryParamParse } from "../Utils/querystring"
 import { MediaPlayerHeader } from "./MediaPlayerHeader"
 import { VerticalPlaylist } from "./VerticalPlaylist"
 import { useResponsiveTrackThumbnail } from "./HorizontalPlaylistItem"
+import { Spinner } from "./Spinner"
 
 const StyledTabCanales = styled.div`
   .header-container {
@@ -92,12 +93,16 @@ export default function MediaPlayer({ history, match, location }) {
           <MediaPlayerHeader currentTrack={currentTrack} />
         </Grid>
         <Grid item xs={12} lg>
-          <ReactJWPlayer
-            onReady={onReady}
-            playerId="LUykEJtT"
-            playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-            playlist={dedupedResponse?.playlist}
-          />
+          {loading ? (
+            <Spinner />
+          ) : (
+            <ReactJWPlayer
+              onReady={onReady}
+              playerId="LUykEJtT"
+              playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
+              playlist={dedupedResponse?.playlist}
+            />
+          )}
           <div className="dummy-placeholder">&nbsp;</div>
         </Grid>
         <Grid item xs={12} lg className="playlist-container">

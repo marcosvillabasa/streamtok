@@ -67,27 +67,47 @@ const Container = styled.div`
   }
 `
 
-export function HorizontalPlaylist({ playlist, filterFn, size }) {
+const defaultPlaylist = new Array(5).fill({
+  title: "",
+  images: [{ src: "", width: 320 }],
+  duration: 300,
+})
+
+export function HorizontalPlaylist({ loading, playlist, filterFn, size }) {
   const filtered = playlist.playlist.filter(filterFn)
   if (filtered.length) {
     return (
       <Container>
         <TitleContainer>
-          <PlaylistTitle>{playlist.title}</PlaylistTitle>
+          <PlaylistTitle>{playlist.title || "cargando"}</PlaylistTitle>
           <ResultCount className="result-count">
-            Se encontraron&nbsp;
-            <span>{filtered.length}</span>
-            <span>&nbsp;resultados.</span>
+            {loading ? (
+              <div>&nbsp;</div>
+            ) : (
+              <>
+                Se encontraron&nbsp;
+                <span>{filtered.length}</span>
+                <span>&nbsp;resultados.</span>
+              </>
+            )}
           </ResultCount>
         </TitleContainer>
         <StyledHorizontalPlaylist>
-          {filtered.map((track, index) => (
-            <PlaylistItem
-              key={index + track.mediaid}
-              track={track}
-              size={size}
-            />
-          ))}
+          {loading
+            ? defaultPlaylist.map((track, index) => (
+                <PlaylistItem
+                  key={index + track.mediaid}
+                  track={track}
+                  size={size}
+                />
+              ))
+            : filtered.map((track, index) => (
+                <PlaylistItem
+                  key={index + track.mediaid}
+                  track={track}
+                  size={size}
+                />
+              ))}
         </StyledHorizontalPlaylist>
       </Container>
     )
