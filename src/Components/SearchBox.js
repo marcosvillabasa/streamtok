@@ -39,7 +39,7 @@ export function SearchBox({ handleSearch }) {
   }, [location.search])
 
   return (
-    <StyledSearchBox>
+    <StyledSearchBox className="search-box">
       <input
         ref={inputRef}
         placeholder="Buscar por artistas o generos"

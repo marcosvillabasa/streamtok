@@ -6,12 +6,24 @@ const StyledHeader = styled.header`
   display: grid;
   grid-auto-flow: row;
   grid-auto-columns: minmax(auto, max-content);
-  row-gap: 24px;
+  gap: 24px;
   text-align: center;
 
   @media screen and (min-width: 600px) {
     text-align: left;
-    padding: 40px calc(5vw + 16px);
+    padding: 40px calc(5% + 16px);
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 3% calc(5% + 16px);
+    column-gap: 16%;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    .search-box {
+      grid-row: span 2;
+      align-self: flex-end;
+    }
   }
 
   padding: 40px 8%;
@@ -38,7 +50,7 @@ export function TabHeader({ title, subtitle, handleSearch }) {
     <StyledHeader>
       <h2 className="tab-header-title">{title}</h2>
       <h3 className="tab-header-subtitle">{subtitle}</h3>
-      <SearchBox handleSearch={handleSearch} />
+      <SearchBox handleSearch={handleSearch} className="tab-header-search" />
     </StyledHeader>
   )
 }
