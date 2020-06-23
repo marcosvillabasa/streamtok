@@ -26,6 +26,11 @@ const Box = styled.div`
   .composition-carrousel-slider {
     align-items: center;
   }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 `
 
 const Box2 = styled.div`
@@ -95,7 +100,7 @@ function Carrousel(props) {
         },
         mobile: {
           breakpoint: {
-            max: 464,
+            max: 600,
             min: 0,
           },
           items: 4,
@@ -103,7 +108,7 @@ function Carrousel(props) {
         tablet: {
           breakpoint: {
             max: 1024,
-            min: 464,
+            min: 600,
           },
           items: 4,
         },

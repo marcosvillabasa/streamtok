@@ -7,6 +7,9 @@ const StyledBanner = styled.div`
   padding: 2% 6%;
   position: relative;
   overflow: hidden;
+  @media screen and (max-width: 360px) {
+    padding: 2%;
+  }
 
   background-image: linear-gradient(
     to right,
@@ -27,7 +30,7 @@ const StyledBanner = styled.div`
       @media screen and (min-width: 600px) {
         font-size: var(--size-6);
       }
-      font-size: var(--size-2);
+      font-size: var(--size-0);
       line-height: 2em;
       font-family: "Open Sans", sans-serif;
       height: 2em;
@@ -36,7 +39,7 @@ const StyledBanner = styled.div`
       @media screen and (min-width: 600px) {
         font-size: var(--size-12);
       }
-      font-size: var(--size-6);
+      font-size: var(--size-2);
       line-height: 1.5em;
       height: 1.5em;
       font-family: "Open Sans", sans-serif;
@@ -46,7 +49,7 @@ const StyledBanner = styled.div`
   .btn-contactanos {
     /* for positioning the button to the right border */
     margin-left: auto;
-    font-size: var(--size-2);
+    font-size: var(--size-0);
 
     @media screen and (min-width: 600px) {
       font-size: var(--size-4);
@@ -58,8 +61,8 @@ const StyledBanner = styled.div`
 
   .banner-logo {
     border-radius: 16px;
-    min-height: 90px;
-    min-width: 90px;
+    min-height: 60px;
+    min-width: 60px;
     max-height: 180px;
     max-width: 180px;
     height: 14%;
