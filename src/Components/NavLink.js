@@ -5,7 +5,7 @@ export const StyledNavLink = styled.div`
   a {
     cursor: pointer;
     color: white;
-    font-size: var(--size-7);
+    font-size: var(--size-6);
     line-height: 2.6em;
     letter-spacing: 0.25em;
     position: relative;

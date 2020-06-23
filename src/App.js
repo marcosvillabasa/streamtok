@@ -23,6 +23,11 @@ const client = new ApolloClient({
 })
 
 const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#ff0d57",
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,

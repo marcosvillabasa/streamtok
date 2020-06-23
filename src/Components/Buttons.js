@@ -40,14 +40,11 @@ export const OutlinedButton = styled.button`
   display: flex;
   align-content: center;
   align-items: center;
-  font-size: var(--size-4);
+  font-size: 20px;
   line-height: 1em;
 
   & span {
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    height: var(--size-10);
-    transform: translateY(2px);
+    height: 20px;
   }
 
   &:active {
@@ -56,16 +53,7 @@ export const OutlinedButton = styled.button`
   }
 
   &.btn-ingresar {
-    @media screen and (min-width: 960px) {
-      padding: 0.6em 1em;
-
-      & span {
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        height: var(--size-4);
-        transform: translateY(2px);
-      }
-    }
+    padding: 0.6em 1em;
   }
 `
 

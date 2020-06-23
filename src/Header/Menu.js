@@ -51,8 +51,11 @@ const HeaderContainer = styled.header`
     }
   }
   @media screen and (min-width: 960px) {
+    padding: 16px 7% 0px 16px;
+
     .header-logo-container {
-      margin-left: 32px;
+      display: block;
+      margin-left: 16px;
       width: 128px;
     }
   }
