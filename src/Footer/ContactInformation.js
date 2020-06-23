@@ -4,17 +4,9 @@ import { HeadingWithFinalDot } from "../Components/HeadingWithFinalDot"
 
 const StyledContactInformation = styled.section`
   text-align: left;
-  font-size: var(--size-8);
-
-  @media screen and (min-width: 1280px) {
-    font-size: var(--size-5);
-    address {
-      margin-top: 40px;
-    }
-  }
 
   address {
-    margin-top: 20px;
+    margin-top: 1em;
     p,
     a {
       display: block;

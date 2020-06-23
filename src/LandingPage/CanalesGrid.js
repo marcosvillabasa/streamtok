@@ -39,15 +39,13 @@ const imagesSrc = [
 const StyledCanalesGrid = styled.div`
   display: grid;
   column-gap: 4%;
-  row-gap: 4%;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  row-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   grid-auto-rows: auto;
+  padding: 0px 5%;
 
   @media only screen and (min-width: 600px) {
     padding: 0px 10%;
-  }
-
-  @media only screen and (min-width: 960px) {
     grid-template-columns: repeat(5, 1fr);
     row-gap: 6%;
   }
@@ -86,7 +84,7 @@ const Title = styled.div`
   align-items: center;
   text-align: center;
   flex-direction: column;
-  margin-bottom: 72px;
+  margin: 6% 0 4% 0;
 
   label {
     color: #101114;
@@ -118,7 +116,10 @@ const Title = styled.div`
 `
 
 const Container = styled.div`
-  padding-bottom: 120px;
+  padding-bottom: 5%;
+  @media only screen and (min-width: 1280px) {
+    padding-bottom: 10%;
+  }
 `
 
 export default function CanalesGrid(props) {

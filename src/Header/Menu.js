@@ -33,7 +33,7 @@ const HeaderContainer = styled.header`
     margin: 48px auto 32px auto;
   }
 
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 600px) {
     padding-bottom: 0;
     display: flex;
     align-items: center;
@@ -64,7 +64,7 @@ export const Navbar = styled.nav`
     display: grid;
     grid-auto-flow: row;
 
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 600px) {
       grid-auto-flow: column;
       column-gap: 0px;
     }

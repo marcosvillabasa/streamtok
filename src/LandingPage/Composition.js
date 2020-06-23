@@ -11,17 +11,28 @@ import composition7 from "../assets/composition7.png"
 import composition8 from "../assets/composition8.png"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
-import { RoundedPrimaryButton } from "../Components/Buttons"
 import { Link, useLocation } from "react-router-dom"
 import { NavLink } from "react-router-dom"
+import AdBanner from "../Ads/AdBanner"
 
 const Box = styled.div`
   border-radius: 10px;
-  width: 100%;
-  height: 380px;
   background-color: #202124;
-  padding-top: 420px;
-  margin-top: -120px;
+  margin-top: 120px;
+  margin-bottom: 48px;
+
+  @media screen and (min-width: 600px) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .landing-bbcontainer {
+    transform: translateY(-50%);
+    .react-multi-carousel-list {
+      z-index: 1;
+      margin: 0 2%;
+    }
+  }
 
   .composition-carrousel-slider {
     align-items: center;
@@ -33,13 +44,6 @@ const Box = styled.div`
   }
 `
 
-const Box2 = styled.div`
-  width: 100%;
-  padding: 150px 0;
-  display: flex;
-  justify-content: center;
-`
-
 const Navbar = styled.nav`
   margin-bottom: 60px;
   border-bottom: 1px solid grey;
@@ -48,7 +52,10 @@ const Navbar = styled.nav`
     justify-content: center;
 
     li {
-      padding: 0 1em;
+      padding: 0 2%;
+      @media screen and (min-width: 600px) {
+        padding: 0 4%;
+      }
     }
   }
 `
@@ -133,6 +140,9 @@ export default function Composition(props) {
   return (
     <>
       <Box>
+        <div className="landing-bbcontainer">
+          <AdBanner />
+        </div>
         <Navbar>
           <ul>
             <li>
@@ -195,9 +205,6 @@ export default function Composition(props) {
               ]}
         </Carrousel>
       </Box>
-      <Box2>
-        <RoundedPrimaryButton>VER TODO</RoundedPrimaryButton>
-      </Box2>
     </>
   )
 }

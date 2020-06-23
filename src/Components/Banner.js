@@ -28,7 +28,10 @@ const StyledBanner = styled.div`
 
     div:first-child {
       @media screen and (min-width: 600px) {
-        font-size: var(--size-6);
+        font-size: var(--size-1);
+      }
+      @media screen and (min-width: 960px) {
+        font-size: var(--size-4);
       }
       font-size: var(--size-0);
       line-height: 2em;
@@ -37,7 +40,10 @@ const StyledBanner = styled.div`
     }
     div:last-child {
       @media screen and (min-width: 600px) {
-        font-size: var(--size-12);
+        font-size: var(--size-5);
+      }
+      @media screen and (min-width: 960px) {
+        font-size: var(--size-8);
       }
       font-size: var(--size-2);
       line-height: 1.5em;
@@ -52,10 +58,10 @@ const StyledBanner = styled.div`
     font-size: var(--size-0);
 
     @media screen and (min-width: 600px) {
-      font-size: var(--size-4);
+      font-size: var(--size-2);
     }
     @media screen and (min-width: 960px) {
-      font-size: var(--size-6);
+      font-size: var(--size-4);
     }
   }
 

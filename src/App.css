@@ -63,7 +63,7 @@ body.landing::before {
   content: "";
   position: absolute;
   top: 0;
-  bottom: -60px;
+  bottom: -300px;
   left: 0;
   right: 0;
   background-image: linear-gradient(
@@ -123,14 +123,6 @@ body.landing::before {
   /* size-10 | 20,00 | 1,00  |  26,00  |  29,60  |  32,80  |  39,20 */
   /* size-11 | 21,00 | 1,10  |  27,60  |  31,56  |  35,08  |  42,12 */
   /* size-12 | 22,00 | 1,20  |  29,20  |  33,52  |  37,36  |  45,04 */
-  /* size-13 | 23,00 | 1,30  |  30,80  |  35,48  |  39,64  |  47,96 */
-  /* size-14 | 24,00 | 1,40  |  32,40  |  37,44  |  41,92  |  50,88 */
-  /* size-15 | 25,00 | 1,50  |  34,00  |  39,40  |  44,20  |  53,80 */
-  /* size-16 | 26,00 | 1,60  |  35,60  |  41,36  |  46,48  |  56,72 */
-  /* size-17 | 27,00 | 1,70  |  37,20  |  43,32  |  48,76  |  59,64 */
-  /* size-18 | 28,00 | 1,80  |  38,80  |  45,28  |  51,04  |  62,56 */
-  /* size-19 | 29,00 | 1,90  |  40,40  |  47,24  |  53,32  |  65,48 */
-  /* size-20 | 30,00 | 2,00  |  42,00  |  49,20  |  55,60  |  68,40 */
   --size-0: calc(10px + 0.05vw);
   --size-1: calc(11px + 0.1vw);
   --size-2: calc(12px + 0.2vw);
@@ -144,14 +136,6 @@ body.landing::before {
   --size-10: calc(20px + 1vw);
   --size-11: calc(21px + 1.1vw);
   --size-12: calc(22px + 1.2vw);
-  --size-13: calc(23px + 1.3vw);
-  --size-14: calc(24px + 1.4vw);
-  --size-15: calc(25px + 1.5vw);
-  --size-16: calc(26px + 1.6vw);
-  --size-17: calc(27px + 1.7vw);
-  --size-18: calc(28px + 1.8vw);
-  --size-19: calc(29px + 1.9vw);
-  --size-20: calc(30px + 2vw);
 }
 
 .color-primary {

@@ -22,7 +22,7 @@ const CarrouselContainer = styled.div`
   margin: 0 auto 80px auto;
 
   @media screen and (min-width: 960px) {
-    padding: 0 10%;
+    padding: 0 5%;
   }
 
   .container {

@@ -12,6 +12,8 @@ const StyledFooter = styled.footer`
     margin-bottom: 48px;
   }
 
+  font-size: var(--size-5);
+
   * {
     text-align: center;
   }

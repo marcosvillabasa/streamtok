@@ -5,7 +5,7 @@ export const StyledNavLink = styled.div`
   a {
     cursor: pointer;
     color: white;
-    font-size: var(--size-12);
+    font-size: var(--size-7);
     line-height: 2.6em;
     letter-spacing: 0.25em;
     position: relative;
@@ -45,16 +45,8 @@ export const StyledNavLink = styled.div`
   }
   &.main-navbar-link {
     a {
-      @media screen and (min-width: 960px) {
-        font-size: var(--size-7);
-      }
-    }
-  }
-  &.composition-links {
-    a {
-      font-size: var(--size-5);
-      @media screen and (min-width: 600px) {
-        font-size: var(--size-10);
+      @media screen and (max-width: 599.95px) {
+        line-height: 4em;
       }
     }
   }

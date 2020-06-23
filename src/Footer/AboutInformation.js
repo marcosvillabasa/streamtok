@@ -18,19 +18,20 @@ const StyledAboutInformation = styled.section`
       width: 100%;
     }
   }
-  p {
+  .about-text {
     color: var(--color-text-5);
-    font-size: var(--size-6);
     margin-top: 20px;
     font-family: "Open Sans", sans-serif;
+    text-align: center;
   }
   @media screen and (min-width: 1280px) {
     padding: 0px 80px;
     .footer-logo-container {
       margin: 0;
     }
-    p {
+    .about-text {
       max-width: 480px;
+      text-align: left;
     }
   }
 `
@@ -41,7 +42,7 @@ export default function AboutInformation() {
       <div className="footer-logo-container">
         <img className="footer-logo" alt="streamtok logo" src={fixedLogo} />
       </div>
-      <p>{_str_about_information}</p>
+      <p className="about-text">{_str_about_information}</p>
     </StyledAboutInformation>
   )
 }

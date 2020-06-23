@@ -9,25 +9,21 @@ const HeroSection = styled.section`
   position: relative;
 
   .header-container {
-    padding: 10em 6% 0% 6%;
-    @media screen and (min-width: 600px) {
-      padding: 15em 6% 0% 6%;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+
+    @media (orientation: landscape) {
+      transform: translateY(-50%);
+    }
+    @media (orientation: portrait) {
+      transform: translateY(-75%);
     }
   }
 
   .btn-hero {
     width: 30ch;
-    position: absolute;
-    bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    @media screen and (min-width: 600px) {
-      position: relative;
-      bottom: unset;
-      left: unset;
-      transform: none;
-      margin: 2em 8% 0px 8%;
-    }
+    margin: 2em 8% 0px 8%;
   }
 `
 
@@ -57,11 +53,11 @@ export function Hero(props) {
           nacional, cuyo servicio principal es la transmisión de Live Streaming
           de contenidos audiovisuales.
         </HeroText>
+        <RoundedPrimaryButton className="btn-hero">
+          VER CONTENIDO
+          <span className="material-icons">arrow_forward</span>
+        </RoundedPrimaryButton>
       </Grid>
-      <RoundedPrimaryButton className="btn-hero">
-        VER CONTENIDO
-        <span className="material-icons">arrow_forward</span>
-      </RoundedPrimaryButton>
     </HeroSection>
   )
 }
