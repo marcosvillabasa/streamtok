@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { HeadingWithFinalDot } from "../Components/HeadingWithFinalDot"
+import strings from "../strings.json"
 
 const StyledContactInformation = styled.section`
   text-align: left;
@@ -21,16 +22,19 @@ const StyledContactInformation = styled.section`
     }
   }
 `
-const contactData = {
-  city: "Córdoba. Argentina",
-  address1: "Padre Luís Monti 1914",
-  zipcode: "CP5000",
-  tel1: "351 659 6749",
-  fulltel1: "+543516596749",
-  tel2: "351 881 4194",
-  fulltel2: "+543518814194",
-  email: "roman@streamtok.com",
+
+const defaultData = {
+  city: "city",
+  address1: "address",
+  zipcode: "zipcode",
+  tel1: "tel1",
+  fulltel1: "tel1",
+  tel2: "tel2",
+  fulltel2: "tel2",
+  email: "email",
 }
+
+const contactData = strings.contact_data || defaultData
 
 export default function ContactInformation() {
   return (

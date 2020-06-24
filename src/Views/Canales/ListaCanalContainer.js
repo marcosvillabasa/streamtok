@@ -1,4 +1,5 @@
 import React from "react"
+import strings from "../../strings.json"
 
 import { HorizontalPlaylist } from "../../Components/HorizontalPlaylist"
 import { useDedupedQueryCanal } from "../../API/Queries/QueryCanal"
@@ -8,7 +9,9 @@ export default function ListaCanalContainer({ id, filterFn, size }) {
 
   if (error) {
     return (
-      <div className="error-message">Hubo un error al cargar las listas</div>
+      <div className="error-message">
+        {strings.list_error_message || "Hubo un error al cargar las listas"}
+      </div>
     )
   }
 

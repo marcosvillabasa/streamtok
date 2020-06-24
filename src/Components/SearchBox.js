@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { useLocation } from "react-router"
+import strings from "../strings.json"
 
 const StyledSearchBox = styled.div`
   position: relative;
@@ -42,7 +43,9 @@ export function SearchBox({ handleSearch }) {
     <StyledSearchBox className="search-box">
       <input
         ref={inputRef}
-        placeholder="Buscar por artistas o generos"
+        placeholder={
+          strings.search_placeholder || "Buscar por artistas o generos"
+        }
         type="text"
         className="track-search-box"
         onChange={handleSearch}

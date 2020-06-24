@@ -5,10 +5,10 @@ import { useDedupedQueryCanal } from "../../API/Queries/QueryCanal"
 import { HorizontalPlaylist } from "../../Components/HorizontalPlaylist"
 import { TabHeader } from "../../Components/TabHeader"
 import { StyledListaCanales } from "../Canales/ListaCanales"
+import strings from "../../strings.json"
 
 export default function EventosView({ history, location }) {
   const { loading, error, dedupedResponse } = useDedupedQueryCanal("Lu7EC8Bf")
-
   const [search, setSearch] = React.useState(() => {
     const search = new URLSearchParams(location.search).get("search")
     return search || ""
@@ -32,6 +32,15 @@ export default function EventosView({ history, location }) {
     [search]
   )
 
+  if (error) {
+    return (
+      <div className="error-message">
+        {strings.list_eventos_error_message ||
+          "Hubo un error al cargar los eventos"}
+      </div>
+    )
+  }
+
   return (
     <div className="eventos-main">
       <Helmet>
@@ -39,8 +48,11 @@ export default function EventosView({ history, location }) {
       </Helmet>
       <TabHeader
         handleSearch={handleSearch}
-        title="Lista de eventos"
-        subtitle="Los mejores shows por artistas y géneros."
+        title={strings.lista_eventos_title || "Lista de eventos"}
+        subtitle={
+          strings.lista_eventos_subtitle ||
+          "Los mejores shows por artistas y géneros."
+        }
       />
       <StyledListaCanales>
         <div className="lista-canales">

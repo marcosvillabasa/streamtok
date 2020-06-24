@@ -1,0 +1,26 @@
+{
+  "about_str": "Streamtok es una empresa de entretenimiento que opera a nivel nacional, cuyo servicio principal es la transmisión de Live Streaming de contenidos audiovisuales.",
+  "contact_data": {
+    "city": "Córdoba. Argentina",
+    "address1": "Padre Luís Monti 1914",
+    "zipcode": "CP5000",
+    "tel1": "351 659 6749",
+    "fulltel1": "+543516596749",
+    "tel2": "351 881 4194",
+    "fulltel2": "+543518814194",
+    "email": "roman@streamtok.com"
+  },
+  "facebook_id": "StreamtokArg",
+  "twitter_id": "streamtok",
+  "instagram_id": "streamtokarg",
+  "hero_header_text": "Disfrutá del mejor streaming",
+  "hero_subheader_text": "Streamtok es una empresa de entretenimiento que opera a nivel nacional, cuyo servicio principal es la transmisión de Live Streaming de contenidos audiovisuales.",
+  "list_error_message": "Hubo un error al cargar las listas",
+  "list_eventos_error_message": "Hubo un error al cargar los eventos",
+  "lista_canales_title": "LISTA DE CANALES",
+  "lista_canales_subtitle": "Los mejores shows por artistas y géneros.",
+  "lista_eventos_title": "LISTA DE EVENTOS",
+  "lista_eventos_subtitle": "Los mejores shows por artistas y géneros.",
+  "not_found_message": "404 - RECURSO NO ENCONTRADO",
+  "search_placeholder": "Buscar por artistas o generos"
+}

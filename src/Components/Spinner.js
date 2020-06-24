@@ -69,11 +69,3 @@ export function Spinner() {
     </Cosos>
   )
 }
-
-/*<Spinner
-  size={50}
-  thickness={100}
-  speed={100}
-  color="rgba(56, 173, 72, 1)"
-  secondaryColor="rgba(0, 0, 0, 0.44)"
-/>*/

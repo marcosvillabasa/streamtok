@@ -60,27 +60,27 @@ const Navbar = styled.nav`
   }
 `
 
-const BackgroundText = styled.p`
-  color: #202124;
-  white-space: nowrap;
-  position: absolute;
-  letter-spacing: 0.3em;
-  font-weight: 600;
-  font-size: 120px;
-  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-  opacity: 0.05;
-  pointer-events: none;
-  user-select: none;
-  transform: translateY(-72px);
-  will-change: font-size;
+// const BackgroundText = styled.p`
+//   color: #202124;
+//   white-space: nowrap;
+//   position: absolute;
+//   letter-spacing: 0.3em;
+//   font-weight: 600;
+//   font-size: 120px;
+//   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+//   opacity: 0.05;
+//   pointer-events: none;
+//   user-select: none;
+//   transform: translateY(-72px);
+//   will-change: font-size;
 
-  &.bg-text-first {
-    transform: translate(-1280px, -120px);
-  }
-  &.bg-text-second {
-    transform: translate(200px, -120px);
-  }
-`
+//   &.bg-text-first {
+//     transform: translate(-1280px, -120px);
+//   }
+//   &.bg-text-second {
+//     transform: translate(200px, -120px);
+//   }
+// `
 
 function Carrousel(props) {
   const ref = React.useRef(null)

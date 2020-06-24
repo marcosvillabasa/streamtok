@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { RoundedPrimaryButton } from "../Components/Buttons"
 import Grid from "@material-ui/core/Grid"
 import useInView from "react-cool-inview"
+import strings from "../strings.json"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -55,11 +56,11 @@ export function Hero(props) {
     <HeroSection id="hero-section">
       <Grid item xs={10} sm={8} lg={7} className="header-container">
         <div ref={ref}>
-          <HeroTitle inView={inView}> Disfrutá del mejor streaming</HeroTitle>
+          <HeroTitle inView={inView}>
+            {strings.hero_header_text || "header_text"}
+          </HeroTitle>
           <HeroText inView={inView}>
-            Streamtok es una empresa de entretenimiento que opera a nivel
-            nacional, cuyo servicio principal es la transmisión de Live
-            Streaming de contenidos audiovisuales.
+            {strings.hero_subheader_text || "subheader_text"}
           </HeroText>
         </div>
         <RoundedPrimaryButton className="btn-hero">

@@ -4,7 +4,7 @@ import Link from "react-router-dom/Link"
 import { SlideToLeftOnHover } from "../Utils/StyleUtils"
 import { OutlinedButton } from "../Components/Buttons"
 import { StyledNavLink } from "../Components/NavLink"
-import { SearchBox2 } from "../Components/SearchBox2"
+// import { SearchBox2 } from "../Components/SearchBox2"
 import fixedLogo from "../assets/logostreamtokfixed.svg"
 import { NavLink } from "react-router-dom"
 

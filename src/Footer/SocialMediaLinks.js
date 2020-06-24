@@ -6,6 +6,7 @@ import {
   TwitterIcon,
   InstagramIcon,
 } from "../assets/SocialMediaIcons"
+import strings from "../strings.json"
 
 const StyledSocialMediaLinks = styled.section`
   nav {
@@ -78,9 +79,9 @@ const StyledSocialMediaIcons = styled.div`
   }
 `
 
-const FacebookLink = "https://www.facebook.com/StreamtokArg"
-const TwitterLink = "https://twitter.com/streamtok"
-const InstagramLink = "https://www.instagram.com/streamtokarg/"
+const FacebookLink = "https://www.facebook.com/" + strings.facebook_id
+const TwitterLink = "https://twitter.com/" + strings.twitter_id
+const InstagramLink = "https://www.instagram.com/" + strings.instagram_id
 
 export default function SocialMediaLinks() {
   return (

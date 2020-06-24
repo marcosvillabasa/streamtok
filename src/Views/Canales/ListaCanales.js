@@ -6,6 +6,7 @@ import ListaCanalContainer from "./ListaCanalContainer"
 import { TabHeader } from "../../Components/TabHeader"
 import { useDebouncedCallback } from "use-debounce/lib"
 import { useResponsiveTrackThumbnail } from "../../Components/HorizontalPlaylistItem"
+import strings from "../../strings.json"
 
 export const StyledListaCanales = styled.div`
   .lista-canales {
@@ -48,8 +49,11 @@ export default function ListaCanales({ history, match, location }) {
       </Helmet>
       <TabHeader
         handleSearch={handleSearch}
-        title="Lista de canales"
-        subtitle="Los mejores shows por artistas y géneros."
+        title={strings.lista_canales_title || "Lista de canales"}
+        subtitle={
+          strings.lista_canales_subtitle ||
+          "Los mejores shows por artistas y géneros."
+        }
       />
       <StyledListaCanales>
         <div className="lista-canales">

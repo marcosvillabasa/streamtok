@@ -1,9 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import fixedLogo from "../assets/logostreamtokfixed.svg"
-
-const _str_about_information =
-  "Streamtok es una empresa de entretenimiento que opera a nivel nacional, cuyo servicio principal es la transmisión de Live Streaming de contenidos audiovisuales."
+import strings from "../strings.json"
 
 const StyledAboutInformation = styled.section`
   height: 100%;
@@ -42,7 +40,7 @@ export default function AboutInformation() {
       <div className="footer-logo-container">
         <img className="footer-logo" alt="streamtok logo" src={fixedLogo} />
       </div>
-      <p className="about-text">{_str_about_information}</p>
+      <p className="about-text">{strings.about_str || "about-string"}</p>
     </StyledAboutInformation>
   )
 }
