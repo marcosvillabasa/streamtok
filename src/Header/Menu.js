@@ -10,10 +10,8 @@ import { NavLink } from "react-router-dom"
 
 const HeaderContainer = styled.header`
   padding: 16px;
-  position: relative;
-  background-color: #0004;
-  backdrop-filter: blur(20px);
   border-bottom: 1px solid white;
+  background-color: #000e;
 
   .header-logo-container {
     height: 80px;
@@ -34,6 +32,8 @@ const HeaderContainer = styled.header`
   }
 
   @media screen and (min-width: 600px) {
+    backdrop-filter: blur(20px);
+    background-color: #0004;
     padding-bottom: 0;
     display: flex;
     align-items: center;
@@ -77,56 +77,93 @@ export const Navbar = styled.nav`
   }
 `
 
+const Wrapper = styled.div`
+  #sidebar-overlay.active {
+    @media screen and (max-width: 599.95px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: #0008;
+      z-index: 1000;
+    }
+  }
+  .menu-container {
+    @media screen and (max-width: 599.95px) {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 240px;
+      height: 100vh;
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+      will-change: transform;
+      z-index: 10100;
+      &.active {
+        transform: translateX(0%);
+      }
+    }
+  }
+`
+
 export default function Menu(props) {
+  const onClick = (_) => {
+    document.querySelector("#menu-container").classList.toggle("active")
+    document.querySelector("#sidebar-overlay").classList.toggle("active")
+  }
   return (
-    <HeaderContainer>
-      <Link to="/" exact>
-        <div className="header-logo-container">
-          <img className="header-logo" alt="streamtok logo" src={fixedLogo} />
-        </div>
-      </Link>
-      <Navbar className="main-navbar">
-        <ul>
-          <li>
-            <StyledNavLink className="main-navbar-link">
-              <a
-                href="http://www.streamtok.live/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>Vivo</span>
-              </a>
-            </StyledNavLink>
-          </li>
-          <li>
-            <StyledNavLink className="main-navbar-link">
-              <NavLink to="/canales">
-                <span>Canales</span>
-              </NavLink>
-            </StyledNavLink>
-          </li>
-          <li>
-            <StyledNavLink className="main-navbar-link">
-              <NavLink to="/eventos">
-                <span>Eventos</span>
-              </NavLink>
-            </StyledNavLink>
-          </li>
-          <li>
-            <StyledNavLink className="main-navbar-link">
-              <NavLink to="/tv">
-                <span>TV</span>
-              </NavLink>
-            </StyledNavLink>
-          </li>
-          {/* <SearchBox2 /> */}
-        </ul>
-      </Navbar>
-      <SlideToLeftOnHover className="btn-ingresar-container">
-        <OutlinedButton className="btn-ingresar">
-          <span>INGRESAR</span>
-        </OutlinedButton>
-      </SlideToLeftOnHover>
-    </HeaderContainer>
+    <Wrapper>
+      <div id="sidebar-overlay" onClick={onClick} />
+      <HeaderContainer className="menu-container" id="menu-container">
+        <Link to="/" exact>
+          <div className="header-logo-container">
+            <img className="header-logo" alt="streamtok logo" src={fixedLogo} />
+          </div>
+        </Link>
+        <Navbar className="main-navbar">
+          <ul>
+            <li>
+              <StyledNavLink className="main-navbar-link">
+                <a
+                  href="http://www.streamtok.live/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Vivo</span>
+                </a>
+              </StyledNavLink>
+            </li>
+            <li>
+              <StyledNavLink className="main-navbar-link">
+                <NavLink to="/canales">
+                  <span>Canales</span>
+                </NavLink>
+              </StyledNavLink>
+            </li>
+            <li>
+              <StyledNavLink className="main-navbar-link">
+                <NavLink to="/eventos">
+                  <span>Eventos</span>
+                </NavLink>
+              </StyledNavLink>
+            </li>
+            <li>
+              <StyledNavLink className="main-navbar-link">
+                <NavLink to="/tv">
+                  <span>TV</span>
+                </NavLink>
+              </StyledNavLink>
+            </li>
+            {/* <SearchBox2 /> */}
+          </ul>
+        </Navbar>
+        <SlideToLeftOnHover className="btn-ingresar-container">
+          <OutlinedButton className="btn-ingresar">
+            <span>INGRESAR</span>
+          </OutlinedButton>
+        </SlideToLeftOnHover>
+      </HeaderContainer>
+    </Wrapper>
   )
 }
