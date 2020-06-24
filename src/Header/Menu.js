@@ -89,9 +89,13 @@ export default function Menu(props) {
         <ul>
           <li>
             <StyledNavLink className="main-navbar-link">
-              <NavLink to="/vivo">
+              <a
+                href="http://www.streamtok.live/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>Vivo</span>
-              </NavLink>
+              </a>
             </StyledNavLink>
           </li>
           <li>

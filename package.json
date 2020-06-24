@@ -17,6 +17,7 @@
     "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-apollo": "^3.1.5",
+    "react-cool-inview": "^1.1.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-jw-player": "^1.19.1",

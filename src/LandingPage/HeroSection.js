@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { RoundedPrimaryButton } from "../Components/Buttons"
 import Grid from "@material-ui/core/Grid"
+import useInView from "react-cool-inview"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -32,6 +33,8 @@ const HeroTitle = styled.h1`
   font-weight: 400;
   margin-bottom: 1em;
   letter-spacing: 0.1em;
+  transform: ${(props) => (props.inView ? "none" : "translateY(-32px)")};
+  animation: ${(props) => (props.inView ? "movedown 1.5s" : "none")};
 `
 
 const HeroText = styled.p`
@@ -41,18 +44,24 @@ const HeroText = styled.p`
   @media screen and (min-width: 1280px) {
     padding-right: 32%;
   }
+  transform: ${(props) => (props.inView ? "none" : "translateY(-32px)")};
+  animation: ${(props) => (props.inView ? "movedown 1.5s" : "none")};
 `
 
 export function Hero(props) {
+  const { ref, inView } = useInView({ threshold: 0 })
+
   return (
     <HeroSection id="hero-section">
       <Grid item xs={10} sm={8} lg={7} className="header-container">
-        <HeroTitle>Disfrutá del mejor streaming</HeroTitle>
-        <HeroText>
-          Streamtok es una empresa de entretenimiento que opera a nivel
-          nacional, cuyo servicio principal es la transmisión de Live Streaming
-          de contenidos audiovisuales.
-        </HeroText>
+        <div ref={ref}>
+          <HeroTitle inView={inView}> Disfrutá del mejor streaming</HeroTitle>
+          <HeroText inView={inView}>
+            Streamtok es una empresa de entretenimiento que opera a nivel
+            nacional, cuyo servicio principal es la transmisión de Live
+            Streaming de contenidos audiovisuales.
+          </HeroText>
+        </div>
         <RoundedPrimaryButton className="btn-hero">
           VER CONTENIDO
           <span className="material-icons">arrow_forward</span>
