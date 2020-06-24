@@ -44,7 +44,7 @@ export default function ListaCanales({ history, match, location }) {
   return (
     <>
       <Helmet>
-        <title>Lista de canales</title>
+        <title>StreamTOK [Canales]</title>
       </Helmet>
       <TabHeader
         handleSearch={handleSearch}

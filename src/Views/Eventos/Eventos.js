@@ -35,7 +35,7 @@ export default function EventosView({ history, location }) {
   return (
     <div className="eventos-main">
       <Helmet>
-        <title>Lista de eventos</title>
+        <title>StreamTOK [Eventos]</title>
       </Helmet>
       <TabHeader
         handleSearch={handleSearch}

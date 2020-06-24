@@ -7,7 +7,7 @@ import TabVivo from "./Views/Vivo/Vivo.js"
 import TabEventos from "./Views/Eventos/Eventos.js"
 import TabTV from "./Views/TV/TV.js"
 import { NotFound } from "./Views/Redirects/NotFound.js"
-import CanalesGrid from "./LandingPage/CanalesGrid.js"
+import Grid from "./Views/TV/Grid.js"
 
 export default function MainBody(props) {
   return (
@@ -21,7 +21,7 @@ export default function MainBody(props) {
         <Route path="/canales/:id" component={MediaPlayer} />
         <Route path="/eventos" exact component={TabEventos} />
         <Route path="/eventos/:id" component={MediaPlayer} />
-        <Route path="/tv" exact component={CanalesGrid} />
+        <Route path="/tv" exact component={Grid} />
         <Route path="/tv/:id" component={TabTV} />
         <Route path="*">
           <NotFound />
