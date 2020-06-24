@@ -31,7 +31,7 @@ const StyledHorizontalPlaylist = styled.div`
 `
 
 const PlaylistTitle = styled.p`
-  font-size: var(--size-14);
+  font-size: var(--size-10);
   line-height: 1.2em;
   margin-left: 16px;
 `
