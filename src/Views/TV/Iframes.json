@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "tn",
+    "title": "TN",
+    "src": "https://www.youtube.com/embed/wHn1_QVoXGM"
+  },
+  {
+    "slug": "cronica",
+    "title": "CRONICA",
+    "src": "https://www.youtube.com/embed/K9X2WcIk_Ws"
+  },
+  {
+    "slug": "ln",
+    "title": "LN+",
+    "src": "https://www.youtube.com/embed/pehKCVCBUWk"
+  },
+  {
+    "slug": "vorterix",
+    "title": "VORTERIX",
+    "src": "https://www.youtube.com/embed/uWxi5zErLvQ"
+  },
+  {
+    "slug": "c5n",
+    "title": "C5N",
+    "src": "https://www.youtube.com/embed/ljJr-Yui0kA"
+  },
+  {
+    "slug": "canal26hd",
+    "title": "CANAL26",
+    "src": "https://www.youtube.com/embed/3Q5IPa88woI"
+  },
+  {
+    "slug": "kzoentertainment",
+    "title": "CANALKZO",
+    "src": "https://www.youtube.com/embed/2jdoYHib89s"
+  },
+  {
+    "slug": "volver",
+    "title": "VOLVER",
+    "src": "https://www.youtube.com/embed/m1TZsFkCvqw"
+  },
+  {
+    "slug": "euronews",
+    "title": "EURONEWS",
+    "src": "https://www.youtube.com/embed/c9234gCiwsU"
+  },
+  {
+    "slug": "tvpublica",
+    "title": "TVPA",
+    "src": "https://www.youtube.com/embed/TbpEUIoqCg0"
+  },
+  {
+    "slug": "encuentro",
+    "title": "ENCUENTRO",
+    "src": "https://www.youtube.com/embed/YTXCXRxnkHw"
+  },
+  {
+    "slug": "rtve",
+    "title": "RTVE",
+    "src": "https://www.youtube.com/embed/QezGQ50OCU4"
+  },
+  {
+    "slug": "canalciudad",
+    "title": "CANALCIUDAD",
+    "src": "https://www.youtube.com/embed/zuluzGC0a3I"
+  },
+  {
+    "slug": "cadenaser",
+    "title": "CADENASER",
+    "src": "https://www.youtube.com/embed/QVJX8Nl7K8w"
+  },
+  {
+    "slug": "nickelodeon",
+    "title": "NICKELODEON",
+    "src": "https://www.youtube.com/embed/r5zu9c54dFM"
+  }
+]

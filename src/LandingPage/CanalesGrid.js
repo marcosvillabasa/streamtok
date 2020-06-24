@@ -84,7 +84,8 @@ const Title = styled.div`
   align-items: center;
   text-align: center;
   flex-direction: column;
-  margin: 6% 0 4% 0;
+  margin-bottom: ${(props) => (props.noTitle ? "2%" : "4%")};
+  margin-top: ${(props) => (props.noTitle ? "2%" : "6%")};
 
   label {
     color: #101114;
@@ -108,6 +109,7 @@ const Title = styled.div`
   }
 
   h3 {
+    display: ${(props) => (props.noTitle ? "none" : "static")};
     font-size: var(--size-6);
     color: var(--color-text-9);
     font-weight: 400;
@@ -122,11 +124,11 @@ const Container = styled.div`
   }
 `
 
-export default function CanalesGrid(props) {
+export default function CanalesGrid({ noTitle }) {
   const history = useHistory()
   return (
     <Container>
-      <Title>
+      <Title noTitle={noTitle}>
         {/* <label>CANALES EN VIVO</label> */}
         <h2>CANALES EN VIVO</h2>
         <h3>Programación en vivo de canales via Live streaming</h3>
