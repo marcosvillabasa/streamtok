@@ -78,15 +78,22 @@ export const Navbar = styled.nav`
 `
 
 const Wrapper = styled.div`
-  #sidebar-overlay.active {
+  #sidebar-overlay {
     @media screen and (max-width: 599.95px) {
       position: fixed;
       top: 0;
       left: 0;
       bottom: 0;
       right: 0;
-      background-color: #0008;
+      background-color: #000;
+      opacity: 0;
+      transition: opacity 0.5s;
+      will-change: opacity;
       z-index: 1000;
+
+      &.active {
+        opacity: 0.5;
+      }
     }
   }
   .menu-container {
