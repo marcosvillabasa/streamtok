@@ -68,6 +68,12 @@ body.landing::before {
   background-position-x: center;
 }
 
+@media screen and (max-width: 699.95px) {
+  body.landing::before {
+    bottom: -100vh;
+  }
+}
+
 :root {
   --color-primary: #ff0d57;
   --color-primary-semi: #ff0d5780;
