@@ -46,7 +46,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 #main-content {
-  min-height: 1080px;
+  min-height: 100vh;
   position: relative;
 }
 

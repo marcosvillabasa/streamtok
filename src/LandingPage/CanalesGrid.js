@@ -22,7 +22,7 @@ const imagesSrc = [
   { src: grid1, link: "tn" },
   { src: grid2, link: "nickelodeon" },
   { src: grid3, link: "tvpublica" },
-  { src: grid4, link: "sabradios" },
+  { src: grid4, link: "canalciudad" },
   { src: grid5, link: "vorterix" },
   { src: grid6, link: "cadenaser" },
   { src: grid7, link: "encuentro" },
@@ -32,7 +32,7 @@ const imagesSrc = [
   { src: grid11, link: "rtve" },
   { src: grid12, link: "cronica" },
   { src: grid13, link: "ln" },
-  { src: grid14, link: "26hd" },
+  { src: grid14, link: "canal26hd" },
   { src: grid15, link: "c5n" },
 ]
 
