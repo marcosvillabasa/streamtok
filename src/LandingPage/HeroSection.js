@@ -52,13 +52,8 @@ const HeroText = styled.p`
 export function Hero(props) {
   const { ref, inView } = useInView({ threshold: 0 })
 
-  const onClick = (_) => {
-    document.querySelector("#menu-container").classList.toggle("active")
-    document.querySelector("#sidebar-overlay").classList.toggle("active")
-  }
-
   return (
-    <HeroSection id="hero-section" onClick={onClick}>
+    <HeroSection id="hero-section">
       <Grid item xs={10} sm={8} lg={7} className="header-container">
         <div ref={ref}>
           <HeroTitle inView={inView}>

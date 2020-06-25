@@ -78,7 +78,7 @@ export const Navbar = styled.nav`
 `
 
 const Wrapper = styled.div`
-  #sidebar-overlay {
+  .sidebar-overlay {
     @media screen and (max-width: 599.95px) {
       position: fixed;
       top: 0;
@@ -90,15 +90,18 @@ const Wrapper = styled.div`
       transition: opacity 0.5s;
       will-change: opacity;
       z-index: 1000;
+      visibility: hidden;
 
-      &.active {
+      &.true {
+        touch-action: none;
         opacity: 0.5;
+        visibility: visible;
       }
     }
   }
   .menu-container {
     @media screen and (max-width: 599.95px) {
-      position: absolute;
+      position: fixed;
       top: 0px;
       left: 0px;
       width: 240px;
@@ -107,7 +110,8 @@ const Wrapper = styled.div`
       transition: transform 0.5s;
       will-change: transform;
       z-index: 10100;
-      &.active {
+      &.true {
+        touch-action: none;
         transform: translateX(0%);
       }
     }
@@ -115,14 +119,50 @@ const Wrapper = styled.div`
 `
 
 export default function Menu(props) {
-  const onClick = (_) => {
-    document.querySelector("#menu-container").classList.toggle("active")
-    document.querySelector("#sidebar-overlay").classList.toggle("active")
-  }
+  const [open, setOpen] = React.useState(false)
+
+  const closeMenu = React.useCallback(() => {
+    setOpen(false)
+  }, [])
+
+  React.useEffect(() => {
+    let start_scroll = null
+
+    const onTouchStart = (event) => {
+      start_scroll = event.changedTouches[0].clientX
+    }
+
+    const onTouchMove = (event) => {
+      if (event.changedTouches && event.changedTouches.length) {
+        if (event.changedTouches[0].clientX - start_scroll > 150) {
+          setOpen(true)
+        } else if (start_scroll - event.changedTouches[0].clientX > 150) {
+          setOpen(false)
+        }
+      }
+    }
+
+    document.querySelector("#root").addEventListener("touchstart", onTouchStart)
+    document.querySelector("#root").addEventListener("touchmove", onTouchMove)
+
+    return () => {
+      document
+        .querySelector("#root")
+        .removeEventListener("touchstart", onTouchStart)
+      document
+        .querySelector("#root")
+        .removeEventListener("touchmove", onTouchMove)
+    }
+  }, [])
+
   return (
     <Wrapper>
-      <div id="sidebar-overlay" onClick={onClick} />
-      <HeaderContainer className="menu-container" id="menu-container">
+      <div className={`sidebar-overlay ${open}`} onClick={closeMenu} />
+      <HeaderContainer
+        className={`menu-container ${open}`}
+        id="menu-container"
+        onClick={closeMenu}
+      >
         <Link to="/" exact>
           <div className="header-logo-container">
             <img className="header-logo" alt="streamtok logo" src={fixedLogo} />
