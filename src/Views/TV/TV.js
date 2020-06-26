@@ -1,5 +1,5 @@
 import React from "react"
-import iframesData from "./Iframes"
+import iframesData from "./Iframes.json"
 import { useRouteMatch, Redirect } from "react-router"
 import styled from "styled-components"
 import { Helmet } from "react-helmet"

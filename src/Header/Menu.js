@@ -12,6 +12,7 @@ const HeaderContainer = styled.header`
   padding: 16px;
   border-bottom: 1px solid white;
   background-color: #000e;
+  z-index: 10;
 
   .header-logo-container {
     height: 80px;

@@ -8,7 +8,7 @@ export default function Grid(props) {
       <Helmet>
         <title>StreamTOK [TV]</title>
       </Helmet>
-      <CanalesGrid />
+      <CanalesGrid noTitle />
     </>
   )
 }

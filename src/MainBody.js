@@ -8,6 +8,7 @@ import TabEventos from "./Views/Eventos/Eventos.js"
 import TabTV from "./Views/TV/TV.js"
 import { NotFound } from "./Views/Redirects/NotFound.js"
 import Grid from "./Views/TV/Grid.js"
+import { Contacto } from "./Views/Contacto/Contacto.js"
 
 export default function MainBody(props) {
   return (
@@ -23,6 +24,7 @@ export default function MainBody(props) {
         <Route path="/eventos/:id" component={MediaPlayer} />
         <Route path="/tv" exact component={Grid} />
         <Route path="/tv/:id" component={TabTV} />
+        <Route path="/contacto" exact component={Contacto} />
         <Route path="*">
           <NotFound />
         </Route>
