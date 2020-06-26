@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { StyledNavLink } from "../Components/NavLink"
+import bgtext1 from "../assets/canales-vod.svg"
+import bgtext2 from "../assets/eventos.svg"
 import composition1 from "../assets/composition1.png"
 import composition2 from "../assets/composition2.png"
 import composition3 from "../assets/composition3.png"
@@ -45,8 +47,47 @@ const Box = styled.div`
 `
 
 const Navbar = styled.nav`
+  position: relative;
   margin-bottom: 60px;
   border-bottom: 1px solid grey;
+  font-size: var(--size-12);
+
+  .bg-text-container {
+    height: 1.2em;
+    display: flex;
+
+    @media screen and (min-width: 600px) {
+      height: 2em;
+    }
+
+    @media screen and (min-width: 1280px) {
+      height: 2.5em;
+    }
+
+    .bg-text-subcontainer {
+      width: 50%;
+      position: relative;
+    }
+  }
+
+  .bgtext-1,
+  .bgtext-2 {
+    flex-basis: 1em;
+    width: auto;
+    position: absolute;
+    top: -1ch;
+    height: 100%;
+    width: auto;
+  }
+
+  .bgtext-1 {
+    right: 0ch;
+  }
+
+  .bgtext-2 {
+    left: 4ch;
+  }
+
   ul {
     display: flex;
     justify-content: center;
@@ -59,28 +100,6 @@ const Navbar = styled.nav`
     }
   }
 `
-
-// const BackgroundText = styled.p`
-//   color: #202124;
-//   white-space: nowrap;
-//   position: absolute;
-//   letter-spacing: 0.3em;
-//   font-weight: 600;
-//   font-size: 120px;
-//   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-//   opacity: 0.05;
-//   pointer-events: none;
-//   user-select: none;
-//   transform: translateY(-72px);
-//   will-change: font-size;
-
-//   &.bg-text-first {
-//     transform: translate(-1280px, -120px);
-//   }
-//   &.bg-text-second {
-//     transform: translate(200px, -120px);
-//   }
-// `
 
 function Carrousel(props) {
   const ref = React.useRef(null)
@@ -144,11 +163,16 @@ export default function Composition(props) {
           <AdBanner />
         </div>
         <Navbar>
+          <div className="bg-text-container">
+            <div className="bg-text-subcontainer">
+              <img src={bgtext1} alt="canales vod" className="bgtext-1" />
+            </div>
+            <div className="bg-text-subcontainer">
+              <img src={bgtext2} alt="eventos" className="bgtext-2" />
+            </div>
+          </div>
           <ul>
             <li>
-              {/* <BackgroundText className="bg-text-first">
-                CANALES VOD
-              </BackgroundText> */}
               <StyledNavLink className="composition-links">
                 <NavLink
                   to="#canales-vod"
@@ -161,9 +185,6 @@ export default function Composition(props) {
               </StyledNavLink>
             </li>
             <li>
-              {/* <BackgroundText className="bg-text-second">
-                EVENTOS
-              </BackgroundText> */}
               <StyledNavLink className="composition-links">
                 <NavLink
                   to="#eventos"

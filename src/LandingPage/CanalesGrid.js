@@ -17,6 +17,7 @@ import grid13 from "../assets/gSM7MgZ-_400x400@2x.png"
 import grid14 from "../assets/dd985-canal26hd@2x.png"
 import grid15 from "../assets/C5N_Logo_2015@2x.png"
 import { useHistory } from "react-router-dom"
+import bgtext1 from "../assets/canales-en-vivo.svg"
 
 const imagesSrc = [
   { src: grid1, link: "tn" },
@@ -106,6 +107,7 @@ const Title = styled.div`
     font-size: var(--size-10);
     font-weight: 400;
     letter-spacing: 0.1em;
+    z-index: 1;
   }
 
   h3 {
@@ -122,6 +124,22 @@ const Container = styled.div`
   @media only screen and (min-width: 1280px) {
     padding-bottom: 10%;
   }
+
+  .bg-text-container {
+    font-size: var(--size-10);
+    height: 1em;
+
+    .bgtext-1 {
+      z-index: 0;
+      position: relative;
+      top: 0.5em;
+      height: 1.2em;
+      @media only screen and (min-width: 960px) {
+        height: 2em;
+        top: -0.25em;
+      }
+    }
+  }
 `
 
 export default function CanalesGrid({ noTitle }) {
@@ -129,6 +147,9 @@ export default function CanalesGrid({ noTitle }) {
   return (
     <Container>
       <Title noTitle={noTitle}>
+        <div className="bg-text-container">
+          <img src={bgtext1} alt="canales en vivo" className="bgtext-1" />
+        </div>
         {/* <label>CANALES EN VIVO</label> */}
         <h2>CANALES EN VIVO</h2>
         <h3>Programación en vivo de canales via Live streaming</h3>

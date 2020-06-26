@@ -31,6 +31,10 @@ a {
   text-decoration: none;
 }
 
+#main-content {
+  overflow-x: hidden;
+}
+
 body {
   background-color: rgb(16, 17, 20);
   color: white;
