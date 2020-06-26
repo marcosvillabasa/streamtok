@@ -14,6 +14,7 @@ const HeaderContainer = styled.header`
   background-color: #0004;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid white;
+  z-index: 10;
 
   .header-logo-container {
     height: 80px;
