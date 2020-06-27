@@ -92,7 +92,7 @@ export function HorizontalPlaylist({ loading, playlist, filterFn, size }) {
             )}
           </ResultCount>
         </TitleContainer>
-        <StyledHorizontalPlaylist>
+        <StyledHorizontalPlaylist className="h-swipe">
           {loading
             ? defaultPlaylist.map((track, index) => (
                 <PlaylistItem

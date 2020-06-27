@@ -72,7 +72,7 @@ export default function AdBanner() {
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container"
+        containerClass="container h-swipe"
         draggable={false}
         focusOnSelect={false}
         infinite

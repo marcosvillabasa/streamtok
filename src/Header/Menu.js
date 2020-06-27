@@ -126,12 +126,17 @@ export default function Menu(props) {
 
   const closeMenu = React.useCallback(() => {
     setOpen(false)
+    document.body.style = "overflow: overlay;"
   }, [])
 
   React.useEffect(() => {
     let start_scroll = null
 
     const onTouchStart = (event) => {
+      if (event.path.some((e) => e.className?.includes("h-swipe"))) {
+        start_scroll = null
+        return
+      }
       start_scroll = {
         x: event.changedTouches[0].clientX,
         y: event.changedTouches[0].clientY,
@@ -139,7 +144,7 @@ export default function Menu(props) {
     }
 
     const onTouchMove = (event) => {
-      if (event.changedTouches?.length && start_scroll) {
+      if (start_scroll && event.changedTouches?.length) {
         if (Math.abs(start_scroll.y - event.changedTouches[0].clientY > 50)) {
           start_scroll = null
           return

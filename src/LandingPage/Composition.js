@@ -139,7 +139,7 @@ function Carrousel(props) {
           items: 4,
         },
       }}
-      sliderClass="composition-carrousel-slider"
+      sliderClass="composition-carrousel-slider h-swipe"
       slidesToSlide={1}
       swipeable
     >
