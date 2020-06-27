@@ -11,8 +11,9 @@ import { NavLink } from "react-router-dom"
 const HeaderContainer = styled.header`
   padding: 16px;
   border-bottom: 1px solid white;
-  background-color: #000e;
+  background-color: #0008;
   z-index: 10;
+  backdrop-filter: blur(20px);
 
   .header-logo-container {
     height: 80px;
@@ -102,6 +103,7 @@ const Wrapper = styled.div`
   }
   .menu-container {
     @media screen and (max-width: 599.95px) {
+      border-right: 1px solid #222;
       position: fixed;
       top: 0px;
       left: 0px;
@@ -130,14 +132,23 @@ export default function Menu(props) {
     let start_scroll = null
 
     const onTouchStart = (event) => {
-      start_scroll = event.changedTouches[0].clientX
+      start_scroll = {
+        x: event.changedTouches[0].clientX,
+        y: event.changedTouches[0].clientY,
+      }
     }
 
     const onTouchMove = (event) => {
-      if (event.changedTouches && event.changedTouches.length) {
-        if (event.changedTouches[0].clientX - start_scroll > 150) {
+      if (event.changedTouches?.length && start_scroll) {
+        if (Math.abs(start_scroll.y - event.changedTouches[0].clientY > 50)) {
+          start_scroll = null
+          return
+        }
+        if (event.changedTouches[0].clientX - start_scroll.x > 100) {
+          document.body.style = "overflow: hidden;"
           setOpen(true)
-        } else if (start_scroll - event.changedTouches[0].clientX > 150) {
+        } else if (start_scroll.x - event.changedTouches[0].clientX > 100) {
+          document.body.style = "overflow: overlay;"
           setOpen(false)
         }
       }
