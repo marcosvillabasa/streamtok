@@ -5,9 +5,9 @@ import { Link } from "react-router-dom"
 import { secondsToTime } from "../Utils/time"
 import { useMediaQuery, useTheme } from "@material-ui/core"
 
-const sizeSmall = { width: 96, height: 54 }
-const sizeMedium = { width: 160, height: 90 }
-const sizeLarge = { width: 256, height: 144 }
+export const sizeSmall = { width: 96, height: 54 }
+export const sizeMedium = { width: 160, height: 90 }
+export const sizeLarge = { width: 256, height: 144 }
 
 export const useResponsiveTrackThumbnail = (skipDesktop) => {
   const theme = useTheme()

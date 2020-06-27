@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { splitTrackTitle } from "../Utils/splitTrackTitle"
+import { sizeSmall, sizeMedium } from "../Components/HorizontalPlaylistItem"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
@@ -23,11 +24,11 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-img-container {
-    width: 128px;
-    height: 72px;
+    width: ${sizeSmall.width}px;
+    height: ${sizeSmall.height}px;
     @media screen and (min-width: 600px) {
-      width: 256px;
-      height: 144px;
+      width: ${sizeMedium.width}px;
+      height: ${sizeMedium.height}px;
     }
     background-color: #0004;
 
@@ -52,6 +53,7 @@ export const PlaylistItem = React.memo(function PlaylistItem({
   setCurrentTrack,
   size,
 }) {
+  console.log("size", size)
   const { artist, trackTitle } = splitTrackTitle(track?.title)
 
   return (
