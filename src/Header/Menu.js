@@ -7,6 +7,7 @@ import { StyledNavLink } from "../Components/NavLink"
 // import { SearchBox2 } from "../Components/SearchBox2"
 import fixedLogo from "../assets/logostreamtokfixed.svg"
 import { NavLink } from "react-router-dom"
+import { useMediaQuery, useTheme } from "@material-ui/core"
 
 const HeaderContainer = styled.header`
   padding: 16px;
@@ -106,16 +107,16 @@ const Wrapper = styled.div`
       border-right: 1px solid #222;
       position: fixed;
       top: 0px;
-      left: 0px;
+      left: -280px;
       width: 240px;
       height: 100vh;
-      transform: translateX(-100%);
       transition: transform 0.5s;
+      transform: translateX(0px);
       will-change: transform;
       z-index: 10100;
       &.true {
         touch-action: none;
-        transform: translateX(0%);
+        transform: translateX(280px);
       }
     }
   }
@@ -123,6 +124,8 @@ const Wrapper = styled.div`
 
 export default function Menu(props) {
   const [open, setOpen] = React.useState(false)
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"))
 
   const closeMenu = React.useCallback(() => {
     setOpen(false)
@@ -130,47 +133,49 @@ export default function Menu(props) {
   }, [])
 
   React.useEffect(() => {
-    let start_scroll = null
-
-    const onTouchStart = (event) => {
-      if (event.path.some((e) => e.className?.includes("h-swipe"))) {
-        start_scroll = null
-        return
-      }
-      start_scroll = {
-        x: event.changedTouches[0].clientX,
-        y: event.changedTouches[0].clientY,
-      }
-    }
-
-    const onTouchMove = (event) => {
-      if (start_scroll && event.changedTouches?.length) {
-        if (Math.abs(start_scroll.y - event.changedTouches[0].clientY > 50)) {
+    if (isMobile) {
+      let start_scroll = null
+      const onTouchStart = (event) => {
+        if (event.path.some((e) => e.className?.includes("h-swipe"))) {
           start_scroll = null
           return
         }
-        if (event.changedTouches[0].clientX - start_scroll.x > 100) {
-          document.body.style = "overflow: hidden;"
-          setOpen(true)
-        } else if (start_scroll.x - event.changedTouches[0].clientX > 100) {
-          document.body.style = "overflow: overlay;"
-          setOpen(false)
+        start_scroll = {
+          x: event.changedTouches[0].clientX,
+          y: event.changedTouches[0].clientY,
         }
       }
-    }
+      const onTouchMove = (event) => {
+        if (start_scroll && event.changedTouches?.length) {
+          if (Math.abs(start_scroll.y - event.changedTouches[0].clientY > 50)) {
+            start_scroll = null
+            return
+          }
+          if (event.changedTouches[0].clientX - start_scroll.x > 100) {
+            document.body.style = "overflow: hidden;"
+            setOpen(true)
+          } else if (start_scroll.x - event.changedTouches[0].clientX > 100) {
+            document.body.style = "overflow: overlay;"
+            setOpen(false)
+          }
+        }
+      }
 
-    document.querySelector("#root").addEventListener("touchstart", onTouchStart)
-    document.querySelector("#root").addEventListener("touchmove", onTouchMove)
-
-    return () => {
       document
         .querySelector("#root")
-        .removeEventListener("touchstart", onTouchStart)
-      document
-        .querySelector("#root")
-        .removeEventListener("touchmove", onTouchMove)
+        .addEventListener("touchstart", onTouchStart)
+      document.querySelector("#root").addEventListener("touchmove", onTouchMove)
+
+      return () => {
+        document
+          .querySelector("#root")
+          .removeEventListener("touchstart", onTouchStart)
+        document
+          .querySelector("#root")
+          .removeEventListener("touchmove", onTouchMove)
+      }
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <Wrapper>
