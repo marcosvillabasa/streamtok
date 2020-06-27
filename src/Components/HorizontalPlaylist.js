@@ -84,13 +84,7 @@ export function HorizontalPlaylist({ loading, playlist, search, size }) {
     if (playlist.playlist.length) {
       setFiltered(
         matchSorter(playlist.playlist, search, {
-          keys: [
-            (obj) =>
-              `${obj.title} ${obj.description} ${obj.tags}`.replace(
-                /[,#]/g,
-                " "
-              ),
-          ],
+          keys: ["flatten"],
           threshold: matchSorter.rankings.WORD_STARTS_WITH,
         })
       )

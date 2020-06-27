@@ -11,10 +11,20 @@ import { ApolloProvider } from "react-apollo"
 import { RestLink } from "apollo-link-rest"
 import { Helmet } from "react-helmet"
 
+import setTrackFlatten from "./API/Transformers/setTrackFlatten"
+
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 
 const restLink = new RestLink({
   uri: "https://cdn.jwplayer.com/v2/",
+  responseTransformer: (response, tipo) => {
+    switch (tipo) {
+      case "Playlist":
+        return response.json().then(setTrackFlatten)
+      default:
+        return response.json()
+    }
+  },
 })
 
 const client = new ApolloClient({
