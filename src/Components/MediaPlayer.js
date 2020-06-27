@@ -106,6 +106,7 @@ export default function MediaPlayer({ history, match, location }) {
         <Grid item xs={12} lg className="playlist-container">
           <VerticalPlaylist
             size={size}
+            title={data?.title}
             playlist={data?.playlist}
             currentTrack={currentTrack}
             setCurrentTrack={setCurrentTrack}

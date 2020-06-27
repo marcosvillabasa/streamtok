@@ -48,6 +48,7 @@ const StyledVerticalPlaylist = styled.div`
 `
 
 export function VerticalPlaylist({
+  title,
   playlist,
   currentTrack,
   setCurrentTrack,
@@ -56,7 +57,7 @@ export function VerticalPlaylist({
   return (
     <StyledVerticalPlaylist>
       <div className="playlist-title">
-        <label>Lista de videos relacionados</label>
+        <label>{title}</label>
       </div>
       <div className="container">
         {playlist.map((track) => (

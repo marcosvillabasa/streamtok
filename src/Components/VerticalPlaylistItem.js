@@ -53,7 +53,6 @@ export const PlaylistItem = React.memo(function PlaylistItem({
   setCurrentTrack,
   size,
 }) {
-  console.log("size", size)
   const { artist, trackTitle } = splitTrackTitle(track?.title)
 
   return (
