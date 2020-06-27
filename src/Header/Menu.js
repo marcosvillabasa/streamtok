@@ -128,9 +128,12 @@ export default function Menu(props) {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"))
 
+  const rootRef = React.useRef(document.querySelector("#root"))
+  const bodyRef = React.useRef(document.querySelector("body"))
+
   const closeMenu = React.useCallback(() => {
     setOpen(false)
-    document.body.style = "overflow: overlay;"
+    bodyRef.current.style = "overflow: overlay;"
   }, [])
 
   React.useEffect(() => {
@@ -153,27 +156,22 @@ export default function Menu(props) {
             return
           }
           if (event.changedTouches[0].clientX - start_scroll.x > 100) {
-            document.body.style = "overflow: hidden;"
+            bodyRef.current.style = "overflow: hidden;"
             setOpen(true)
           } else if (start_scroll.x - event.changedTouches[0].clientX > 100) {
-            document.body.style = "overflow: overlay;"
+            bodyRef.current.style = "overflow: overlay;"
             setOpen(false)
           }
         }
       }
 
-      document
-        .querySelector("#root")
-        .addEventListener("touchstart", onTouchStart)
-      document.querySelector("#root").addEventListener("touchmove", onTouchMove)
+      const root = rootRef.current
+      root.addEventListener("touchstart", onTouchStart)
+      root.addEventListener("touchmove", onTouchMove)
 
       return () => {
-        document
-          .querySelector("#root")
-          .removeEventListener("touchstart", onTouchStart)
-        document
-          .querySelector("#root")
-          .removeEventListener("touchmove", onTouchMove)
+        root.removeEventListener("touchstart", onTouchStart)
+        root.removeEventListener("touchmove", onTouchMove)
       }
     }
   }, [isMobile])
