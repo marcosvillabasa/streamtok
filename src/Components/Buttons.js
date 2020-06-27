@@ -62,35 +62,33 @@ export const RoundedPrimaryButton = styled.button`
   cursor: pointer;
   border-radius: 200px;
   border: none;
-  font-size: var(--size-2);
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: white;
-  padding: 1em 1em 0.8em 0em;
+  padding: 1em 3.8em 0.8em 1.6em;
   transition: 0.2s all;
   overflow: hidden;
   position: relative;
   box-shadow: 0px 0.8rem 3.2rem -0.8rem var(--color-primary-semi);
-  @media screen and (min-width: 600px) {
-    padding: 1em 1em 0.9em 0em;
-    font-size: var(--size-4);
-    .button-icon {
-      font-size: var(--size-12);
-    }
-  }
+
   &:hover {
     .button-icon {
       transform: translate(8px, -50%);
     }
   }
+
   .button-icon {
+    font-size: 2em;
     position: absolute;
     top: 50%;
     transform: translate(0px, -50%);
     right: 8%;
-    /* margin-left: 8px; */
-    /* transform: translate(0px, 5px); */
     will-change: transform;
     transition: 0.2s transform;
+  }
+
+  @media screen and (min-width: 600px) {
+    font-size: 16px;
   }
 `

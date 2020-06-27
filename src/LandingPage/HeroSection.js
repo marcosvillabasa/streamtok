@@ -25,8 +25,8 @@ const HeroSection = styled.section`
   }
 
   .btn-hero {
-    width: 30ch;
-    margin: 2em 8% 0px 8%;
+    /* width: 30ch; */
+    margin: 2em 8% 0px 0%;
   }
 `
 
