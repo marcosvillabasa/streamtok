@@ -17,16 +17,18 @@ export const StyledNavLink = styled.div`
       position: relative;
     }
 
-    &:hover span::after {
-      content: "";
-      position: absolute;
-      bottom: -2px;
-      left: -16px;
-      right: -16px;
-      height: 3px;
-      box-shadow: 0px 0px 16px 0px #1bb382;
-      border-radius: 10px;
-      background-color: #1bb382;
+    @media screen and (pointer: fine) {
+      &:hover span::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: -16px;
+        right: -16px;
+        height: 3px;
+        box-shadow: 0px 0px 16px 0px #1bb382;
+        border-radius: 10px;
+        background-color: #1bb382;
+      }
     }
 
     &.active span {
