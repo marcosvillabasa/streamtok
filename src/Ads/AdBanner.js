@@ -5,7 +5,6 @@ import "react-multi-carousel/lib/styles.css"
 import placeholder from "../assets/180x180.gif"
 import { Banner } from "../Components/Banner"
 
-// TODO: SACAR NARANJA PONER PLACEHOLDER !!
 const BannerItems = [
   { src: placeholder },
   { src: placeholder },

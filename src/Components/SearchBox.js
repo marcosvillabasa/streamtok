@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useLocation } from "react-router"
 import strings from "../strings.json"
+import SearchIcon from "@material-ui/icons/Search"
 
 const StyledSearchBox = styled.div`
   position: relative;
@@ -50,7 +51,7 @@ export function SearchBox({ handleSearch }) {
         className="track-search-box"
         onChange={handleSearch}
       />
-      <span className="material-icons search-icon">search</span>
+      <SearchIcon className="search-icon" />
     </StyledSearchBox>
   )
 }

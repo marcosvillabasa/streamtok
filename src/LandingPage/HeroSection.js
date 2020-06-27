@@ -4,6 +4,7 @@ import { RoundedPrimaryButton } from "../Components/Buttons"
 import Grid from "@material-ui/core/Grid"
 import useInView from "react-cool-inview"
 import strings from "../strings.json"
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -65,7 +66,7 @@ export function Hero(props) {
         </div>
         <RoundedPrimaryButton className="btn-hero">
           VER CONTENIDO
-          <span className="material-icons">arrow_forward</span>
+          <ArrowForwardIcon className="button-icon" />
         </RoundedPrimaryButton>
       </Grid>
     </HeroSection>

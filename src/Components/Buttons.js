@@ -74,16 +74,16 @@ export const RoundedPrimaryButton = styled.button`
   @media screen and (min-width: 600px) {
     padding: 1em 1em 0.9em 0em;
     font-size: var(--size-4);
-    span {
+    .button-icon {
       font-size: var(--size-12);
     }
   }
   &:hover {
-    span {
+    .button-icon {
       transform: translate(8px, -50%);
     }
   }
-  span {
+  .button-icon {
     position: absolute;
     top: 50%;
     transform: translate(0px, -50%);

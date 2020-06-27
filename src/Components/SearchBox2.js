@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import SearchIcon from "@material-ui/icons/Search"
 
 const StyledSearchBox = styled.div`
   position: relative;
@@ -18,7 +19,7 @@ const StyledSearchBox = styled.div`
     color: white;
     cursor: not-allowed;
   }
-  span {
+  .search-icon {
     left: 8px;
     position: absolute;
     font-size: 30px;
@@ -35,7 +36,7 @@ export function SearchBox2({ handleSearch }) {
         onChange={handleSearch}
         disabled
       />
-      <span className="material-icons color-primary">search</span>
+      <SearchIcon className="search-icon color-primary" />
     </StyledSearchBox>
   )
 }
