@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { splitTrackTitle } from "../Utils/splitTrackTitle"
 import { sizeSmall, sizeMedium } from "../Components/HorizontalPlaylistItem"
+import Tooltip from "@material-ui/core/Tooltip"
+import { CustomTooltip } from "./CustomTooltip"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
@@ -56,31 +58,38 @@ export const PlaylistItem = React.memo(function PlaylistItem({
   const { artist, trackTitle } = splitTrackTitle(track?.title)
 
   return (
-    <Link
-      to={"?v=" + track.mediaid}
-      title={track.description + "  | " + track.tags}
-    >
-      <StyledPlaylistItem className={active ? "active" : "inactive"}>
-        <div className="playlist-item-img-container">
-          <img
-            alt={track.title}
-            loading="lazy"
-            width={size.width}
-            height={size.height}
-            src={track.images.find(({ width }) => width === 320)?.src}
-          />
-        </div>
-        <div className="playlist-item-info">
-          {trackTitle ? (
-            <>
-              <p className="playlist-item-title">{trackTitle}</p>
-              <p className="playlist-item-artist">{artist}</p>
-            </>
-          ) : (
-            <p className="playlist-item-title">{artist}</p>
-          )}
-        </div>
-      </StyledPlaylistItem>
+    <Link to={"?v=" + track.mediaid}>
+      <Tooltip
+        placement="left"
+        title={
+          <CustomTooltip>
+            <div className="description">{track.description}</div>
+            <div className="tags">{track.tags}</div>
+          </CustomTooltip>
+        }
+      >
+        <StyledPlaylistItem className={active ? "active" : "inactive"}>
+          <div className="playlist-item-img-container">
+            <img
+              alt={track.title}
+              loading="lazy"
+              width={size.width}
+              height={size.height}
+              src={track.images.find(({ width }) => width === 320)?.src}
+            />
+          </div>
+          <div className="playlist-item-info">
+            {trackTitle ? (
+              <>
+                <p className="playlist-item-title">{trackTitle}</p>
+                <p className="playlist-item-artist">{artist}</p>
+              </>
+            ) : (
+              <p className="playlist-item-title">{artist}</p>
+            )}
+          </div>
+        </StyledPlaylistItem>
+      </Tooltip>
     </Link>
   )
 })

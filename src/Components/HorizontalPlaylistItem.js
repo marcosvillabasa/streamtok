@@ -4,6 +4,8 @@ import { useRouteMatch } from "react-router"
 import { Link } from "react-router-dom"
 import { secondsToTime } from "../Utils/time"
 import { useMediaQuery, useTheme } from "@material-ui/core"
+import Tooltip from "@material-ui/core/Tooltip"
+import { CustomTooltip } from "./CustomTooltip"
 
 export const sizeSmall = { width: 96, height: 54 }
 export const sizeMedium = { width: 160, height: 90 }
@@ -117,26 +119,32 @@ export function PlaylistItem({ track, size = sizeSmall }) {
 
   const time = secondsToTime(track.duration)
   return (
-    <Link
-      to={match.path + "/" + track.feedid + "?v=" + track.mediaid}
-      title={track.description + "  | " + track.tags}
-    >
-      <StyledPlaylistItem>
-        <div className="playlist-item-img-container">
-          <img
-            alt={track.title}
-            loading="lazy"
-            width={size.width}
-            height={size.height}
-            src={track.images.find(({ width }) => width === 320)?.src}
-          />
-          <p className="playlist-item-time-overlay">{time}</p>
-        </div>
-        <div className="playlist-item-info">
-          <p className="playlist-item-title">{track.title}</p>
-          <p className="playlist-item-time">{time}</p>
-        </div>
-      </StyledPlaylistItem>
+    <Link to={match.path + "/" + track.feedid + "?v=" + track.mediaid}>
+      <Tooltip
+        title={
+          <CustomTooltip>
+            <div className="description">{track.description}</div>
+            <div className="tags">{track.tags}</div>
+          </CustomTooltip>
+        }
+      >
+        <StyledPlaylistItem>
+          <div className="playlist-item-img-container">
+            <img
+              alt={track.title}
+              loading="lazy"
+              width={size.width}
+              height={size.height}
+              src={track.images.find(({ width }) => width === 320)?.src}
+            />
+            <p className="playlist-item-time-overlay">{time}</p>
+          </div>
+          <div className="playlist-item-info">
+            <p className="playlist-item-title">{track.title}</p>
+            <p className="playlist-item-time">{time}</p>
+          </div>
+        </StyledPlaylistItem>
+      </Tooltip>
     </Link>
   )
 }

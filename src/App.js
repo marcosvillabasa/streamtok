@@ -34,6 +34,17 @@ const client = new ApolloClient({
 })
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        backgroundColor: "#000",
+        borderWidth: 2,
+        borderColor: "#222",
+        borderStyle: "solid",
+        fontSize: 14,
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#ff0d57",
