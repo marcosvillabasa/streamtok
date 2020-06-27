@@ -8,6 +8,7 @@ import { StyledNavLink } from "../Components/NavLink"
 import fixedLogo from "../assets/logostreamtokfixed.svg"
 import { NavLink } from "react-router-dom"
 import { useMediaQuery, useTheme } from "@material-ui/core"
+import { checkSwipeClass } from "../Utils/checkSwipeClass"
 
 const HeaderContainer = styled.header`
   padding: 16px;
@@ -136,13 +137,13 @@ export default function Menu(props) {
     if (isMobile) {
       let start_scroll = null
       const onTouchStart = (event) => {
-        if (event.path.some((e) => e.className?.includes("h-swipe"))) {
+        if (checkSwipeClass(event)) {
           start_scroll = null
-          return
-        }
-        start_scroll = {
-          x: event.changedTouches[0].clientX,
-          y: event.changedTouches[0].clientY,
+        } else {
+          start_scroll = {
+            x: event.changedTouches[0].clientX,
+            y: event.changedTouches[0].clientY,
+          }
         }
       }
       const onTouchMove = (event) => {
