@@ -31,9 +31,7 @@ const StyledTabCanales = styled.div`
 `
 
 export default function MediaPlayer({ history, match, location }) {
-  const { loading, error, dedupedResponse } = useDedupedQueryCanal(
-    match.params.id
-  )
+  const { loading, error, data } = useDedupedQueryCanal(match.params.id)
 
   const [currentTrack, setCurrentTrack] = React.useState(null)
   const [playerInitialized, setPlayerInitialized] = React.useState(false)
@@ -44,13 +42,13 @@ export default function MediaPlayer({ history, match, location }) {
   const size = useResponsiveTrackThumbnail(true)
 
   React.useEffect(() => {
-    if (dedupedResponse && playerInitialized) {
+    if (data && playerInitialized) {
       setCurrentTrack((curr) => {
         const queryMediaId = queryParamParse(location.search, ["v"]).v
         // if there is a querystring, sync with the local state and jwplayer
         if (queryMediaId) {
           // check the index of that mediaid in the current playlist
-          const trackIndex = dedupedResponse.playlist.findIndex(
+          const trackIndex = data.playlist.findIndex(
             (track) => track.mediaid === queryMediaId
           )
           // if the index isn't -1, then it's a valid mediaid and can be seted
@@ -60,18 +58,18 @@ export default function MediaPlayer({ history, match, location }) {
             // FIXME: ?? for some reason if this is not in the next tick it
             // doesn't trigger the autoplay
             window.setTimeout(window.jwplayer().play, 0)
-            return dedupedResponse.playlist[trackIndex]
+            return data.playlist[trackIndex]
           }
         } else {
           // if there isn't a querystring, set the current track at 0 and
           // cancel the autoplay
           window.jwplayer().playlistItem(0)
           window.jwplayer().stop()
-          return dedupedResponse.playlist[0]
+          return data.playlist[0]
         }
       })
     }
-  }, [location, dedupedResponse, playerInitialized])
+  }, [location, data, playerInitialized])
 
   if (error) {
     return <div>ERROR</div>
@@ -85,7 +83,7 @@ export default function MediaPlayer({ history, match, location }) {
             ? "cargando..."
             : currentTrack
             ? currentTrack.title + " | StreamTOK"
-            : dedupedResponse.title + " | StreamTOK"}
+            : data.title + " | StreamTOK"}
         </title>
       </Helmet>
       <Grid container>
@@ -100,7 +98,7 @@ export default function MediaPlayer({ history, match, location }) {
               onReady={onReady}
               playerId="LUykEJtT"
               playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-              playlist={dedupedResponse?.playlist}
+              playlist={data?.playlist}
             />
           )}
           <div className="dummy-placeholder">&nbsp;</div>
@@ -108,7 +106,7 @@ export default function MediaPlayer({ history, match, location }) {
         <Grid item xs={12} lg className="playlist-container">
           <VerticalPlaylist
             size={size}
-            playlist={dedupedResponse?.playlist}
+            playlist={data?.playlist}
             currentTrack={currentTrack}
             setCurrentTrack={setCurrentTrack}
           />

@@ -1,6 +1,5 @@
 import gql from "graphql-tag"
 import { useQuery } from "react-apollo"
-import React from "react"
 
 export const QueryCanal = gql`
   query($playlistId: String!) {
@@ -11,25 +10,18 @@ export const QueryCanal = gql`
   }
 `
 
+const emptyResponse = { title: "", playlist: [] }
+
 export function useDedupedQueryCanal(id) {
-  const { loading, error } = useQuery(QueryCanal, {
+  const { loading, error, data } = useQuery(QueryCanal, {
     variables: {
       playlistId: id,
     },
-    onCompleted: ({ response }) => {
-      const deduped = []
-      response.playlist.forEach((track) => {
-        if (deduped.every((e) => e.mediaid !== track.mediaid)) {
-          deduped.push(track)
-        }
-      })
-      setDedupedResponse({ title: response.title, playlist: deduped })
-    },
   })
 
-  const [dedupedResponse, setDedupedResponse] = React.useState({
-    playlist: [],
-    title: "",
-  })
-  return { loading, error, dedupedResponse }
+  if (data) {
+    return { loading, error, data: data.response }
+  } else {
+    return { loading, error, data: emptyResponse }
+  }
 }

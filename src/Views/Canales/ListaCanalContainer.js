@@ -5,7 +5,7 @@ import { HorizontalPlaylist } from "../../Components/HorizontalPlaylist"
 import { useDedupedQueryCanal } from "../../API/Queries/QueryCanal"
 
 export default function ListaCanalContainer({ id, search, size }) {
-  const { loading, error, dedupedResponse } = useDedupedQueryCanal(id)
+  const { loading, error, data } = useDedupedQueryCanal(id)
 
   if (error) {
     return (
@@ -19,7 +19,7 @@ export default function ListaCanalContainer({ id, search, size }) {
     <HorizontalPlaylist
       loading={loading}
       id={id}
-      playlist={dedupedResponse}
+      playlist={data}
       search={search}
       size={size}
     />

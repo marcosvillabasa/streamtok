@@ -12,6 +12,7 @@ import { RestLink } from "apollo-link-rest"
 import { Helmet } from "react-helmet"
 
 import setTrackFlatten from "./API/Transformers/setTrackFlatten"
+import deduplicatePlaylist from "./API/Transformers/deduplicatePlaylist"
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 
@@ -20,7 +21,7 @@ const restLink = new RestLink({
   responseTransformer: (response, tipo) => {
     switch (tipo) {
       case "Playlist":
-        return response.json().then(setTrackFlatten)
+        return response.json().then(setTrackFlatten).then(deduplicatePlaylist)
       default:
         return response.json()
     }

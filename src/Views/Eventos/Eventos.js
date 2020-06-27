@@ -8,7 +8,7 @@ import { StyledListaCanales } from "../Canales/ListaCanales"
 import strings from "../../strings.json"
 
 export default function EventosView({ history, location }) {
-  const { loading, error, dedupedResponse } = useDedupedQueryCanal("Lu7EC8Bf")
+  const { loading, error, data } = useDedupedQueryCanal("Lu7EC8Bf")
   const [search, setSearch] = React.useState(() => {
     const search = new URLSearchParams(location.search).get("search")
     return search || ""
@@ -48,7 +48,7 @@ export default function EventosView({ history, location }) {
           <HorizontalPlaylist
             loading={loading}
             id="Lu7EC8Bf"
-            playlist={dedupedResponse}
+            playlist={data}
             search={search}
           />
         </div>
