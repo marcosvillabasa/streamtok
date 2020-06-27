@@ -2,10 +2,33 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useDebouncedCallback } from "use-debounce"
 import { useDedupedQueryCanal } from "../../API/Queries/QueryCanal"
-import { HorizontalPlaylist } from "../../Components/HorizontalPlaylist"
 import { TabHeader } from "../../Components/TabHeader"
-import { StyledListaCanales } from "../Canales/ListaCanales"
 import strings from "../../strings.json"
+import styled from "styled-components"
+import matchSorter from "match-sorter"
+import { GridPlaylistItem } from "../../Components/GridPlaylistItem"
+import { ResultCount } from "../../Components/ResultCount"
+
+const StyledTrackGrid = styled.div`
+  display: grid;
+  margin: 0px 5%;
+  grid-template-columns: 1fr 1fr;
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media screen and (min-width: 960px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+`
+
+const MainContainer = styled.div`
+  .result-count {
+    margin: 24px 5%;
+  }
+`
 
 export default function EventosView({ history, location }) {
   const { loading, error, data } = useDedupedQueryCanal("Lu7EC8Bf")
@@ -21,6 +44,18 @@ export default function EventosView({ history, location }) {
   }, 500)
   const handleSearch = (event) => debouncedHandleSearch(event.target.value)
 
+  const [filtered, setFiltered] = React.useState([])
+  React.useEffect(() => {
+    if (data.playlist.length) {
+      setFiltered(
+        matchSorter(data.playlist, search, {
+          keys: ["flatten"],
+          threshold: matchSorter.rankings.WORD_STARTS_WITH,
+        })
+      )
+    }
+  }, [data, search])
+
   if (error) {
     return (
       <div className="error-message">
@@ -31,7 +66,7 @@ export default function EventosView({ history, location }) {
   }
 
   return (
-    <div className="eventos-main">
+    <MainContainer>
       <Helmet>
         <title>StreamTOK [Eventos]</title>
       </Helmet>
@@ -43,16 +78,22 @@ export default function EventosView({ history, location }) {
           "Los mejores shows por artistas y géneros."
         }
       />
-      <StyledListaCanales>
-        <div className="lista-canales">
-          <HorizontalPlaylist
-            loading={loading}
-            id="Lu7EC8Bf"
-            playlist={data}
-            search={search}
-          />
-        </div>
-      </StyledListaCanales>
-    </div>
+      <ResultCount className="result-count">
+        {loading ? (
+          <div>&nbsp;</div>
+        ) : (
+          <>
+            Se encontraron&nbsp;
+            <span>{filtered.length}</span>
+            <span>&nbsp;resultados.</span>
+          </>
+        )}
+      </ResultCount>
+      <StyledTrackGrid>
+        {filtered.map((track, index) => (
+          <GridPlaylistItem key={index + track.mediaid} track={track} />
+        ))}
+      </StyledTrackGrid>
+    </MainContainer>
   )
 }
