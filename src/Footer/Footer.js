@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid"
 
 const StyledFooter = styled.footer`
   color: white;
-  padding: 96px 16px;
+  padding: 96px 16px 0px 16px;
   section {
     margin-bottom: 48px;
   }
@@ -31,9 +31,6 @@ const StyledFooter = styled.footer`
   @media screen and (min-width: 1280px) {
     * {
       text-align: inherit;
-    }
-    section {
-      margin-bottom: 0px;
     }
   }
 `
