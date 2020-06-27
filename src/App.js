@@ -10,22 +10,13 @@ import { InMemoryCache } from "apollo-cache-inmemory"
 import { ApolloProvider } from "react-apollo"
 import { RestLink } from "apollo-link-rest"
 import { Helmet } from "react-helmet"
-
-import setTrackFlatten from "./API/Transformers/setTrackFlatten"
-import deduplicatePlaylist from "./API/Transformers/deduplicatePlaylist"
+import { responseTransformer } from "./API/responseTransformer"
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 
 const restLink = new RestLink({
   uri: "https://cdn.jwplayer.com/v2/",
-  responseTransformer: (response, tipo) => {
-    switch (tipo) {
-      case "Playlist":
-        return response.json().then(setTrackFlatten).then(deduplicatePlaylist)
-      default:
-        return response.json()
-    }
-  },
+  responseTransformer,
 })
 
 const client = new ApolloClient({
