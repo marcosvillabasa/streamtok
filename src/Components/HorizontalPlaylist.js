@@ -6,6 +6,7 @@ const StyledHorizontalPlaylist = styled.div`
   margin: 0;
   display: flex;
   overflow-x: auto;
+  padding: 0 1em;
 
   ::-webkit-scrollbar {
     height: 4px;
@@ -63,7 +64,8 @@ const Container = styled.div`
 
   @media screen and (min-width: 600px) {
     width: 90vw;
-    padding: 0px 5vw;
+    max-width: 1280px;
+    margin: 0 auto;
   }
 `
 

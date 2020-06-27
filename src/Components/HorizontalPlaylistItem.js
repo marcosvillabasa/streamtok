@@ -5,9 +5,9 @@ import { Link } from "react-router-dom"
 import { secondsToTime } from "../Utils/time"
 import { useMediaQuery, useTheme } from "@material-ui/core"
 
-const sizeSmall = { width: 128, height: 72 }
-const sizeMedium = { width: sizeSmall.width * 2, height: sizeSmall.height * 2 }
-const sizeLarge = { width: sizeSmall.width * 3, height: sizeSmall.height * 3 }
+const sizeSmall = { width: 96, height: 54 }
+const sizeMedium = { width: 160, height: 90 }
+const sizeLarge = { width: 256, height: 144 }
 
 export const useResponsiveTrackThumbnail = (skipDesktop) => {
   const theme = useTheme()
@@ -29,15 +29,15 @@ export const useResponsiveTrackThumbnail = (skipDesktop) => {
 
 const StyledPlaylistItem = styled.div`
   display: flex;
-  width: 140px;
+  width: ${sizeSmall.width + 12}px;
   flex-direction: column;
   cursor: pointer;
 
   @media screen and (min-width: 600px) {
-    width: 280px;
+    width: ${sizeMedium.width + 24}px;
   }
   @media screen and (min-width: 960px) {
-    width: 420px;
+    width: ${sizeLarge.width + 36}px;
   }
 
   &:hover {
@@ -54,19 +54,19 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-img-container {
-    width: 128px;
-    height: 72px;
+    width: ${sizeSmall.width}px;
+    height: ${sizeSmall.height}px;
     @media screen and (min-width: 600px) {
-      width: 256px;
-      height: 144px;
+      width: ${sizeMedium.width}px;
+      height: ${sizeMedium.height}px;
     }
     @media screen and (min-width: 960px) {
-      width: 384px;
-      height: 216px;
+      width: ${sizeLarge.width}px;
+      height: ${sizeLarge.height}px;
     }
     position: relative;
     overflow: hidden;
-    margin: 0px 16px;
+    /* margin: 0px 16px; */
     background-color: #0004;
 
     img {
@@ -96,11 +96,14 @@ const StyledPlaylistItem = styled.div`
     user-select: none;
     opacity: 0.75;
     transition: 0.25s opacity;
-    padding: 0.6em 1.2em;
+    padding: 0.6em 1.2em 0.6em 0em;
     will-change: opacity;
-    font-size: var(--size-1);
+    font-size: 10px;
     @media screen and (min-width: 600px) {
-      font-size: var(--size-5);
+      font-size: 13px;
+    }
+    @media screen and (min-width: 960px) {
+      font-size: 16px;
     }
 
     .playlist-item-time {
@@ -109,7 +112,7 @@ const StyledPlaylistItem = styled.div`
   }
 `
 
-export function PlaylistItem({ track, size = { width: 128, height: 72 } }) {
+export function PlaylistItem({ track, size = sizeSmall }) {
   const match = useRouteMatch()
 
   const time = secondsToTime(track.duration)
