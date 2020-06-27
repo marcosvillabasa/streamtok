@@ -10,6 +10,9 @@ const StyledHorizontalPlaylist = styled.div`
 
   ::-webkit-scrollbar {
     height: 4px;
+    @media screen and (pointer: fine) {
+      height: 10px;
+    }
   }
 
   ::-webkit-scrollbar-track {

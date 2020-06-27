@@ -23,7 +23,9 @@ const StyledVerticalPlaylist = styled.div`
   .container {
     ::-webkit-scrollbar {
       width: 5px;
-      height: 5px;
+      @media screen and (pointer: fine) {
+        width: 10px;
+      }
     }
 
     ::-webkit-scrollbar-track {
