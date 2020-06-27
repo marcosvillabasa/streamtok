@@ -32,16 +32,6 @@ export default function ListaCanales({ history, match, location }) {
 
   const size = useResponsiveTrackThumbnail()
 
-  const filterFn = React.useCallback(
-    (track) => {
-      if (!search) {
-        return true
-      } else {
-        return track.title.toLowerCase().includes(search.toLowerCase())
-      }
-    },
-    [search]
-  )
   return (
     <>
       <Helmet>
@@ -61,7 +51,7 @@ export default function ListaCanales({ history, match, location }) {
             <ListaCanalContainer
               key={key}
               id={value}
-              filterFn={filterFn}
+              search={search}
               size={size}
             />
           ))}

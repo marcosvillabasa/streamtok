@@ -21,17 +21,6 @@ export default function EventosView({ history, location }) {
   }, 500)
   const handleSearch = (event) => debouncedHandleSearch(event.target.value)
 
-  const filterFn = React.useCallback(
-    (track) => {
-      if (!search) {
-        return true
-      } else {
-        return track.title.toLowerCase().includes(search.toLowerCase())
-      }
-    },
-    [search]
-  )
-
   if (error) {
     return (
       <div className="error-message">
@@ -60,7 +49,6 @@ export default function EventosView({ history, location }) {
             loading={loading}
             id="Lu7EC8Bf"
             playlist={dedupedResponse}
-            filterFn={filterFn}
             search={search}
           />
         </div>
