@@ -77,8 +77,11 @@ export const Navbar = styled.nav`
 `
 
 const Wrapper = styled.div`
+  padding-top: ${(props) => (props.isMobile ? 48 : 0)}px;
+
   .sticky-top-nav {
-    display: none;
+    display: ${(props) => (props.isMobile ? "flex" : "none")};
+    align-items: center;
     z-index: 9000;
     position: fixed;
     top: 0;
@@ -100,11 +103,6 @@ const Wrapper = styled.div`
     .account-icon {
       margin-left: auto;
     }
-
-    &.true {
-      display: flex;
-      align-items: center;
-    }
   }
   .sidebar-overlay {
     @media screen and (max-width: 599.95px) {
@@ -114,17 +112,12 @@ const Wrapper = styled.div`
       bottom: 0;
       right: 0;
       background-color: #000;
-      opacity: 0;
+      opacity: ${(props) => (props.open ? 0.5 : 0)};
       transition: opacity 0.5s;
       will-change: opacity;
       z-index: 10000;
-      visibility: hidden;
-
-      &.true {
-        touch-action: none;
-        opacity: 0.5;
-        visibility: visible;
-      }
+      visibility: ${(props) => (props.open ? "visible" : "hidden")};
+      touch-action: none;
     }
   }
   .menu-container {
@@ -135,14 +128,12 @@ const Wrapper = styled.div`
       left: -280px;
       width: 240px;
       height: 100vh;
-      transition: transform 0.5s;
-      transform: translateX(0px);
+      transition: transform 0.3s ease-in-out;
+      transform: ${(props) =>
+        props.open ? "translateX(280px)" : "translateX(0px)"};
       will-change: transform;
       z-index: 10100;
-      &.true {
-        touch-action: none;
-        transform: translateX(280px);
-      }
+      touch-action: none;
     }
   }
 `
@@ -151,8 +142,8 @@ export default function Menu(props) {
   const { open, openMenu, closeMenu, isMobile } = useMenuSwipe()
 
   return (
-    <Wrapper>
-      <div className={`sticky-top-nav ${isMobile}`}>
+    <Wrapper isMobile={isMobile} open={open}>
+      <div className="sticky-top-nav">
         <img
           className="topnav-logo"
           alt="streamtok logo"
@@ -162,12 +153,8 @@ export default function Menu(props) {
         <MenuIcon className="menu-icon" onClick={openMenu} />
         <AccountCircleIcon className="account-icon" />
       </div>
-      <div className={`sidebar-overlay ${open}`} onClick={closeMenu} />
-      <HeaderContainer
-        className={`menu-container ${open}`}
-        id="menu-container"
-        onClick={closeMenu}
-      >
+      <div className="sidebar-overlay" onClick={closeMenu} />
+      <HeaderContainer className="menu-container" onClick={closeMenu}>
         <Link to="/">
           <div className="header-logo-container">
             <img className="header-logo" alt="streamtok logo" src={fixedLogo} />
