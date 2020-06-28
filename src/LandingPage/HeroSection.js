@@ -6,6 +6,7 @@ import useInView from "react-cool-inview"
 import strings from "../strings.json"
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
 import { scrollToElement } from "../Utils/scrollToElement"
+import { useMediaQuery, useTheme } from "@material-ui/core"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -53,9 +54,15 @@ const HeroText = styled.p`
 
 export function Hero(props) {
   const { ref, inView } = useInView({ threshold: 0 })
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"))
 
   const scrollToComposition = () => {
-    scrollToElement(props.scrollTo.current.offsetTop, 300)
+    if (isMobile) {
+      scrollToElement(props.scrollTo.current.offsetTop - 100, 300)
+    } else {
+      scrollToElement(props.scrollTo.current.offsetTop, 300)
+    }
   }
 
   return (
