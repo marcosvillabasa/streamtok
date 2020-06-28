@@ -1,59 +1,70 @@
 import React from "react"
 import styled from "styled-components"
 import { HeadingWithFinalDot } from "../Components/HeadingWithFinalDot"
-import strings from "../strings.json"
 
-const StyledContactInformation = styled.section`
-  text-align: left;
+const ContactoForm = styled.form`
+  display: flex;
+  flex-direction: column;
 
-  address {
-    margin-top: 1em;
-    p,
-    a {
-      display: block;
-      color: var(--color-text-8);
-      text-decoration: none;
-      font-style: normal;
-      line-height: 1.8em;
-      font-family: "Open Sans", sans-serif;
+  align-items: stretch;
+  justify-content: stretch;
+
+  margin-left: 5%;
+  width: 90%;
+  max-width: 600px;
+  color: var(--color-text-10);
+  font-size: 12px;
+
+  @media screen and (min-width: 600px) {
+    font-size: 14px;
+  }
+
+  textarea,
+  input {
+    text-align: left;
+    margin: 0.25em 0em;
+    padding: 0.6em 1.2em;
+    font-size: inherit;
+    background-color: var(--color-text-1);
+    color: inherit;
+    border: 1px solid var(--color-text-2);
+    border-radius: 5px;
+  }
+
+  .form-label {
+    text-align: left;
+    margin-top: 0.75em;
+    &::after {
+      content: "*";
+      color: red;
+      margin-left: 1ch;
     }
-    a {
-      color: var(--color-primary);
-    }
+  }
+
+  .submit-btn {
+    margin-top: 3em;
+    align-self: flex-start;
+    padding: 0.6em 2em 0.5em 2em;
   }
 `
 
-const defaultData = {
-  city: "city",
-  address1: "address",
-  zipcode: "zipcode",
-  tel1: "tel1",
-  fulltel1: "tel1",
-  tel2: "tel2",
-  fulltel2: "tel2",
-  email: "email",
-}
-
-const contactData = strings.contact_data || defaultData
-
 export default function ContactInformation() {
   return (
-    <StyledContactInformation id="contact-information">
-      <HeadingWithFinalDot>Datos de contacto</HeadingWithFinalDot>
-      <address id="contact-data">
-        <p title="Direccion">{contactData.address1}</p>
-        <p title="Ciudad">{contactData.city}</p>
-        <p title="Zipcode">{contactData.zipcode}</p>
-        <a title="Telefono" href={`tel:${contactData.fulltel1}`}>
-          {contactData.tel1}
-        </a>
-        <a title="Telefono" href={`tel:${contactData.fulltel2}`}>
-          {contactData.tel2}
-        </a>
-        <a title="Email" href={`mailto:${contactData.email}`}>
-          {contactData.email}
-        </a>
-      </address>
-    </StyledContactInformation>
+    <ContactoForm>
+      <HeadingWithFinalDot>Contactanos</HeadingWithFinalDot>
+      <label required htmlFor="nombre" className="form-label">
+        Nombre
+      </label>
+      <input type="text" name="nombre" id="nombre" />
+      <label required htmlFor="email" className="form-label">
+        Email
+      </label>
+      <input type="email" name="email" id="email" />
+      <label required htmlFor="mensaje" className="form-label">
+        Mensaje
+      </label>
+      <textarea name="mensaje" id="mensaje" cols="30" rows="6"></textarea>
+      <input className="submit-btn" type="submit" value="Enviar" />
+    </ContactoForm>
   )
 }
