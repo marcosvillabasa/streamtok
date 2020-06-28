@@ -7,16 +7,14 @@ const StyledVerticalPlaylist = styled.div`
   border-radius: 10px;
   border: 1px solid #707070;
   width: 90%;
-  @media screen and (min-width: 1280px) {
-    margin-left: auto;
-    margin-right: auto;
-  }
+  margin-left: auto;
+  margin-right: auto;
 
   .playlist-title {
-    font-size: var(--size-6);
-    text-align: center;
+    font-size: 24px;
+    text-align: left;
     font-weight: 600;
-    padding: 1em;
+    padding: 1em 2em;
     border-bottom: 1px solid #707070;
   }
 
@@ -42,7 +40,7 @@ const StyledVerticalPlaylist = styled.div`
       background: #b30000;
     }
 
-    height: 650px;
+    max-height: 650px;
     overflow-y: scroll;
   }
 `

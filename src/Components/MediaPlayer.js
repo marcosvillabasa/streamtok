@@ -14,6 +14,9 @@ const StyledTabCanales = styled.div`
   .header-container {
     margin-bottom: 32px;
   }
+  .mediaplayer-container {
+    max-width: 1280px;
+  }
 
   @media screen and (min-width: 600px) {
     .mediaplayer-container {
@@ -93,7 +96,7 @@ export default function MediaPlayer({ history, match, location }) {
             : data.title + " | StreamTOK"}
         </title>
       </Helmet>
-      <Grid container>
+      <Grid container justify="center">
         <Grid item xs={12} className="header-container">
           <MediaPlayerHeader
             logoData={data?.logo_data}
@@ -113,7 +116,7 @@ export default function MediaPlayer({ history, match, location }) {
           )}
           <div className="dummy-placeholder">&nbsp;</div>
         </Grid>
-        <Grid item xs={12} lg className="playlist-container">
+        <Grid item xs={11} lg className="playlist-container">
           <VerticalPlaylist
             size={size}
             title={data?.title}
