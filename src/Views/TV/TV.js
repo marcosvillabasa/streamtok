@@ -59,9 +59,9 @@ export default function TV_View(props) {
         <iframe
           title={data.title}
           src={data.src}
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
     </Container>

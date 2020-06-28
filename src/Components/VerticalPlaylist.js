@@ -60,8 +60,9 @@ export function VerticalPlaylist({
         <label>{title}</label>
       </div>
       <div className="container">
-        {playlist.map((track) => (
+        {playlist.map((track, index) => (
           <PlaylistItem
+            key={index + track.mediaid}
             size={size}
             track={track}
             setCurrentTrack={setCurrentTrack}
