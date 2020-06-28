@@ -157,6 +157,7 @@ export default function CanalesGrid({ noTitle }) {
       <StyledCanalesGrid>
         {imagesSrc.map(({ src, link }) => (
           <GridImgContainer
+            key={link}
             onClick={() => {
               history.push({ pathname: "/tv/" + link })
               window.scrollTo(0, 0)
