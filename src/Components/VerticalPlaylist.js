@@ -9,6 +9,7 @@ const StyledVerticalPlaylist = styled.div`
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 
   .playlist-title {
     font-size: 24px;
