@@ -59,7 +59,7 @@ export function Hero(props) {
 
   const scrollToComposition = () => {
     if (isMobile) {
-      scrollToElement(props.scrollTo.current.offsetTop - 100, 300)
+      scrollToElement(props.scrollTo.current.offsetTop - 64, 300)
     } else {
       scrollToElement(props.scrollTo.current.offsetTop, 300)
     }
