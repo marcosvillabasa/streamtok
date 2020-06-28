@@ -3,18 +3,15 @@ import styled from "styled-components"
 import { StyledNavLink } from "../Components/NavLink"
 import bgtext1 from "../assets/canales-vod.svg"
 import bgtext2 from "../assets/eventos.svg"
-import composition5 from "../assets/composition5.png"
-import composition6 from "../assets/composition6.png"
-import composition7 from "../assets/composition7.png"
-import composition8 from "../assets/composition8.png"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
-import { Link, useLocation } from "react-router-dom"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import AdBanner from "../Ads/AdBanner"
 import { useDedupedQueryCanal } from "../API/Queries/QueryCanal"
 import Tooltip from "@material-ui/core/Tooltip"
 import { CustomTooltip } from "../Components/CustomTooltip"
+import { useQuery } from "react-apollo"
+import { QueryCanal } from "../API/Queries/QueryCanal"
 
 const Box = styled.div`
   border-radius: 10px;
@@ -105,11 +102,8 @@ const Navbar = styled.nav`
 `
 
 function Carrousel(props) {
-  const ref = React.useRef(null)
-  console.log(ref?.current?.listRef?.current)
   return (
     <Carousel
-      ref={ref}
       arrows
       centerMode={false}
       className=""
@@ -158,6 +152,7 @@ function CompositionItem({ track }) {
     <Tooltip
       title={
         <CustomTooltip>
+          <div className="title">{track.title}</div>
           <div className="description">{track.description}</div>
           <div className="tags">{track.tags}</div>
         </CustomTooltip>
@@ -171,78 +166,122 @@ function CompositionItem({ track }) {
 }
 
 export default function Composition(props) {
-  const { loading, error, data: eventosList } = useDedupedQueryCanal("Lu7EC8Bf")
+  const { data: eventosList } = useDedupedQueryCanal("Lu7EC8Bf")
 
-  const location = useLocation()
-  const [selected, setSelected] = React.useState("EVENTOS")
+  useQuery(QueryCanal, {
+    variables: { playlistId: "lYq3t5Ce" },
+    onCompleted: (data) => {
+      try {
+        const len = data.response.playlist.length
+        const item1 = data.response.playlist[~~(Math.random() * len)]
+        const item2 = data.response.playlist[~~(Math.random() * len)]
+        setCanalesTrack((canales) => canales.concat([item1, item2]))
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  })
+
+  useQuery(QueryCanal, {
+    variables: { playlistId: "PtGHPJyX" },
+    onCompleted: (data) => {
+      try {
+        const len = data.response.playlist.length
+        const item1 = data.response.playlist[~~(Math.random() * len)]
+        const item2 = data.response.playlist[~~(Math.random() * len)]
+        setCanalesTrack((canales) => canales.concat([item1, item2]))
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  })
+
+  useQuery(QueryCanal, {
+    variables: { playlistId: "S5VL1ucU" },
+    onCompleted: (data) => {
+      try {
+        const len = data.response.playlist.length
+        const item1 = data.response.playlist[~~(Math.random() * len)]
+        setCanalesTrack((canales) => canales.concat(item1))
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  })
+
+  useQuery(QueryCanal, {
+    variables: { playlistId: "VFQ4soKc" },
+    onCompleted: (data) => {
+      try {
+        const len = data.response.playlist.length
+        const item1 = data.response.playlist[~~(Math.random() * len)]
+        setCanalesTrack((canales) => canales.concat(item1))
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  })
+
+  const [canalesTracks, setCanalesTrack] = React.useState([])
+
+  const [selected, setSelected] = React.useState("eventos")
   const onClickLink = (event) => {
     if (event.target.dataset.tab) {
       setSelected(event.target.dataset.tab)
     }
   }
   return (
-    <>
-      <Box>
-        <div className="landing-bbcontainer">
-          <AdBanner />
-        </div>
-        <Navbar ref={props.scrollTo}>
-          <div className="bg-text-container">
-            <div className="bg-text-subcontainer">
-              <img src={bgtext1} alt="canales vod" className="bgtext-1" />
-            </div>
-            <div className="bg-text-subcontainer">
-              <img src={bgtext2} alt="eventos" className="bgtext-2" />
-            </div>
+    <Box>
+      <div className="landing-bbcontainer">
+        <AdBanner />
+      </div>
+      <Navbar ref={props.scrollTo}>
+        <div className="bg-text-container">
+          <div className="bg-text-subcontainer">
+            <img src={bgtext1} alt="canales vod" className="bgtext-1" />
           </div>
-          <ul>
-            <li>
-              <StyledNavLink className="composition-links">
-                <NavLink
-                  to="#canales-vod"
-                  isActive={() => location.hash.includes("canales-vod")}
-                >
-                  <span data-tab="CANALES VOD" onClick={onClickLink}>
-                    CANALES VOD
-                  </span>
-                </NavLink>
-              </StyledNavLink>
-            </li>
-            <li>
-              <StyledNavLink className="composition-links">
-                <NavLink
-                  to="#eventos"
-                  isActive={() => location.hash.includes("eventos")}
-                >
-                  <span data-tab="EVENTOS" onClick={onClickLink}>
-                    EVENTOS
-                  </span>
-                </NavLink>
-              </StyledNavLink>
-            </li>
-          </ul>
-        </Navbar>
-        <Carrousel key={selected}>
-          {selected === "EVENTOS"
-            ? eventosList.playlist.map((track) => (
-                <CompositionItem track={track} key={track.mediaid} />
-              ))
-            : [
-                <Link to={"canales/lYq3t5Ce?v=Fy4NlMQt"}>
-                  <img alt="imagen de recital" src={composition5} />
-                </Link>,
-                <Link to={"canales/Lu7EC8Bf?v=MeVBP6Sg"}>
-                  <img alt="imagen de recital" src={composition6} />
-                </Link>,
-                <Link to={"canales/Lu7EC8Bf?v=MeVBP6Sg"}>
-                  <img alt="imagen de recital" src={composition7} />
-                </Link>,
-                <Link to={"canales/Lu7EC8Bf?v=MeVBP6Sg"}>
-                  <img alt="imagen de recital" src={composition8} />
-                </Link>,
-              ]}
-        </Carrousel>
-      </Box>
-    </>
+          <div className="bg-text-subcontainer">
+            <img src={bgtext2} alt="eventos" className="bgtext-2" />
+          </div>
+        </div>
+        <ul>
+          <li>
+            <StyledNavLink className="composition-links">
+              <div
+                className={`tab ${
+                  selected === "canales" ? "active" : "inactive"
+                }`}
+              >
+                <span data-tab="canales" onClick={onClickLink}>
+                  CANALES VOD
+                </span>
+              </div>
+            </StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink className="composition-links">
+              <div
+                className={`tab ${
+                  selected === "eventos" ? "active" : "inactive"
+                }`}
+              >
+                <span data-tab="eventos" onClick={onClickLink}>
+                  EVENTOS
+                </span>
+              </div>
+            </StyledNavLink>
+          </li>
+        </ul>
+      </Navbar>
+      <Carrousel key={selected}>
+        {selected === "eventos"
+          ? eventosList.playlist.map((track) => (
+              <CompositionItem track={track} key={track.mediaid} />
+            ))
+          : canalesTracks.map((track) => (
+              <CompositionItem track={track} key={track.mediaid} />
+            ))}
+      </Carrousel>
+    </Box>
   )
 }

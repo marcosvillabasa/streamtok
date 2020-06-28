@@ -2,6 +2,8 @@ import styled from "styled-components"
 
 export const StyledNavLink = styled.div`
   user-select: none;
+
+  .tab,
   a {
     cursor: pointer;
     color: white;
@@ -46,6 +48,7 @@ export const StyledNavLink = styled.div`
     }
   }
   &.main-navbar-link {
+    .tab,
     a {
       @media screen and (max-width: 599.95px) {
         line-height: 4em;
