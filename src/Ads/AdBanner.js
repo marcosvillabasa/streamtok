@@ -6,12 +6,12 @@ import placeholder from "../assets/180x180.gif"
 import { Banner } from "../Components/Banner"
 
 const BannerItems = [
-  { src: placeholder },
-  { src: placeholder },
-  { src: placeholder },
-  { src: placeholder },
-  { src: placeholder },
-  { src: placeholder },
+  { id: Math.random(), src: placeholder },
+  { id: Math.random(), src: placeholder },
+  { id: Math.random(), src: placeholder },
+  { id: Math.random(), src: placeholder },
+  { id: Math.random(), src: placeholder },
+  { id: Math.random(), src: placeholder },
 ]
 
 const CarrouselContainer = styled.div`
@@ -107,7 +107,7 @@ export default function AdBanner() {
         swipeable
       >
         {BannerItems.map((img) => (
-          <Banner img={img} />
+          <Banner img={img} key={img.id} />
         ))}
       </Carousel>
     </CarrouselContainer>
