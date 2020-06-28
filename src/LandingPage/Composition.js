@@ -162,7 +162,7 @@ export default function Composition(props) {
         <div className="landing-bbcontainer">
           <AdBanner />
         </div>
-        <Navbar>
+        <Navbar ref={props.scrollTo}>
           <div className="bg-text-container">
             <div className="bg-text-subcontainer">
               <img src={bgtext1} alt="canales vod" className="bgtext-1" />

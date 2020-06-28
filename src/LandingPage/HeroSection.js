@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid"
 import useInView from "react-cool-inview"
 import strings from "../strings.json"
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
+import { scrollToElement } from "../Utils/scrollToElement"
 
 const HeroSection = styled.section`
   text-align: left;
@@ -53,6 +54,10 @@ const HeroText = styled.p`
 export function Hero(props) {
   const { ref, inView } = useInView({ threshold: 0 })
 
+  const scrollToComposition = () => {
+    scrollToElement(props.scrollTo.current.offsetTop, 300)
+  }
+
   return (
     <HeroSection id="hero-section">
       <Grid item xs={10} sm={8} lg={7} className="header-container">
@@ -64,7 +69,10 @@ export function Hero(props) {
             {strings.hero_subheader_text || "subheader_text"}
           </HeroText>
         </div>
-        <RoundedPrimaryButton className="btn-hero">
+        <RoundedPrimaryButton
+          className="btn-hero"
+          onClick={scrollToComposition}
+        >
           VER CONTENIDO
           <ArrowForwardIcon className="button-icon" />
         </RoundedPrimaryButton>

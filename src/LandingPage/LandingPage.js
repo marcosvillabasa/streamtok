@@ -15,10 +15,12 @@ function useBodyClass(classname) {
 
 export default function LandingPage(props) {
   useBodyClass("landing")
+  const compositionRef = React.useRef(null)
+
   return (
     <div>
-      <Hero />
-      <Composition />
+      <Hero scrollTo={compositionRef} />
+      <Composition scrollTo={compositionRef} />
       <CanalesGrid />
     </div>
   )
