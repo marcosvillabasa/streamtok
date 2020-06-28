@@ -43,6 +43,7 @@ const ContactoForm = styled.form`
 
   .submit-btn {
     margin-top: 3em;
+    margin-bottom: 2em;
     align-self: flex-start;
     padding: 0.6em 2em 0.5em 2em;
   }
