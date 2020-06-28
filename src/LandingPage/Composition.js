@@ -3,10 +3,6 @@ import styled from "styled-components"
 import { StyledNavLink } from "../Components/NavLink"
 import bgtext1 from "../assets/canales-vod.svg"
 import bgtext2 from "../assets/eventos.svg"
-import composition1 from "../assets/composition1.png"
-import composition2 from "../assets/composition2.png"
-import composition3 from "../assets/composition3.png"
-import composition4 from "../assets/composition4.png"
 import composition5 from "../assets/composition5.png"
 import composition6 from "../assets/composition6.png"
 import composition7 from "../assets/composition7.png"
@@ -16,12 +12,19 @@ import "react-multi-carousel/lib/styles.css"
 import { Link, useLocation } from "react-router-dom"
 import { NavLink } from "react-router-dom"
 import AdBanner from "../Ads/AdBanner"
+import { useDedupedQueryCanal } from "../API/Queries/QueryCanal"
+import Tooltip from "@material-ui/core/Tooltip"
+import { CustomTooltip } from "../Components/CustomTooltip"
 
 const Box = styled.div`
   border-radius: 10px;
   background-color: #202124;
   margin-top: 120px;
   margin-bottom: 48px;
+
+  .composition-carrousel-items {
+    transform: scale(0.9);
+  }
 
   @media screen and (min-width: 600px) {
     margin-left: 5%;
@@ -103,6 +106,7 @@ const Navbar = styled.nav`
 
 function Carrousel(props) {
   const ref = React.useRef(null)
+  console.log(ref?.current?.listRef?.current)
   return (
     <Carousel
       ref={ref}
@@ -142,13 +146,33 @@ function Carrousel(props) {
       sliderClass="composition-carrousel-slider h-swipe"
       slidesToSlide={1}
       swipeable
+      itemClass="composition-carrousel-items"
     >
       {props.children}
     </Carousel>
   )
 }
 
+function CompositionItem({ track }) {
+  return (
+    <Tooltip
+      title={
+        <CustomTooltip>
+          <div className="description">{track.description}</div>
+          <div className="tags">{track.tags}</div>
+        </CustomTooltip>
+      }
+    >
+      <Link to={`eventos/${track.feedid}?v=${track.mediaid}`}>
+        <img alt={track.title} src={track.image} />
+      </Link>
+    </Tooltip>
+  )
+}
+
 export default function Composition(props) {
+  const { loading, error, data: eventosList } = useDedupedQueryCanal("Lu7EC8Bf")
+
   const location = useLocation()
   const [selected, setSelected] = React.useState("EVENTOS")
   const onClickLink = (event) => {
@@ -198,18 +222,11 @@ export default function Composition(props) {
             </li>
           </ul>
         </Navbar>
-        <Carrousel>
+        <Carrousel key={selected}>
           {selected === "EVENTOS"
-            ? [
-                <Link to={"eventos/Lu7EC8Bf?v=MeVBP6Sg"}>
-                  <img alt="imagen de recital" src={composition1} />
-                </Link>,
-                <Link to={"eventos/Lu7EC8Bf?v=1NC66zYE"}>
-                  <img alt="imagen de recital" src={composition2} />
-                </Link>,
-                <img alt="imagen de recital" src={composition3} />,
-                <img alt="imagen de recital" src={composition4} />,
-              ]
+            ? eventosList.playlist.map((track) => (
+                <CompositionItem track={track} key={track.mediaid} />
+              ))
             : [
                 <Link to={"canales/lYq3t5Ce?v=Fy4NlMQt"}>
                   <img alt="imagen de recital" src={composition5} />
