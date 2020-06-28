@@ -127,14 +127,14 @@ function Carrousel(props) {
             max: 600,
             min: 0,
           },
-          items: 4,
+          items: 2,
         },
         tablet: {
           breakpoint: {
             max: 1024,
             min: 600,
           },
-          items: 4,
+          items: 3,
         },
       }}
       sliderClass="composition-carrousel-slider h-swipe"
