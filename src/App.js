@@ -12,7 +12,8 @@ import { RestLink } from "apollo-link-rest"
 import { Helmet } from "react-helmet"
 import { responseTransformer } from "./API/responseTransformer"
 
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
+import { ThemeProvider } from "@material-ui/core/styles"
+import { theme } from "./configMaterialTheme"
 
 const restLink = new RestLink({
   uri: "https://cdn.jwplayer.com/v2/",
@@ -22,34 +23,6 @@ const restLink = new RestLink({
 const client = new ApolloClient({
   link: restLink,
   cache: new InMemoryCache(),
-})
-
-const theme = createMuiTheme({
-  overrides: {
-    MuiTooltip: {
-      tooltip: {
-        backgroundColor: "#000",
-        borderWidth: 2,
-        borderColor: "#222",
-        borderStyle: "solid",
-        fontSize: 14,
-      },
-    },
-  },
-  palette: {
-    primary: {
-      main: "#ff0d57",
-    },
-  },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1600,
-    },
-  },
 })
 
 function App() {
