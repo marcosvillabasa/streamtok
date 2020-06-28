@@ -5,6 +5,7 @@ import { splitTrackTitle } from "../Utils/splitTrackTitle"
 import { sizeSmall, sizeMedium } from "../Components/HorizontalPlaylistItem"
 import Tooltip from "@material-ui/core/Tooltip"
 import { CustomTooltip } from "./CustomTooltip"
+import { secondsToTime } from "../Utils/time"
 
 const StyledPlaylistItem = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ const StyledPlaylistItem = styled.div`
   }
 
   .playlist-item-img-container {
+    position: relative;
     width: ${sizeSmall.width}px;
     height: ${sizeSmall.height}px;
     @media screen and (min-width: 600px) {
@@ -37,11 +39,25 @@ const StyledPlaylistItem = styled.div`
     img {
       object-fit: cover;
     }
+
+    .playlist-item-time-overlay {
+      position: absolute;
+      background-color: #000;
+      font-size: var(--size-2);
+      padding: 3px 4px 0px 4px;
+      border-radius: 2px;
+      line-height: 1em;
+      height: 1em;
+      letter-spacing: 2px;
+      bottom: 1px;
+      right: 2px;
+    }
   }
 
   .playlist-item-info {
     font-size: var(--size-2);
-    padding: 1rem 1rem 0rem 1.4rem;
+    padding: 0rem 0rem 0rem 1.4rem;
+    align-self: center;
 
     .playlist-item-artist {
       color: var(--color-text-5);
@@ -56,6 +72,7 @@ export const PlaylistItem = React.memo(function PlaylistItem({
   size,
 }) {
   const { artist, trackTitle } = splitTrackTitle(track?.title)
+  const time = secondsToTime(track.duration)
 
   return (
     <Link to={"?v=" + track.mediaid}>
@@ -77,6 +94,7 @@ export const PlaylistItem = React.memo(function PlaylistItem({
               height={size.height}
               src={track.images.find(({ width }) => width === 320)?.src}
             />
+            <p className="playlist-item-time-overlay">{time}</p>
           </div>
           <div className="playlist-item-info">
             {trackTitle ? (
