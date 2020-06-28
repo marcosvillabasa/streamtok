@@ -6,6 +6,7 @@ export const QueryCanal = gql`
     response(id: $playlistId) @rest(type: "Playlist", path: "playlists/:id") {
       title
       playlist
+      logo_data
     }
   }
 `

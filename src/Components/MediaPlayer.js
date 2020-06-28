@@ -14,6 +14,13 @@ const StyledTabCanales = styled.div`
   .header-container {
     margin-bottom: 32px;
   }
+
+  @media screen and (min-width: 600px) {
+    .mediaplayer-container {
+      margin: 0px 16px;
+    }
+  }
+
   .playlist-container {
     margin-top: 48px;
     @media screen and (min-width: 1280px) {
@@ -88,9 +95,12 @@ export default function MediaPlayer({ history, match, location }) {
       </Helmet>
       <Grid container>
         <Grid item xs={12} className="header-container">
-          <MediaPlayerHeader currentTrack={currentTrack} />
+          <MediaPlayerHeader
+            logoData={data?.logo_data}
+            currentTrack={currentTrack}
+          />
         </Grid>
-        <Grid item xs={12} lg>
+        <Grid item xs={12} lg className="mediaplayer-container">
           {loading ? (
             <Spinner />
           ) : (

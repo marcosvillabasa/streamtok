@@ -1,7 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import logo1 from "../assets/municipalidad de cosquin.svg"
-import logo2 from "../assets/logo cosquin.svg"
 import { splitTrackTitle } from "../Utils/splitTrackTitle"
 
 const StyledHeader = styled.header`
@@ -42,8 +40,9 @@ const LogosContainer = styled.div`
     gap: calc(20% - 64px);
   }
 
-  .logo,
   .logo {
+    border-radius: 10px;
+    overflow: hidden;
     height: 40px;
     @media screen and (min-width: 600px) {
       height: 50px;
@@ -63,7 +62,7 @@ const LogosContainer = styled.div`
   }
 `
 
-export function MediaPlayerHeader({ currentTrack }) {
+export function MediaPlayerHeader({ currentTrack, logoData }) {
   const { artist, trackTitle } = splitTrackTitle(currentTrack?.title)
   return (
     <StyledHeader>
@@ -72,12 +71,16 @@ export function MediaPlayerHeader({ currentTrack }) {
         <p className="track-title">{trackTitle}</p>
       </div>
       <LogosContainer>
-        <div className="logo">
-          <img alt="logo-municipalidad-cosquin" src={logo1}></img>
-        </div>
-        <div className="logo">
-          <img alt="logo-festival-cosquin" src={logo2}></img>
-        </div>
+        {logoData?.[0] ? (
+          <div className="logo">
+            <img alt={logoData[0].alt} src={logoData[0].src}></img>
+          </div>
+        ) : null}
+        {logoData?.[1] ? (
+          <div className="logo">
+            <img alt={logoData[1].alt} src={logoData[1].src}></img>
+          </div>
+        ) : null}
       </LogosContainer>
     </StyledHeader>
   )
