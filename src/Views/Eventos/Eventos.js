@@ -79,15 +79,9 @@ export default function EventosView({ history, location }) {
         }
       />
       <ResultCount className="result-count">
-        {loading ? (
-          <div>&nbsp;</div>
-        ) : (
-          <>
-            Se encontraron&nbsp;
-            <span>{filtered.length}</span>
-            <span>&nbsp;resultados.</span>
-          </>
-        )}
+        Se encontraron&nbsp;
+        <span>{loading ? "⌛" : filtered.length}</span>
+        <span>&nbsp;resultados.</span>
       </ResultCount>
       <StyledTrackGrid>
         {filtered.map((track, index) => (

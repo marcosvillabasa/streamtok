@@ -57,12 +57,14 @@ const Container = styled.div`
 
 const defaultPlaylist = new Array(5).fill({
   title: "",
+  flatten: "",
+  mediaid: Math.random(),
   images: [{ src: "", width: 320 }],
   duration: 300,
 })
 
 export function HorizontalPlaylist({ loading, playlist, search, size }) {
-  const [filtered, setFiltered] = React.useState([])
+  const [filtered, setFiltered] = React.useState(defaultPlaylist)
   React.useEffect(() => {
     if (playlist.playlist.length) {
       setFiltered(
@@ -80,33 +82,19 @@ export function HorizontalPlaylist({ loading, playlist, search, size }) {
         <TitleContainer>
           <PlaylistTitle>{playlist.title || "cargando"}</PlaylistTitle>
           <ResultCount className="result-count">
-            {loading ? (
-              <div>&nbsp;</div>
-            ) : (
-              <>
-                Se encontraron&nbsp;
-                <span>{filtered.length}</span>
-                <span>&nbsp;resultados.</span>
-              </>
-            )}
+            Se encontraron&nbsp;
+            <span>{loading ? "⌛" : filtered.length}</span>
+            <span>&nbsp;resultados.</span>
           </ResultCount>
         </TitleContainer>
         <StyledHorizontalPlaylist className="h-swipe">
-          {loading
-            ? defaultPlaylist.map((track, index) => (
-                <PlaylistItem
-                  key={index + track.mediaid}
-                  track={track}
-                  size={size}
-                />
-              ))
-            : filtered.map((track, index) => (
-                <PlaylistItem
-                  key={index + track.mediaid}
-                  track={track}
-                  size={size}
-                />
-              ))}
+          {filtered.map((track, index) => (
+            <PlaylistItem
+              key={index + track.mediaid}
+              track={track}
+              size={size}
+            />
+          ))}
         </StyledHorizontalPlaylist>
       </Container>
     )
