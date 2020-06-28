@@ -4,6 +4,9 @@ export default function setTrackFlatten(res) {
       /[,#]/g,
       " "
     )
+    if (track.tags) {
+      track.tagsv2 = track.tags.split(",").join(" ")
+    }
   })
   return res
 }

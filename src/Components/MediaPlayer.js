@@ -16,6 +16,25 @@ const StyledTabCanales = styled.div`
   }
   .mediaplayer-container {
     max-width: 1280px;
+
+    .track-info {
+      padding: 16px 20% 0px 16px;
+      color: var(--color-text-6);
+      font-size: 20px;
+      word-wrap: normal;
+
+      .title {
+        color: var(--color-text-8);
+        font-size: 1.2em;
+      }
+      .tags {
+        color: var(--color-text-5);
+        font-size: 0.5em;
+        @media screen and (min-width: 600px) {
+          font-size: 0.8em;
+        }
+      }
+    }
   }
 
   @media screen and (min-width: 600px) {
@@ -107,12 +126,19 @@ export default function MediaPlayer({ history, match, location }) {
           {loading ? (
             <Spinner />
           ) : (
-            <ReactJWPlayer
-              onReady={onReady}
-              playerId="LUykEJtT"
-              playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
-              playlist={data?.playlist}
-            />
+            <>
+              <ReactJWPlayer
+                onReady={onReady}
+                playerId="LUykEJtT"
+                playerScript="https://cdn.jwplayer.com/libraries/LUykEJtT.js"
+                playlist={data?.playlist}
+              />
+              <div className="track-info">
+                <div className="title">{currentTrack?.title}</div>
+                <div className="description">{currentTrack?.description}</div>
+                <div className="tags">{currentTrack?.tagsv2}</div>
+              </div>
+            </>
           )}
           <div className="dummy-placeholder">&nbsp;</div>
         </Grid>
