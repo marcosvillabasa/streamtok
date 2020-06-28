@@ -127,7 +127,7 @@ export default function Menu(props) {
         id="menu-container"
         onClick={closeMenu}
       >
-        <Link to="/" exact>
+        <Link to="/">
           <div className="header-logo-container">
             <img className="header-logo" alt="streamtok logo" src={fixedLogo} />
           </div>
