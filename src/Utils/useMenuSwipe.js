@@ -15,6 +15,11 @@ export function useMenuSwipe() {
     bodyRef.current.style = "overflow: overlay;"
   }, [])
 
+  const openMenu = React.useCallback(() => {
+    setOpen(true)
+    bodyRef.current.style = "overflow: hidden;"
+  }, [])
+
   React.useEffect(() => {
     if (isMobile) {
       let start_scroll = null
@@ -55,5 +60,5 @@ export function useMenuSwipe() {
     }
   }, [isMobile])
 
-  return { open, closeMenu }
+  return { open, openMenu, closeMenu, isMobile }
 }
