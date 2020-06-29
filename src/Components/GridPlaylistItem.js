@@ -97,7 +97,7 @@ export function GridPlaylistItem({ track }) {
         title={
           <CustomTooltip>
             <div className="description">{track.description}</div>
-            <div className="tags">{track.tags}</div>
+            <div className="tags">{track.tagsv2}</div>
           </CustomTooltip>
         }
       >

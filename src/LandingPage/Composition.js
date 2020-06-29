@@ -154,7 +154,7 @@ function CompositionItem({ track }) {
         <CustomTooltip>
           <div className="title">{track.title}</div>
           <div className="description">{track.description}</div>
-          <div className="tags">{track.tags}</div>
+          <div className="tags">{track.tagsv2}</div>
         </CustomTooltip>
       }
     >
