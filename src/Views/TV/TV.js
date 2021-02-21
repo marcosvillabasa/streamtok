@@ -1,8 +1,10 @@
-import React from "react"
-import iframesData from "./Iframes.json"
+import React, { useEffect } from "react"
 import { useRouteMatch, Redirect } from "react-router"
 import styled from "styled-components"
 import { Helmet } from "react-helmet"
+import {fetchChannels} from '../../Redux/actions/channelsActions'
+import {connect} from 'react-redux'
+
 
 const Container = styled.div`
   margin: 24px 4% 0% 4%;
@@ -32,10 +34,15 @@ const Container = styled.div`
   }
 `
 
-export default function TV_View(props) {
+const TV_View = (props) => {
+
+  useEffect(()=>{
+    props.dispatch(fetchChannels())
+  },[])
+  console.log(props.channels.channels)
   const match = useRouteMatch()
   const [data] = React.useState(() => {
-    const currentData = iframesData.find(
+    const currentData = props.channels.channels.find(
       (iframe) => iframe.slug === match.params.id
     )
     if (currentData) {
@@ -48,7 +55,7 @@ export default function TV_View(props) {
   if (!data) {
     return <Redirect to="/tv" />
   }
-
+  
   return (
     <Container>
       <Helmet>
@@ -67,3 +74,12 @@ export default function TV_View(props) {
     </Container>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+      channels: state.channels
+  }
+  
+}
+
+export default connect(mapStateToProps)(TV_View)
