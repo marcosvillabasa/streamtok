@@ -39,7 +39,6 @@ const TV_View = (props) => {
   useEffect(()=>{
     props.dispatch(fetchChannels())
   },[])
-  console.log(props.channels.channels)
   const match = useRouteMatch()
   const [data] = React.useState(() => {
     const currentData = props.channels.channels.find(
