@@ -9,6 +9,7 @@ import TabTV from "./Views/TV/TV.js"
 import { NotFound } from "./Views/Redirects/NotFound.js"
 import Grid from "./Views/TV/Grid.js"
 import { Contacto } from "./Views/Contacto/Contacto.js"
+import ContainerChannel from './Admin/Channel/ContainerChannel'
 
 export default function MainBody(props) {
   return (
@@ -25,6 +26,7 @@ export default function MainBody(props) {
         <Route path="/tv" exact component={Grid} />
         <Route path="/tv/:id" component={TabTV} />
         <Route path="/contacto" exact component={Contacto} />
+        <Route path="/admin" exact component={ContainerChannel} />
         <Route path="*">
           <NotFound />
         </Route>
