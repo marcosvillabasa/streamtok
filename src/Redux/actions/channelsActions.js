@@ -12,7 +12,7 @@ const { REACT_APP_BACKEND_URL } = process.env
 export const fetchChannels = () => async (dispatch) => {
   dispatch({ type: FETCH_CHANNELS_REQUEST })
   axios
-    .get(`${REACT_APP_BACKEND_URL}/channels`)
+    .get(`/channels`)
     .then((resp) => {
       dispatch({
         type: FETCH_CHANNELS_SUCCESS,
@@ -32,7 +32,7 @@ export const addChannel = (title, slug, src) => (dispatch) => {
     type: FETCH_CHANNELS_REQUEST,
   })
   axios
-    .post(`${REACT_APP_BACKEND_URL}/channel`, { title, slug, src })
+    .post(`/channel`, { title, slug, src })
     .then((resp) => {
       dispatch({
         type: ADD_CHANNEL,
@@ -52,7 +52,7 @@ export const removeChannel = (id) => (dispatch) => {
     type: FETCH_CHANNELS_REQUEST,
   })
   axios
-    .delete(`${REACT_APP_BACKEND_URL}/channel/${id}`)
+    .delete(`/channel/${id}`)
     .then((resp) => {
       dispatch({
         type: REMOVE_CHANNEL,
@@ -72,7 +72,7 @@ export const updateChannel = (id, body) => (dispatch) => {
     type: FETCH_CHANNELS_REQUEST,
   })
   axios
-    .put(`${REACT_APP_BACKEND_URL}/channel/${id}`,body)
+    .put(`/channel/${id}`,body)
     .then((resp) => {
       dispatch({
         type: UPDATE_CHANNEL,

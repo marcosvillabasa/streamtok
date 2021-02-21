@@ -5,6 +5,11 @@ import App from "./App"
 import * as serviceWorker from "./serviceWorker"
 import {Provider} from 'react-redux'
 import store from './Redux/store'
+import dotenv from 'dotenv'
+import axios from "axios"
+dotenv.config()
+
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:4000"
 
 ReactDOM.render(
   <React.StrictMode>
